@@ -13,7 +13,7 @@ export class Wasabi extends Antagoniste {
 		this.vitesseY = null;
 		this.rotationRatio = 3;
 
-		this.zoneLimite = [64, window.lib.properties.width - 128, window.lib.properties.height / 2 - 32, window.lib.properties.width / 2 + 64];
+		this.zoneLimite = [64, window.lib.properties.width - 188, window.lib.properties.height / 2 - 32, window.lib.properties.width / 2 + 96];
 		this.addEventListener("tick", this._faireBouger, false);
 	}
 

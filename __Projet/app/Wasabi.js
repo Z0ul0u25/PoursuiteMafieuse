@@ -28,7 +28,7 @@ define(["require", "exports", "./Antagoniste"], function (require, exports, Anta
             _this.vitesseX = null;
             _this.vitesseY = null;
             _this.rotationRatio = 3;
-            _this.zoneLimite = [64, window.lib.properties.width - 128, window.lib.properties.height / 2 - 32, window.lib.properties.width / 2 + 64];
+            _this.zoneLimite = [64, window.lib.properties.width - 188, window.lib.properties.height / 2 - 32, window.lib.properties.width / 2 + 96];
             _this.addEventListener("tick", _this._faireBouger, false);
             return _this;
         }
