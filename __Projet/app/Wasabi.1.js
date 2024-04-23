@@ -13,26 +13,26 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-define(["require", "exports", "./ObjetVisible"], function (require, exports, ObjetVisible_1) {
+define(["require", "exports", "./Antagoniste"], function (require, exports, Antagoniste_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.Voiture = void 0;
-    var Voiture = /** @class */ (function (_super) {
-        __extends(Voiture, _super);
-        function Voiture(refScene, posX, posY) {
+    exports.Wasabi = void 0;
+    var Wasabi = /** @class */ (function (_super) {
+        __extends(Wasabi, _super);
+        function Wasabi(refScene, posX, posY) {
             var _this = _super.call(this, refScene, posX, posY) || this;
-            _this.accelDelta = null;
-            _this.vitesseMax = null;
-            _this.vitesseX = null;
-            _this.vitesseY = null;
-            _this.rotationRatio = null;
-            _this.zoneLimite = null;
-            _this.vitesseX = 0;
-            _this.vitesseY = 0;
+            _this.zoneLimite = [64, window.lib.properties.width - 32, window.lib];
             return _this;
         }
-        return Voiture;
-    }(ObjetVisible_1.ObjetVisible));
-    exports.Voiture = Voiture;
+        Wasabi.prototype.faireBouger = function () {
+            throw new Error("Method not implemented.");
+        };
+        Wasabi.prototype.dessiner = function () {
+            window.lib.ClipWasabi.call(this);
+            this.frameBounds = window.lib.ClipWasabi.prototype.frameBounds;
+        };
+        return Wasabi;
+    }(Antagoniste_1.Antagoniste));
+    exports.Wasabi = Wasabi;
 });
-//# sourceMappingURL=Voiture.js.map
+//# sourceMappingURL=Wasabi.1.js.map

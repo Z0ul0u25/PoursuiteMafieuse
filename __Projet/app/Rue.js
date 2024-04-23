@@ -13,36 +13,30 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-define(["require", "exports", "./ObjetVisible", "./Ricardo"], function (require, exports, ObjetVisible_1, Ricardo_1) {
+define(["require", "exports", "./ObjetVisible"], function (require, exports, ObjetVisible_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Rue = void 0;
     var Rue = /** @class */ (function (_super) {
         __extends(Rue, _super);
         function Rue(refScene) {
-            var _this = _super.call(this, refScene, 0, 800) || this;
+            var _this = _super.call(this, refScene, 0, 0) || this;
             _this.refScene = null;
-            _this.ricardo = null;
             _this._defilement = _this.defilement.bind(_this);
-            _this.refScene = refScene;
-            _this.debuter();
             _this.addEventListener("tick", _this._defilement, false);
             return _this;
         }
-        Rue.prototype.debuter = function () {
-            this.ricardo = new Ricardo_1.Ricardo(this.refScene, window.lib.properties.width / 2, window.lib.properties.height - 60);
-        };
         Rue.prototype.dessiner = function () {
-            window.lib.ClipRoute.call(this);
-            this.frameBounds = window.lib.ClipRoute.prototype.frameBounds;
+            window.lib.ClipRue.call(this);
+            this.frameBounds = window.lib.ClipRue.prototype.frameBounds;
         };
         Rue.prototype.detruire = function () {
             _super.prototype.detruire.call(this);
         };
         Rue.prototype.defilement = function () {
             this.y += 20;
-            if (this.y > 1599) {
-                this.y = 800;
+            if (this.y >= window.lib.properties.height) {
+                this.y = 0;
             }
         };
         return Rue;

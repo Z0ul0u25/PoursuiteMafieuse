@@ -13,26 +13,24 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-define(["require", "exports", "./ObjetVisible"], function (require, exports, ObjetVisible_1) {
+define(["require", "exports", "./Antagoniste"], function (require, exports, Antagoniste_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.Voiture = void 0;
-    var Voiture = /** @class */ (function (_super) {
-        __extends(Voiture, _super);
-        function Voiture(refScene, posX, posY) {
-            var _this = _super.call(this, refScene, posX, posY) || this;
-            _this.accelDelta = null;
-            _this.vitesseMax = null;
-            _this.vitesseX = null;
-            _this.vitesseY = null;
-            _this.rotationRatio = null;
-            _this.zoneLimite = null;
-            _this.vitesseX = 0;
-            _this.vitesseY = 0;
-            return _this;
+    exports.Maki = void 0;
+    var Maki = /** @class */ (function (_super) {
+        __extends(Maki, _super);
+        function Maki(refScene, posX, posY) {
+            return _super.call(this, refScene, posX, posY) || this;
         }
-        return Voiture;
-    }(ObjetVisible_1.ObjetVisible));
-    exports.Voiture = Voiture;
+        Maki.prototype.faireBouger = function () {
+            throw new Error("Method not implemented.");
+        };
+        Maki.prototype.dessiner = function () {
+            window.lib.ClipMaki.call(this);
+            this.frameBounds = window.lib.ClipMaki.prototype.frameBounds;
+        };
+        return Maki;
+    }(Antagoniste_1.Antagoniste));
+    exports.Maki = Maki;
 });
-//# sourceMappingURL=Voiture.js.map
+//# sourceMappingURL=Maki%20copy.js.map

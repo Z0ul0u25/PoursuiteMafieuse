@@ -1,10 +1,10 @@
-import { Rue } from './Rue';
+import { Jeu } from './Jeu';
 
 export class App {
 
   // Attributs
   private scene: createjs.Stage = null;
-  private rue: Rue = null;
+  private jeu: Jeu = null;
 
   // Méthodes
 
@@ -19,7 +19,7 @@ export class App {
     createjs.Ticker.framerate = 30;   // Vitesse de l'animation (peut être modifiée si nécessaire)
     // ----------------------------------------------------------------------------------------------------------------------
 
-    this.rue = new Rue(this.scene);
+    this.jeu = new Jeu(this.scene);
   }
 }
 

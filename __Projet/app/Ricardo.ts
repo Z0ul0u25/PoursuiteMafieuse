@@ -2,12 +2,6 @@ import { Voiture } from "./Voiture";
 
 export class Ricardo extends Voiture {
 
-	protected accelDelta: number = null;
-	protected vitesseMax: number = null;
-	protected vitesseX: number = null;
-	protected vitesseY: number = null;
-	protected rotationRatio: number = null;
-
 	private minuterieBouger: number = null;
 	private touchesEnfoncees: Array<boolean> = null;
 	/*
@@ -26,9 +20,9 @@ export class Ricardo extends Voiture {
 		super(refScene, posX, posY);
 		this.accelDelta = 0.4;
 		this.vitesseMax = 6;
-		this.vitesseX = 0;
-		this.vitesseY = 0;
 		this.rotationRatio = 3;
+		// Haut, Droite, Bas, Gauche
+		this.zoneLimite = [window.lib.properties.height / 2, window.lib.properties.width - 32, window.lib.properties.height- 50, 32]
 		this.touchesEnfoncees = [false, false, false, false];
 
 		window.onkeydown = this._activerTouche;
@@ -108,13 +102,13 @@ export class Ricardo extends Voiture {
 			this.vitesseX -= this.accelDelta * Math.sign(this.vitesseX);
 		}
 
-		if ((this.y + this.vitesseY > window.lib.properties.height / 2) && (this.y + this.vitesseY < window.lib.properties.height - 50)) {
+		if ((this.y + this.vitesseY > this.zoneLimite[0]) && (this.y + this.vitesseY < this.zoneLimite[2])) {
 			this.y += this.vitesseY;
 		} else {
 			this.vitesseY = 0;
 		}
 
-		if (this.x + this.vitesseX < window.lib.properties.width - 32 && this.x + this.vitesseX > 32) {
+		if (this.x + this.vitesseX < this.zoneLimite[1] && this.x + this.vitesseX > this.zoneLimite[3]) {
 			this.x += this.vitesseX;
 		} else {
 			this.vitesseX = 0;

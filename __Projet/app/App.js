@@ -1,4 +1,4 @@
-define(["require", "exports", "./Rue"], function (require, exports, Rue_1) {
+define(["require", "exports", "./Jeu"], function (require, exports, Jeu_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.App = void 0;
@@ -7,7 +7,7 @@ define(["require", "exports", "./Rue"], function (require, exports, Rue_1) {
         function App() {
             // Attributs
             this.scene = null;
-            this.rue = null;
+            this.jeu = null;
             window.init(this); // Initialiser l'animation avec le méthode générée par Animate CC.
         }
         App.prototype.initialiser = function (refscene) {
@@ -15,7 +15,7 @@ define(["require", "exports", "./Rue"], function (require, exports, Rue_1) {
             this.scene = refscene; // Récupérer la références de la scène nouvellement créée
             createjs.Ticker.framerate = 30; // Vitesse de l'animation (peut être modifiée si nécessaire)
             // ----------------------------------------------------------------------------------------------------------------------
-            this.rue = new Rue_1.Rue(this.scene);
+            this.jeu = new Jeu_1.Jeu(this.scene);
         };
         return App;
     }());
