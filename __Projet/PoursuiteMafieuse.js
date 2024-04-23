@@ -3,7 +3,7 @@
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
-		{name:"PoursuiteMafieuse_atlas_1", frames: [[0,0,219,508]]}
+		{name:"PoursuiteMafieuse_atlas_1", frames: [[0,0,800,1600],[802,0,219,508]]}
 ];
 
 
@@ -27,9 +27,16 @@ lib.ssMetadata = [
 
 
 
-(lib.CachedBmp_1 = function() {
+(lib.CachedBmp_2 = function() {
 	this.initialize(ss["PoursuiteMafieuse_atlas_1"]);
 	this.gotoAndStop(0);
+}).prototype = p = new cjs.Sprite();
+
+
+
+(lib.CachedBmp_1 = function() {
+	this.initialize(ss["PoursuiteMafieuse_atlas_1"]);
+	this.gotoAndStop(1);
 }).prototype = p = new cjs.Sprite();
 // helper functions:
 
@@ -48,6 +55,29 @@ function getMCSymbolPrototype(symbol, nominalBounds, frameBounds) {
 	prototype.frameBounds = frameBounds;
 	return prototype;
 	}
+
+
+(lib.routeai = function(mode,startPosition,loop,reversed) {
+if (loop == null) { loop = true; }
+if (reversed == null) { reversed = false; }
+	var props = new Object();
+	props.mode = mode;
+	props.startPosition = startPosition;
+	props.labels = {};
+	props.loop = loop;
+	props.reversed = reversed;
+	cjs.MovieClip.apply(this,[props]);
+
+	// Route
+	this.instance = new lib.CachedBmp_2();
+	this.instance.setTransform(0,0,0.5,0.5);
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+	this._renderFirstFrame();
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(0,0,400,800);
 
 
 (lib.Ricardoai = function(mode,startPosition,loop,reversed) {
@@ -71,6 +101,31 @@ if (reversed == null) { reversed = false; }
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(0,0.1,109.5,254);
+
+
+(lib.ClipRoute = function(mode,startPosition,loop,reversed) {
+if (loop == null) { loop = true; }
+if (reversed == null) { reversed = false; }
+	var props = new Object();
+	props.mode = mode;
+	props.startPosition = startPosition;
+	props.labels = {};
+	props.loop = loop;
+	props.reversed = reversed;
+	cjs.MovieClip.apply(this,[props]);
+
+	// Calque_1
+	this.instance = new lib.routeai("synched",0);
+	this.instance.setTransform(300,-1200,1,1,0,0,0,200,400);
+
+	this.instance_1 = new lib.routeai("synched",0);
+	this.instance_1.setTransform(300,-400,1,1,0,0,0,200,400);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance_1},{t:this.instance}]}).wait(1));
+
+	this._renderFirstFrame();
+
+}).prototype = getMCSymbolPrototype(lib.ClipRoute, new cjs.Rectangle(100,-1600,400,1600), null);
 
 
 (lib.ClipRicardo = function(mode,startPosition,loop,reversed) {
@@ -120,7 +175,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/PoursuiteMafieuse_atlas_1.png?1713534182157", id:"PoursuiteMafieuse_atlas_1"}
+		{src:"images/PoursuiteMafieuse_atlas_1.png?1713884273013", id:"PoursuiteMafieuse_atlas_1"}
 	],
 	preloads: []
 };

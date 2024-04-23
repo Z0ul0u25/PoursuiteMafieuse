@@ -98,13 +98,13 @@ export class Ricardo extends Voiture {
 
 		if ((this.touchesEnfoncees[0] != this.touchesEnfoncees[2]) && (Math.abs(this.vitesseY) < this.vitesseMax)) {
 			this.vitesseY += this.accelDelta * (this.touchesEnfoncees[2] ? 1 : -1);
-		} else {
+		} else if (this.touchesEnfoncees[0] == this.touchesEnfoncees[2]) {
 			this.vitesseY -= this.accelDelta * Math.sign(this.vitesseY);
 		}
 
 		if ((this.touchesEnfoncees[1] != this.touchesEnfoncees[3]) && (Math.abs(this.vitesseX) < this.vitesseMax)) {
 			this.vitesseX += this.accelDelta * (this.touchesEnfoncees[1] ? 1 : -1);
-		} else {
+		} else if(this.touchesEnfoncees[1] == this.touchesEnfoncees[3]) {
 			this.vitesseX -= this.accelDelta * Math.sign(this.vitesseX);
 		}
 

@@ -1,10 +1,10 @@
-import { Ruelle } from './Ruelle';
+import { Rue } from './Rue';
 
 export class App {
 
   // Attributs
   private scene: createjs.Stage = null;
-  private ruelle: Ruelle = null;
+  private rue: Rue = null;
 
   // Méthodes
 
@@ -19,7 +19,7 @@ export class App {
     createjs.Ticker.framerate = 30;   // Vitesse de l'animation (peut être modifiée si nécessaire)
     // ----------------------------------------------------------------------------------------------------------------------
 
-    this.ruelle = new Ruelle(this.scene);
+    this.rue = new Rue(this.scene);
   }
 }
 
