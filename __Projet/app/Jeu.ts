@@ -4,11 +4,12 @@ import { Maki } from "./Maki";
 import { Wasabi } from "./Wasabi";
 import { Menu } from "./Menu";
 import { Bouton } from "./Bouton";
+import { Antagoniste } from "./Antagoniste";
 
 export class Jeu{
 	private refScene:createjs.Stage = null;
 	private ricardo:Ricardo=null;
-	private tAntagoniste:any[] = [];
+	private tAntagoniste:Antagoniste[] = [];
 	private rue:Rue=null;
 	private menu:Menu=null;
 	private bouton:Bouton=null;

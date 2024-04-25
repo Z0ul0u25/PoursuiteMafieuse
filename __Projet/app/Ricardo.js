@@ -104,13 +104,13 @@ define(["require", "exports", "./Voiture"], function (require, exports, Voiture_
             if ((this.touchesEnfoncees[0] != this.touchesEnfoncees[2]) && (Math.abs(this.vitesseY) < this.vitesseMax)) {
                 this.vitesseY += this.accelDelta * (this.touchesEnfoncees[2] ? 1 : -1);
             }
-            else if (this.touchesEnfoncees[0] == this.touchesEnfoncees[2]) {
+            else if (Math.abs(this.vitesseY) > this.accelDelta) {
                 this.vitesseY -= this.accelDelta * Math.sign(this.vitesseY);
             }
             if ((this.touchesEnfoncees[1] != this.touchesEnfoncees[3]) && (Math.abs(this.vitesseX) < this.vitesseMax)) {
                 this.vitesseX += this.accelDelta * (this.touchesEnfoncees[1] ? 1 : -1);
             }
-            else if (this.touchesEnfoncees[1] == this.touchesEnfoncees[3]) {
+            else if (Math.abs(this.vitesseX) > this.accelDelta) {
                 this.vitesseX -= this.accelDelta * Math.sign(this.vitesseX);
             }
             if ((this.y + this.vitesseY > this.zoneLimite[0]) && (this.y + this.vitesseY < this.zoneLimite[2])) {
@@ -125,11 +125,11 @@ define(["require", "exports", "./Voiture"], function (require, exports, Voiture_
             else {
                 this.vitesseX = 0;
             }
+            this.rotation = this.vitesseX * this.rotationRatio;
             if (Math.abs(this.vitesseX) < this.accelDelta && Math.abs(this.vitesseY) < this.accelDelta) {
-                this.vitesseX = 0;
-                this.vitesseY = 0;
                 var auMoinsUneToucheEnfoncee = false;
-                for (var estDown in this.touchesEnfoncees) {
+                for (var _i = 0, _a = this.touchesEnfoncees; _i < _a.length; _i++) {
+                    var estDown = _a[_i];
                     if (estDown) {
                         auMoinsUneToucheEnfoncee = true;
                     }
@@ -139,7 +139,6 @@ define(["require", "exports", "./Voiture"], function (require, exports, Voiture_
                     this.minuterieBouger = null;
                 }
             }
-            this.rotation = this.vitesseX * this.rotationRatio;
         };
         Ricardo.prototype.detruire = function () {
             this._faireBouger = null;

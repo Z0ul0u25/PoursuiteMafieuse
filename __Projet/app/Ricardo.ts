@@ -22,7 +22,7 @@ export class Ricardo extends Voiture {
 		this.vitesseMax = 6;
 		this.rotationRatio = 3;
 		// Haut, Droite, Bas, Gauche
-		this.zoneLimite = [window.lib.properties.height / 2, window.lib.properties.width - 32, window.lib.properties.height- 50, 32]
+		this.zoneLimite = [window.lib.properties.height / 2, window.lib.properties.width - 32, window.lib.properties.height - 50, 32]
 		this.touchesEnfoncees = [false, false, false, false];
 
 		window.onkeydown = this._activerTouche;
@@ -96,16 +96,15 @@ export class Ricardo extends Voiture {
 
 		if ((this.touchesEnfoncees[0] != this.touchesEnfoncees[2]) && (Math.abs(this.vitesseY) < this.vitesseMax)) {
 			this.vitesseY += this.accelDelta * (this.touchesEnfoncees[2] ? 1 : -1);
-		} else if (this.touchesEnfoncees[0] == this.touchesEnfoncees[2]) {
+		} else if (Math.abs(this.vitesseY) > this.accelDelta) {
 			this.vitesseY -= this.accelDelta * Math.sign(this.vitesseY);
 		}
 
 		if ((this.touchesEnfoncees[1] != this.touchesEnfoncees[3]) && (Math.abs(this.vitesseX) < this.vitesseMax)) {
 			this.vitesseX += this.accelDelta * (this.touchesEnfoncees[1] ? 1 : -1);
-		} else if(this.touchesEnfoncees[1] == this.touchesEnfoncees[3]) {
+		} else if (Math.abs(this.vitesseX) > this.accelDelta) {
 			this.vitesseX -= this.accelDelta * Math.sign(this.vitesseX);
 		}
-
 		if ((this.y + this.vitesseY > this.zoneLimite[0]) && (this.y + this.vitesseY < this.zoneLimite[2])) {
 			this.y += this.vitesseY;
 		} else {
@@ -118,12 +117,12 @@ export class Ricardo extends Voiture {
 			this.vitesseX = 0;
 		}
 
+		this.rotation = this.vitesseX * this.rotationRatio;
+
 		if (Math.abs(this.vitesseX) < this.accelDelta && Math.abs(this.vitesseY) < this.accelDelta) {
-			this.vitesseX = 0;
-			this.vitesseY = 0;
 
 			let auMoinsUneToucheEnfoncee: boolean = false;
-			for (const estDown in this.touchesEnfoncees) {
+			for (const estDown of this.touchesEnfoncees) {
 				if (estDown) {
 					auMoinsUneToucheEnfoncee = true;
 				}
@@ -134,8 +133,6 @@ export class Ricardo extends Voiture {
 				this.minuterieBouger = null;
 			}
 		}
-
-		this.rotation = this.vitesseX * this.rotationRatio;
 	}
 
 	public detruire(): void {
