@@ -74,7 +74,6 @@ define(["require", "exports", "./Voiture"], function (require, exports, Voiture_
         };
         Ricardo.prototype.desactiverTouche = function (e) {
             e.preventDefault();
-            var iniTouchesEnfoncees = this.touchesEnfoncees.slice();
             switch (e.key) {
                 case "ArrowUp":
                 case "w":
@@ -91,6 +90,11 @@ define(["require", "exports", "./Voiture"], function (require, exports, Voiture_
                 case "ArrowLeft":
                 case "a":
                     this.touchesEnfoncees[3] = false;
+                    break;
+                case "p": //Debug Key
+                    console.log("DEBUG STATUS \n======");
+                    console.table(this.touchesEnfoncees);
+                    console.log(this.vitesseX);
                     break;
                 default:
                     break;

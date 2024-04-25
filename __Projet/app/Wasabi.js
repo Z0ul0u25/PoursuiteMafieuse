@@ -52,7 +52,6 @@ define(["require", "exports", "./Antagoniste"], function (require, exports, Anta
             else if (this.vitesseX < this.vitesseMax) {
                 this.vitesseX += this.accelDelta;
             }
-            console.log(this.vitesseX);
             this.x += this.vitesseX * this.sens;
             this.y += this.vitesseY;
             this.rotation = this.vitesseX * this.rotationRatio * this.sens;

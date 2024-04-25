@@ -64,7 +64,6 @@ export class Ricardo extends Voiture {
 
 	private desactiverTouche(e: KeyboardEvent): void {
 		e.preventDefault();
-		let iniTouchesEnfoncees = this.touchesEnfoncees.slice();
 		switch (e.key) {
 			case "ArrowUp":
 			case "w":
@@ -83,6 +82,11 @@ export class Ricardo extends Voiture {
 				this.touchesEnfoncees[3] = false;
 				break;
 
+			case "p": //Debug Key
+				console.log("DEBUG STATUS \n======");
+				console.table(this.touchesEnfoncees);
+				console.log(this.vitesseX);
+				break;
 			default:
 				break;
 		}
