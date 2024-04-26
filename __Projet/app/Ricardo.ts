@@ -19,7 +19,7 @@ export class Ricardo extends Voiture {
 	constructor(refScene: createjs.Stage, posX: number, posY: number) {
 		super(refScene, posX, posY);
 		this.accelDelta = 0.4;
-		this.vitesseMax = 6;
+		this.vitesseMax = 5;
 		this.rotationRatio = 3;
 		// Haut, Droite, Bas, Gauche
 		this.zoneLimite = [window.lib.properties.height / 2, window.lib.properties.width - 32, window.lib.properties.height - 50, 32]
@@ -57,7 +57,7 @@ export class Ricardo extends Voiture {
 		}
 
 		if (this.minuterieBouger == null) {
-			this.minuterieBouger = window.setInterval(this._faireBouger, 1000 / 60);
+			this.minuterieBouger = window.setInterval(this._faireBouger, 1000 / 120);
 		}
 
 	}

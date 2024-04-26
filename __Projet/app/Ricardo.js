@@ -34,7 +34,7 @@ define(["require", "exports", "./Voiture"], function (require, exports, Voiture_
             _this._desactiverTouche = _this.desactiverTouche.bind(_this);
             _this._faireBouger = _this.faireBouger.bind(_this);
             _this.accelDelta = 0.4;
-            _this.vitesseMax = 6;
+            _this.vitesseMax = 5;
             _this.rotationRatio = 3;
             // Haut, Droite, Bas, Gauche
             _this.zoneLimite = [window.lib.properties.height / 2, window.lib.properties.width - 32, window.lib.properties.height - 50, 32];
@@ -69,7 +69,7 @@ define(["require", "exports", "./Voiture"], function (require, exports, Voiture_
                 // Aucune raison de faire un default
             }
             if (this.minuterieBouger == null) {
-                this.minuterieBouger = window.setInterval(this._faireBouger, 1000 / 60);
+                this.minuterieBouger = window.setInterval(this._faireBouger, 1000 / 120);
             }
         };
         Ricardo.prototype.desactiverTouche = function (e) {

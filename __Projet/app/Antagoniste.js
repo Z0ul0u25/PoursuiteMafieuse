@@ -13,15 +13,21 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-define(["require", "exports", "./Voiture"], function (require, exports, Voiture_1) {
+define(["require", "exports", "./Dynamite", "./Voiture"], function (require, exports, Dynamite_1, Voiture_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Antagoniste = void 0;
     var Antagoniste = /** @class */ (function (_super) {
         __extends(Antagoniste, _super);
         function Antagoniste(refScene, posX, posY) {
-            return _super.call(this, refScene, posX, posY) || this;
+            var _this = _super.call(this, refScene, posX, posY) || this;
+            _this.refScene = null;
+            _this.refScene = refScene;
+            return _this;
         }
+        Antagoniste.prototype.lanceDynamite = function () {
+            return new Dynamite_1.Dynamite(this.refScene, this.x, this.y);
+        };
         return Antagoniste;
     }(Voiture_1.Voiture));
     exports.Antagoniste = Antagoniste;

@@ -667,23 +667,23 @@ if (reversed == null) { reversed = false; }
 
 	// feu
 	this.instance = new lib.dynamite_feu_1("synched",0);
-	this.instance.setTransform(52.1,39.25,1,1,0,0,0,11.2,12);
+	this.instance.setTransform(21.8,9.75,1,1,0,0,0,11.2,12);
 
 	this.instance_1 = new lib.dynamite_feu_2("synched",0);
-	this.instance_1.setTransform(51.85,39.4,1,1,0,0,0,9.6,10.5);
+	this.instance_1.setTransform(20.4,10.5,1,1,0,0,0,9.6,10.5);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance}]}).to({state:[{t:this.instance_1}]},7).wait(7));
 
 	// Dynamite
 	this.instance_2 = new lib.dynamiteai("synched",0);
-	this.instance_2.setTransform(29.95,29.6,1,1,0,0,0,29.9,29.6);
+	this.instance_2.setTransform(-0.1,-1.4,1,1,0,0,0,29.9,29.6);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_2).wait(14));
 
 	this._renderFirstFrame();
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(0.1,0,63.3,59.1);
+p.nominalBounds = new cjs.Rectangle(-30,-31,63.1,59.1);
 
 
 // stage content:
@@ -711,9 +711,9 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/PoursuiteMafieuse_atlas_1.png?1714153591227", id:"PoursuiteMafieuse_atlas_1"},
-		{src:"images/PoursuiteMafieuse_atlas_2.png?1714153591227", id:"PoursuiteMafieuse_atlas_2"},
-		{src:"images/PoursuiteMafieuse_atlas_3.png?1714153591227", id:"PoursuiteMafieuse_atlas_3"}
+		{src:"images/PoursuiteMafieuse_atlas_1.png?1714155670957", id:"PoursuiteMafieuse_atlas_1"},
+		{src:"images/PoursuiteMafieuse_atlas_2.png?1714155670957", id:"PoursuiteMafieuse_atlas_2"},
+		{src:"images/PoursuiteMafieuse_atlas_3.png?1714155670957", id:"PoursuiteMafieuse_atlas_3"}
 	],
 	preloads: []
 };
