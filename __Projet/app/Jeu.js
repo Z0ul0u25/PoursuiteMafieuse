@@ -1,4 +1,4 @@
-define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Menu", "./Bouton"], function (require, exports, Rue_1, Ricardo_1, Maki_1, Wasabi_1, Menu_1, Bouton_1) {
+define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Menu", "./Bouton", "./Missile"], function (require, exports, Rue_1, Ricardo_1, Maki_1, Wasabi_1, Menu_1, Bouton_1, Missile_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Jeu = void 0;
@@ -11,17 +11,18 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
             this.ricardo = null;
             this.tAntagoniste = [];
             this.tDynamite = [];
-            this.tminDynamite = [];
+            this.missile = null;
+            // private tminDynamite:number[] = [];
+            this._gestionMissile = this.gestionMissile.bind(this);
             this.refScene = refScene;
             this.afficherMenu();
         }
         Jeu.prototype.debuter = function () {
             this.rue = new Rue_1.Rue(this.refScene);
-            this.ricardo = new Ricardo_1.Ricardo(this.refScene, window.lib.properties.width / 2, window.lib.properties.height - 60);
+            this.ricardo = new Ricardo_1.Ricardo(this.refScene, this, window.lib.properties.width / 2, window.lib.properties.height - 60);
             this.tAntagoniste.push(new Maki_1.Maki(this.refScene, window.lib.properties.width * 0.35, 150));
             this.tAntagoniste.push(new Wasabi_1.Wasabi(this.refScene, window.lib.properties.width * 0.65, 150));
             for (var i = 0; i < this.tAntagoniste.length; i++) {
-                console.log(this);
                 window.setInterval(this.gestionDynamite.bind(this), 1000, this.tAntagoniste[i]);
             }
         };
@@ -52,7 +53,23 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
                     _this.tDynamite.splice(_this.tDynamite.indexOf(dynamite), 1);
                 }
             });
-            console.table(this.tDynamite);
+        };
+        Jeu.prototype.gestionMissile = function (posX, posY) {
+            if (posX === void 0) { posX = -1; }
+            if (posY === void 0) { posY = -1; }
+            if (posX != -1) {
+                if (this.missile == null) {
+                    this.missile = new Missile_1.Missile(this.refScene, this.ricardo.x + 12, this.ricardo.y - 83);
+                    this.refScene.addEventListener("tick", this._gestionMissile, false);
+                }
+                this.missile.y -= 5;
+                if (this.missile.y < -100) {
+                    this.refScene.removeEventListener("tick", this._gestionMissile);
+                    this.missile.detruire();
+                    this.missile = null;
+                }
+            }
+            return this.missile == null;
         };
         return Jeu;
     }());

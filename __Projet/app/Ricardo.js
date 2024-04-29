@@ -19,10 +19,12 @@ define(["require", "exports", "./Voiture"], function (require, exports, Voiture_
     exports.Ricardo = void 0;
     var Ricardo = /** @class */ (function (_super) {
         __extends(Ricardo, _super);
-        function Ricardo(refScene, posX, posY) {
+        function Ricardo(refScene, refJeu, posX, posY) {
             var _this = _super.call(this, refScene, posX, posY) || this;
+            _this.refJeu = null;
             _this.minuterieBouger = null;
             _this.touchesEnfoncees = null;
+            _this.timeoutMissile = null;
             /*
             [0] = haut
             [1] = droite
@@ -33,6 +35,7 @@ define(["require", "exports", "./Voiture"], function (require, exports, Voiture_
             _this._activerTouche = _this.activerTouche.bind(_this);
             _this._desactiverTouche = _this.desactiverTouche.bind(_this);
             _this._faireBouger = _this.faireBouger.bind(_this);
+            _this.refJeu = refJeu;
             _this.accelDelta = 0.4;
             _this.vitesseMax = 5;
             _this.rotationRatio = 3;
@@ -66,6 +69,12 @@ define(["require", "exports", "./Voiture"], function (require, exports, Voiture_
                 case "a":
                     this.touchesEnfoncees[3] = true;
                     break;
+                case " ":
+                    if (this.refJeu.gestionMissile()) {
+                        this.gotoAndPlay("tir");
+                        this.timeoutMissile = setTimeout(this.apparitionMissile.bind(this), 1000 / 30 * 24);
+                    }
+                    break;
                 // Aucune raison de faire un default
             }
             if (this.minuterieBouger == null) {
@@ -93,8 +102,7 @@ define(["require", "exports", "./Voiture"], function (require, exports, Voiture_
                     break;
                 case "p": //Debug Key
                     console.log("DEBUG STATUS \n======");
-                    console.table(this.touchesEnfoncees);
-                    console.log(this.vitesseX);
+                    console.log(this.refJeu);
                     break;
                 default:
                     break;
@@ -139,6 +147,9 @@ define(["require", "exports", "./Voiture"], function (require, exports, Voiture_
                     this.minuterieBouger = null;
                 }
             }
+        };
+        Ricardo.prototype.apparitionMissile = function () {
+            this.refJeu.gestionMissile(this.x, this.y);
         };
         Ricardo.prototype.detruire = function () {
             this._faireBouger = null;

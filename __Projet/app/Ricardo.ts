@@ -1,9 +1,13 @@
+import { Jeu } from "./Jeu";
 import { Voiture } from "./Voiture";
 
 export class Ricardo extends Voiture {
 
+	private refJeu: Jeu = null;
+
 	private minuterieBouger: number = null;
 	private touchesEnfoncees: Array<boolean> = null;
+	private timeoutMissile: any = null;
 	/*
 	[0] = haut
 	[1] = droite
@@ -16,8 +20,10 @@ export class Ricardo extends Voiture {
 	private _desactiverTouche = this.desactiverTouche.bind(this);
 	private _faireBouger = this.faireBouger.bind(this);
 
-	constructor(refScene: createjs.Stage, posX: number, posY: number) {
+	constructor(refScene: createjs.Stage, refJeu: Jeu, posX: number, posY: number) {
 		super(refScene, posX, posY);
+		this.refJeu = refJeu;
+
 		this.accelDelta = 0.4;
 		this.vitesseMax = 5;
 		this.rotationRatio = 3;
@@ -53,6 +59,12 @@ export class Ricardo extends Voiture {
 			case "a":
 				this.touchesEnfoncees[3] = true;
 				break;
+			case " ":
+				if (this.refJeu.gestionMissile()) {
+					this.gotoAndPlay("tir");
+					this.timeoutMissile = setTimeout(this.apparitionMissile.bind(this), 1000 / 30*24);
+				}
+				break;
 			// Aucune raison de faire un default
 		}
 
@@ -84,8 +96,8 @@ export class Ricardo extends Voiture {
 
 			case "p": //Debug Key
 				console.log("DEBUG STATUS \n======");
-				console.table(this.touchesEnfoncees);
-				console.log(this.vitesseX);
+
+				console.log(this.refJeu);
 				break;
 			default:
 				break;
@@ -133,6 +145,10 @@ export class Ricardo extends Voiture {
 				this.minuterieBouger = null;
 			}
 		}
+	}
+
+	private apparitionMissile() {
+		this.refJeu.gestionMissile(this.x, this.y);
 	}
 
 	public detruire(): void {
