@@ -20,13 +20,22 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
     var Missile = /** @class */ (function (_super) {
         __extends(Missile, _super);
         function Missile(refScene, posX, posY) {
-            return _super.call(this, refScene, posX, posY) || this;
+            var _this = _super.call(this, refScene, posX, posY) || this;
+            _this.vitesse = null;
+            _this.vitesse = 3;
+            _this.addEventListener("tick", _this.bouger.bind(_this), false);
+            return _this;
         }
         Missile.prototype.dessiner = function () {
             window.lib.ClipMissile.call(this);
             this.frameBounds = window.lib.ClipMissile.prototype.frameBounds;
         };
+        Missile.prototype.bouger = function () {
+            this.y -= this.vitesse++;
+        };
         Missile.prototype.detruire = function () {
+            this.removeAllEventListeners();
+            this.vitesse = null;
             _super.prototype.detruire.call(this);
         };
         return Missile;

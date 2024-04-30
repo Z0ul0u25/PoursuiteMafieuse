@@ -62,7 +62,6 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
                     this.missile = new Missile_1.Missile(this.refScene, this.ricardo.x + 12, this.ricardo.y - 83);
                     this.refScene.addEventListener("tick", this._gestionMissile, false);
                 }
-                this.missile.y -= 20;
                 if (this.missile.y < -100) {
                     this.refScene.removeEventListener("tick", this._gestionMissile);
                     this.missile.detruire();
