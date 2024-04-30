@@ -70,7 +70,7 @@ define(["require", "exports", "./Voiture"], function (require, exports, Voiture_
                     this.touchesEnfoncees[3] = true;
                     break;
                 case " ":
-                    if (this.refJeu.gestionMissile()) {
+                    if (this.timeoutMissile == null && this.refJeu.gestionMissile()) {
                         this.gotoAndPlay("tir");
                         this.timeoutMissile = setTimeout(this.apparitionMissile.bind(this), 1000 / 30 * 24);
                     }
@@ -102,7 +102,7 @@ define(["require", "exports", "./Voiture"], function (require, exports, Voiture_
                     break;
                 case "p": //Debug Key
                     console.log("DEBUG STATUS \n======");
-                    console.log(this.refJeu);
+                    this.gotoAndPlay("mort");
                     break;
                 default:
                     break;
@@ -150,6 +150,8 @@ define(["require", "exports", "./Voiture"], function (require, exports, Voiture_
         };
         Ricardo.prototype.apparitionMissile = function () {
             this.refJeu.gestionMissile(this.x, this.y);
+            clearTimeout(this.timeoutMissile);
+            this.timeoutMissile = null;
         };
         Ricardo.prototype.detruire = function () {
             this._faireBouger = null;

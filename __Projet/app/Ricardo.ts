@@ -60,7 +60,7 @@ export class Ricardo extends Voiture {
 				this.touchesEnfoncees[3] = true;
 				break;
 			case " ":
-				if (this.refJeu.gestionMissile()) {
+				if (this.timeoutMissile == null && this.refJeu.gestionMissile()) {
 					this.gotoAndPlay("tir");
 					this.timeoutMissile = setTimeout(this.apparitionMissile.bind(this), 1000 / 30*24);
 				}
@@ -96,8 +96,7 @@ export class Ricardo extends Voiture {
 
 			case "p": //Debug Key
 				console.log("DEBUG STATUS \n======");
-
-				console.log(this.refJeu);
+				this.gotoAndPlay("mort");
 				break;
 			default:
 				break;
@@ -149,6 +148,8 @@ export class Ricardo extends Voiture {
 
 	private apparitionMissile() {
 		this.refJeu.gestionMissile(this.x, this.y);
+		clearTimeout(this.timeoutMissile);
+		this.timeoutMissile = null;
 	}
 
 	public detruire(): void {
