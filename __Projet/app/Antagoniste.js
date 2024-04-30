@@ -22,11 +22,17 @@ define(["require", "exports", "./Dynamite", "./Voiture"], function (require, exp
         function Antagoniste(refScene, posX, posY) {
             var _this = _super.call(this, refScene, posX, posY) || this;
             _this.refScene = null;
+            _this._faireBouger = _this.faireBouger.bind(_this);
             _this.refScene = refScene;
+            _this.addEventListener("tick", _this._faireBouger, false);
             return _this;
         }
         Antagoniste.prototype.lanceDynamite = function () {
             return new Dynamite_1.Dynamite(this.refScene, this.x, this.y);
+        };
+        Antagoniste.prototype.detruire = function () {
+            this.removeAllEventListeners();
+            _super.prototype.detruire.call(this);
         };
         return Antagoniste;
     }(Voiture_1.Voiture));

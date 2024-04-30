@@ -44,15 +44,17 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
         };
         Jeu.prototype.gestionDynamite = function (antagoniste) {
             var _this = this;
-            // Ajout de la dynamite
-            this.tDynamite.push(antagoniste.lanceDynamite());
-            // Suppression de dynamite hors vu
-            this.tDynamite.forEach(function (dynamite) {
-                if (dynamite.y > window.lib.properties.height + 100) {
-                    dynamite.detruire();
-                    _this.tDynamite.splice(_this.tDynamite.indexOf(dynamite), 1);
-                }
-            });
+            if (this.refScene.tickEnabled) {
+                // Ajout de la dynamite
+                this.tDynamite.push(antagoniste.lanceDynamite());
+                // Suppression de dynamite hors vu
+                this.tDynamite.forEach(function (dynamite) {
+                    if (dynamite.y > window.lib.properties.height + 100) {
+                        dynamite.detruire();
+                        _this.tDynamite.splice(_this.tDynamite.indexOf(dynamite), 1);
+                    }
+                });
+            }
         };
         Jeu.prototype.gestionMissile = function (posX, posY) {
             var _this = this;
@@ -68,6 +70,7 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
                         var point = _this.missile.parent.localToLocal(_this.missile.x, _this.missile.y, antagoniste);
                         if (antagoniste.hitTest(point.x, point.y)) {
                             new Explosion_1.Explosion(_this.refScene, _this.missile.x, _this.missile.y);
+                            antagoniste.jmeSuisFaitToucherPisCaFaitMal(1);
                             _this.missile.y = -200;
                         }
                     });

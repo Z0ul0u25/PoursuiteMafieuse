@@ -1,9 +1,9 @@
 import { ObjetVisible } from "./ObjetVisible";
 
-export class Missile extends ObjetVisible{
-	vitesse:number = null;
+export class Missile extends ObjetVisible {
+	vitesse: number = null;
 
-	constructor(refScene:createjs.Stage, posX:number, posY:number) {
+	constructor(refScene: createjs.Stage, posX: number, posY: number) {
 		super(refScene, posX, posY);
 		this.vitesse = 3;
 
@@ -15,8 +15,8 @@ export class Missile extends ObjetVisible{
 		this.frameBounds = window.lib.ClipMissile.prototype.frameBounds;
 	}
 
-	private bouger():void{
-		this.y -= this.vitesse++;
+	private bouger(): void {
+		this.y -= this.vitesse += 2;
 	}
 
 	public detruire(): void {

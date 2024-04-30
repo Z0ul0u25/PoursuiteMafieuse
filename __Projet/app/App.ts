@@ -17,9 +17,15 @@ export class App {
     // Initialisation des attributs relatifs à l'animation ------------------------------------------------------------------
     this.scene = refscene; 					// Récupérer la références de la scène nouvellement créée
     createjs.Ticker.framerate = 30;   // Vitesse de l'animation (peut être modifiée si nécessaire)
+    window.addEventListener("blur", this.tickFocus.bind(this), false);
+    window.addEventListener("focus", this.tickFocus.bind(this), false);
     // ----------------------------------------------------------------------------------------------------------------------
 
     this.jeu = new Jeu(this.scene);
+  }
+
+  private tickFocus(e:Event):void{
+    this.scene.tickEnabled = e.type == "focus";
   }
 }
 

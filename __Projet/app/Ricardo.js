@@ -38,6 +38,7 @@ define(["require", "exports", "./Explosion", "./Voiture"], function (require, ex
             _this._faireBouger = _this.faireBouger.bind(_this);
             _this.refScene = refScene;
             _this.refJeu = refJeu;
+            _this.pointVie = 4;
             _this.accelDelta = 0.4;
             _this.vitesseMax = 5;
             _this.rotationRatio = 3;
@@ -162,6 +163,7 @@ define(["require", "exports", "./Explosion", "./Voiture"], function (require, ex
                 var point = dynamite.parent.localToLocal(dynamite.x, dynamite.y, _this);
                 if (_this.hitTest(point.x, point.y)) {
                     new Explosion_1.Explosion(_this.refScene, dynamite.x, dynamite.y);
+                    _this.jmeSuisFaitToucherPisCaFaitMal(1);
                     dynamite.y = 1000;
                 }
             });
@@ -174,7 +176,6 @@ define(["require", "exports", "./Explosion", "./Voiture"], function (require, ex
                 window.clearInterval(this.minuterieBouger);
                 this.minuterieBouger = null;
             }
-            this.vitesse = null;
             this.touchesEnfoncees = null;
             window.onkeydown = null;
             window.onkeyup = null;

@@ -20,9 +20,17 @@ define(["require", "exports", "./Antagoniste"], function (require, exports, Anta
     var Maki = /** @class */ (function (_super) {
         __extends(Maki, _super);
         function Maki(refScene, posX, posY) {
-            return _super.call(this, refScene, posX, posY) || this;
+            var _this = _super.call(this, refScene, posX, posY) || this;
+            _this.pointVie = 2;
+            return _this;
         }
         Maki.prototype.faireBouger = function () {
+            if (this.pointVie <= 0) {
+                this.y += 20;
+            }
+            if (this.y >= window.lib.properties.height + 100) {
+                _super.prototype.detruire.call(this);
+            }
         };
         Maki.prototype.dessiner = function () {
             window.lib.ClipMaki.call(this);

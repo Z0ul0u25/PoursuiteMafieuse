@@ -57,16 +57,18 @@ export class Jeu {
 	}
 
 	private gestionDynamite(antagoniste: Antagoniste): void {
-		// Ajout de la dynamite
-		this.tDynamite.push(antagoniste.lanceDynamite());
+		if(this.refScene.tickEnabled){
+			// Ajout de la dynamite
+			this.tDynamite.push(antagoniste.lanceDynamite());
 
-		// Suppression de dynamite hors vu
-		this.tDynamite.forEach(dynamite => {
-			if (dynamite.y > window.lib.properties.height + 100) {
-				dynamite.detruire();
-				this.tDynamite.splice(this.tDynamite.indexOf(dynamite), 1);
-			}
-		});
+			// Suppression de dynamite hors vu
+			this.tDynamite.forEach(dynamite => {
+				if (dynamite.y > window.lib.properties.height + 100) {
+					dynamite.detruire();
+					this.tDynamite.splice(this.tDynamite.indexOf(dynamite), 1);
+				}
+			});
+		}
 	}
 
 	public gestionMissile(posX: number = -1, posY: number = -1): Boolean {
@@ -79,6 +81,7 @@ export class Jeu {
 					let point:createjs.Point = this.missile.parent.localToLocal(this.missile.x, this.missile.y, antagoniste);
 					if (antagoniste.hitTest(point.x, point.y)) {
 						new Explosion(this.refScene, this.missile.x, this.missile.y);
+						antagoniste.jmeSuisFaitToucherPisCaFaitMal(1);
 						this.missile.y = -200
 					}
 				});

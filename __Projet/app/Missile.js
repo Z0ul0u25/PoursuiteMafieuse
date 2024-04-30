@@ -31,7 +31,7 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
             this.frameBounds = window.lib.ClipMissile.prototype.frameBounds;
         };
         Missile.prototype.bouger = function () {
-            this.y -= this.vitesse++;
+            this.y -= this.vitesse += 2;
         };
         Missile.prototype.detruire = function () {
             this.removeAllEventListeners();

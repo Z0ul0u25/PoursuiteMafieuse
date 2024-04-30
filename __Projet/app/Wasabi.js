@@ -21,40 +21,47 @@ define(["require", "exports", "./Antagoniste"], function (require, exports, Anta
         __extends(Wasabi, _super);
         function Wasabi(refScene, posX, posY) {
             var _this = _super.call(this, refScene, posX, posY) || this;
-            _this._faireBouger = _this.faireBouger.bind(_this);
             _this.sens = 1;
             _this.accelDelta = 0.5;
             _this.vitesseMax = 8;
             _this.vitesseX = null;
             _this.vitesseY = null;
             _this.rotationRatio = 3;
+            _this.pointVie = 2;
             _this.zoneLimite = [64, window.lib.properties.width - 188, window.lib.properties.height / 2 - 32, window.lib.properties.width / 2 + 96];
-            _this.addEventListener("tick", _this._faireBouger, false);
             return _this;
         }
         Wasabi.prototype.faireBouger = function () {
-            if (this.sens == 1 && this.x >= this.zoneLimite[1]) {
-                if (this.vitesseX > 0) {
-                    this.vitesseX -= this.accelDelta;
-                }
-                else {
-                    this.sens = -1;
-                }
+            if (this.pointVie <= 0) {
+                this.y += 20;
             }
-            else if (this.sens == -1 && this.x <= this.zoneLimite[3]) {
-                if (this.vitesseX > 0) {
-                    this.vitesseX -= this.accelDelta;
+            else {
+                if (this.sens == 1 && this.x >= this.zoneLimite[1]) {
+                    if (this.vitesseX > 0) {
+                        this.vitesseX -= this.accelDelta;
+                    }
+                    else {
+                        this.sens = -1;
+                    }
                 }
-                else {
-                    this.sens = 1;
+                else if (this.sens == -1 && this.x <= this.zoneLimite[3]) {
+                    if (this.vitesseX > 0) {
+                        this.vitesseX -= this.accelDelta;
+                    }
+                    else {
+                        this.sens = 1;
+                    }
                 }
-            }
-            else if (this.vitesseX < this.vitesseMax) {
-                this.vitesseX += this.accelDelta;
+                else if (this.vitesseX < this.vitesseMax) {
+                    this.vitesseX += this.accelDelta;
+                }
             }
             this.x += this.vitesseX * this.sens;
             this.y += this.vitesseY;
             this.rotation = this.vitesseX * this.rotationRatio * this.sens;
+            if (this.y >= window.lib.properties.height + 100) {
+                _super.prototype.detruire.call(this);
+            }
         };
         Wasabi.prototype.dessiner = function () {
             window.lib.ClipWasabi.call(this);

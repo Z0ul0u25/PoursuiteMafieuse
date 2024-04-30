@@ -21,16 +21,26 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
         __extends(Voiture, _super);
         function Voiture(refScene, posX, posY) {
             var _this = _super.call(this, refScene, posX, posY) || this;
-            _this.accelDelta = null;
-            _this.vitesseMax = null;
-            _this.vitesseX = null;
-            _this.vitesseY = null;
-            _this.rotationRatio = null;
-            _this.zoneLimite = null;
             _this.vitesseX = 0;
             _this.vitesseY = 0;
             return _this;
         }
+        Voiture.prototype.jmeSuisFaitToucherPisCaFaitMal = function (degrerDeViolenceRecu) {
+            this.pointVie -= degrerDeViolenceRecu;
+            if (this.pointVie <= 0) {
+                this.gotoAndPlay("mort");
+            }
+        };
+        Voiture.prototype.detruire = function () {
+            this.accelDelta = null;
+            this.vitesseMax = null;
+            this.vitesseX = null;
+            this.vitesseY = null;
+            this.rotationRatio = null;
+            this.zoneLimite = null;
+            this.pointVie = null;
+            _super.prototype.detruire.call(this);
+        };
         return Voiture;
     }(ObjetVisible_1.ObjetVisible));
     exports.Voiture = Voiture;

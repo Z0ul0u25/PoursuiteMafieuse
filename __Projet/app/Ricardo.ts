@@ -4,6 +4,11 @@ import { Jeu } from "./Jeu";
 import { Voiture } from "./Voiture";
 
 export class Ricardo extends Voiture {
+	protected accelDelta: number;
+	protected vitesseMax: number;
+	protected rotationRatio: number;
+	protected zoneLimite: number[];
+	protected pointVie: number;
 
 	private refScene: createjs.Stage = null;
 	private refJeu: Jeu = null;
@@ -27,6 +32,8 @@ export class Ricardo extends Voiture {
 		super(refScene, posX, posY);
 		this.refScene = refScene;
 		this.refJeu = refJeu;
+
+		this.pointVie = 4;
 
 		this.accelDelta = 0.4;
 		this.vitesseMax = 5;
@@ -163,6 +170,7 @@ export class Ricardo extends Voiture {
 			let point: createjs.Point = dynamite.parent.localToLocal(dynamite.x, dynamite.y, this);
 			if (this.hitTest(point.x, point.y)) {
 				new Explosion(this.refScene, dynamite.x, dynamite.y);
+				this.jmeSuisFaitToucherPisCaFaitMal(1);
 				dynamite.y = 1000;
 			}
 		});
@@ -177,7 +185,6 @@ export class Ricardo extends Voiture {
 			window.clearInterval(this.minuterieBouger);
 			this.minuterieBouger = null;
 		}
-		this.vitesse = null;
 		this.touchesEnfoncees = null;
 
 		window.onkeydown = null;
