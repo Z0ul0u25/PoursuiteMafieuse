@@ -5,7 +5,7 @@ var lib={};var ss={};var img={};
 lib.ssMetadata = [
 		{name:"PoursuiteMafieuse_atlas_1", frames: [[0,0,1211,1803]]},
 		{name:"PoursuiteMafieuse_atlas_2", frames: [[0,0,1080,1480]]},
-		{name:"PoursuiteMafieuse_atlas_3", frames: [[1082,1168,678,348],[0,1482,861,212],[0,0,1080,1480],[1082,0,925,1166],[1305,1518,400,86],[1305,1678,471,128],[1305,1938,400,86],[1305,1808,471,128],[473,1696,283,86],[0,1696,471,128],[1762,1168,235,508],[863,1518,219,508],[1084,1518,219,504],[1905,1678,53,197],[1707,1938,50,77],[1707,2017,47,29],[1960,1678,51,33],[758,1696,100,116],[1960,1713,38,42],[1947,1997,45,48],[1855,1678,48,354],[1778,1678,75,362],[1707,1518,37,84],[1905,1950,40,59],[1707,1604,38,71],[1905,1877,38,71],[1945,1877,39,58],[1947,1937,39,58],[1905,2011,32,32],[1960,1757,32,32],[1960,1791,32,32],[1960,1825,32,32],[1986,1859,32,32],[1986,1893,32,32]]}
+		{name:"PoursuiteMafieuse_atlas_3", frames: [[1082,1168,678,348],[0,1482,861,212],[0,0,1080,1480],[1082,0,925,1166],[1305,1518,400,86],[1305,1678,471,128],[1305,1938,400,86],[1305,1808,471,128],[473,1696,283,86],[0,1696,471,128],[1762,1168,235,508],[863,1518,219,508],[1084,1518,219,504],[1905,1678,53,197],[1707,1938,50,77],[1707,2017,47,29],[1960,1678,51,33],[758,1696,100,116],[1960,1713,38,42],[1947,1997,45,48],[1855,1678,48,354],[1778,1678,75,362],[1707,1604,38,71],[1905,1950,40,59],[1945,1877,39,58],[1905,1877,38,71],[1707,1518,37,84],[1947,1937,39,58],[1905,2011,32,32],[1960,1757,32,32],[1960,1791,32,32],[1960,1825,32,32],[1986,1859,32,32],[1986,1893,32,32]]}
 ];
 
 
@@ -162,7 +162,7 @@ lib.ssMetadata = [
 
 
 
-(lib.CachedBmp_23 = function() {
+(lib.CachedBmp_3 = function() {
 	this.initialize(ss["PoursuiteMafieuse_atlas_3"]);
 	this.gotoAndStop(17);
 }).prototype = p = new cjs.Sprite();
@@ -197,7 +197,7 @@ lib.ssMetadata = [
 
 
 
-(lib.BMP_3f24ff41_a903_4378_8992_64e027ba7b94 = function() {
+(lib.BMP_151cea04_926d_4e33_b273_22e2e2f6bebe = function() {
 	this.initialize(ss["PoursuiteMafieuse_atlas_3"]);
 	this.gotoAndStop(22);
 }).prototype = p = new cjs.Sprite();
@@ -211,28 +211,28 @@ lib.ssMetadata = [
 
 
 
-(lib.BMP_650f7c2e_9e80_4915_8b06_6f2c08900357 = function() {
+(lib.BMP_6099f9da_c2fa_4b8c_a0b8_261a9d34ab84 = function() {
 	this.initialize(ss["PoursuiteMafieuse_atlas_3"]);
 	this.gotoAndStop(24);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.BMP_84db66e6_060f_463a_b963_bc6869d536b5 = function() {
+(lib.BMP_9283e9b1_93c9_4c3c_b219_625645da0565 = function() {
 	this.initialize(ss["PoursuiteMafieuse_atlas_3"]);
 	this.gotoAndStop(25);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.BMP_d814b753_be74_44ca_9215_e4b8c46bbb79 = function() {
+(lib.BMP_b30c8b45_dbfc_45b5_a5fd_92c6d3ce43f4 = function() {
 	this.initialize(ss["PoursuiteMafieuse_atlas_3"]);
 	this.gotoAndStop(26);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.BMP_e7a36562_3354_4985_a312_bdcfa77c784b = function() {
+(lib.BMP_efe323e8_e81c_49d7_a96d_82d82ff05d3d = function() {
 	this.initialize(ss["PoursuiteMafieuse_atlas_3"]);
 	this.gotoAndStop(27);
 }).prototype = p = new cjs.Sprite();
@@ -680,7 +680,7 @@ if (reversed == null) { reversed = false; }
 }).prototype = getMCSymbolPrototype(lib.Path, new cjs.Rectangle(0,0,1.6,3.3), null);
 
 
-(lib.clipExplosion = function(mode,startPosition,loop,reversed) {
+(lib.ClipExplosion = function(mode,startPosition,loop,reversed) {
 if (loop == null) { loop = true; }
 if (reversed == null) { reversed = false; }
 	var props = new Object();
@@ -732,10 +732,10 @@ if (reversed == null) { reversed = false; }
 	// Calque_1
 	this.instance = new lib.feu_fusee("synched",0);
 
-	this.instance_1 = new lib.BMP_3f24ff41_a903_4378_8992_64e027ba7b94();
+	this.instance_1 = new lib.BMP_b30c8b45_dbfc_45b5_a5fd_92c6d3ce43f4();
 	this.instance_1.setTransform(1.5,1.25);
 
-	this.instance_2 = new lib.BMP_84db66e6_060f_463a_b963_bc6869d536b5();
+	this.instance_2 = new lib.BMP_9283e9b1_93c9_4c3c_b219_625645da0565();
 	this.instance_2.setTransform(1.05,0.6);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance}]}).to({state:[{t:this.instance_1}]},1).to({state:[{t:this.instance_2}]},1).wait(1));
@@ -760,7 +760,7 @@ if (reversed == null) { reversed = false; }
 	// Calque_1
 	this.instance = new lib.feu_fusee("synched",0);
 
-	this.instance_1 = new lib.BMP_d814b753_be74_44ca_9215_e4b8c46bbb79();
+	this.instance_1 = new lib.BMP_6099f9da_c2fa_4b8c_a0b8_261a9d34ab84();
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance}]}).to({state:[{t:this.instance_1}]},1).wait(1));
 
@@ -784,9 +784,9 @@ if (reversed == null) { reversed = false; }
 	// Calque_1
 	this.instance = new lib.feu_fusee("synched",0);
 
-	this.instance_1 = new lib.BMP_e7a36562_3354_4985_a312_bdcfa77c784b();
+	this.instance_1 = new lib.BMP_efe323e8_e81c_49d7_a96d_82d82ff05d3d();
 
-	this.instance_2 = new lib.BMP_650f7c2e_9e80_4915_8b06_6f2c08900357();
+	this.instance_2 = new lib.BMP_151cea04_926d_4e33_b273_22e2e2f6bebe();
 	this.instance_2.setTransform(1.05,0.6);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance}]}).to({state:[{t:this.instance_1}]},1).to({state:[{t:this.instance_2}]},1).wait(4));
@@ -890,7 +890,7 @@ if (reversed == null) { reversed = false; }
 	this.instance_4.setTransform(42.75,12.15,1,1,0,0,0,6.6,4.1);
 	this.instance_4.alpha = 0.2109;
 
-	this.instance_5 = new lib.CachedBmp_23();
+	this.instance_5 = new lib.CachedBmp_3();
 	this.instance_5.setTransform(0,1.1,0.5,0.5);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance_5},{t:this.instance_4},{t:this.instance_3},{t:this.instance_2},{t:this.instance_1},{t:this.instance}]}).wait(1));
@@ -1285,9 +1285,9 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/PoursuiteMafieuse_atlas_1.png?1714486870517", id:"PoursuiteMafieuse_atlas_1"},
-		{src:"images/PoursuiteMafieuse_atlas_2.png?1714486870517", id:"PoursuiteMafieuse_atlas_2"},
-		{src:"images/PoursuiteMafieuse_atlas_3.png?1714486870518", id:"PoursuiteMafieuse_atlas_3"}
+		{src:"images/PoursuiteMafieuse_atlas_1.png?1714494831308", id:"PoursuiteMafieuse_atlas_1"},
+		{src:"images/PoursuiteMafieuse_atlas_2.png?1714494831308", id:"PoursuiteMafieuse_atlas_2"},
+		{src:"images/PoursuiteMafieuse_atlas_3.png?1714494831308", id:"PoursuiteMafieuse_atlas_3"}
 	],
 	preloads: []
 };

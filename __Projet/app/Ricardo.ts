@@ -1,8 +1,11 @@
+import { Dynamite } from "./Dynamite";
+import { Explosion } from "./Explosion";
 import { Jeu } from "./Jeu";
 import { Voiture } from "./Voiture";
 
 export class Ricardo extends Voiture {
 
+	private refScene: createjs.Stage = null;
 	private refJeu: Jeu = null;
 
 	private minuterieBouger: number = null;
@@ -22,6 +25,7 @@ export class Ricardo extends Voiture {
 
 	constructor(refScene: createjs.Stage, refJeu: Jeu, posX: number, posY: number) {
 		super(refScene, posX, posY);
+		this.refScene = refScene;
 		this.refJeu = refJeu;
 
 		this.accelDelta = 0.4;
@@ -33,6 +37,8 @@ export class Ricardo extends Voiture {
 
 		window.onkeydown = this._activerTouche;
 		window.onkeyup = this._desactiverTouche;
+
+		this.addEventListener("tick", this.collisionDynamite.bind(this, this.refJeu.getDynamites()), false);
 	}
 
 	protected dessiner(): void {
@@ -62,7 +68,7 @@ export class Ricardo extends Voiture {
 			case " ":
 				if (this.timeoutMissile == null && this.refJeu.gestionMissile()) {
 					this.gotoAndPlay("tir");
-					this.timeoutMissile = setTimeout(this.apparitionMissile.bind(this), 1000 / 30*24);
+					this.timeoutMissile = setTimeout(this.apparitionMissile.bind(this), 1000 / 30 * 24);
 				}
 				break;
 			// Aucune raison de faire un default
@@ -150,6 +156,16 @@ export class Ricardo extends Voiture {
 		this.refJeu.gestionMissile(this.x, this.y);
 		clearTimeout(this.timeoutMissile);
 		this.timeoutMissile = null;
+	}
+
+	private collisionDynamite(tDynamite: Dynamite[]): void {
+		tDynamite.forEach(dynamite => {
+			let point: createjs.Point = dynamite.parent.localToLocal(dynamite.x, dynamite.y, this);
+			if (this.hitTest(point.x, point.y)) {
+				new Explosion(this.refScene, dynamite.x, dynamite.y);
+				dynamite.y = 1000;
+			}
+		});
 	}
 
 	public detruire(): void {

@@ -13,7 +13,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-define(["require", "exports", "./Voiture"], function (require, exports, Voiture_1) {
+define(["require", "exports", "./Explosion", "./Voiture"], function (require, exports, Explosion_1, Voiture_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Ricardo = void 0;
@@ -21,6 +21,7 @@ define(["require", "exports", "./Voiture"], function (require, exports, Voiture_
         __extends(Ricardo, _super);
         function Ricardo(refScene, refJeu, posX, posY) {
             var _this = _super.call(this, refScene, posX, posY) || this;
+            _this.refScene = null;
             _this.refJeu = null;
             _this.minuterieBouger = null;
             _this.touchesEnfoncees = null;
@@ -35,6 +36,7 @@ define(["require", "exports", "./Voiture"], function (require, exports, Voiture_
             _this._activerTouche = _this.activerTouche.bind(_this);
             _this._desactiverTouche = _this.desactiverTouche.bind(_this);
             _this._faireBouger = _this.faireBouger.bind(_this);
+            _this.refScene = refScene;
             _this.refJeu = refJeu;
             _this.accelDelta = 0.4;
             _this.vitesseMax = 5;
@@ -44,6 +46,7 @@ define(["require", "exports", "./Voiture"], function (require, exports, Voiture_
             _this.touchesEnfoncees = [false, false, false, false];
             window.onkeydown = _this._activerTouche;
             window.onkeyup = _this._desactiverTouche;
+            _this.addEventListener("tick", _this.collisionDynamite.bind(_this, _this.refJeu.getDynamites()), false);
             return _this;
         }
         Ricardo.prototype.dessiner = function () {
@@ -152,6 +155,16 @@ define(["require", "exports", "./Voiture"], function (require, exports, Voiture_
             this.refJeu.gestionMissile(this.x, this.y);
             clearTimeout(this.timeoutMissile);
             this.timeoutMissile = null;
+        };
+        Ricardo.prototype.collisionDynamite = function (tDynamite) {
+            var _this = this;
+            tDynamite.forEach(function (dynamite) {
+                var point = dynamite.parent.localToLocal(dynamite.x, dynamite.y, _this);
+                if (_this.hitTest(point.x, point.y)) {
+                    new Explosion_1.Explosion(_this.refScene, dynamite.x, dynamite.y);
+                    dynamite.y = 1000;
+                }
+            });
         };
         Ricardo.prototype.detruire = function () {
             this._faireBouger = null;

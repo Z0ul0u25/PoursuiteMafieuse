@@ -7,6 +7,7 @@ import { Bouton } from "./Bouton";
 import { Antagoniste } from "./Antagoniste";
 import { Dynamite } from "./Dynamite";
 import { Missile } from "./Missile";
+import { Explosion } from "./Explosion";
 
 export class Jeu {
 	private refScene: createjs.Stage = null;
@@ -73,8 +74,15 @@ export class Jeu {
 			if (this.missile == null) {
 				this.missile = new Missile(this.refScene, this.ricardo.x + 12, this.ricardo.y - 83);
 				this.refScene.addEventListener("tick", this._gestionMissile, false);
+			} else {
+				this.tAntagoniste.forEach(antagoniste => {
+					let point:createjs.Point = this.missile.parent.localToLocal(this.missile.x, this.missile.y, antagoniste);
+					if (antagoniste.hitTest(point.x, point.y)) {
+						new Explosion(this.refScene, this.missile.x, this.missile.y);
+						this.missile.y = -200
+					}
+				});
 			}
-
 			if (this.missile.y < -100) {
 				this.refScene.removeEventListener("tick", this._gestionMissile);
 				this.missile.detruire();
@@ -82,5 +90,9 @@ export class Jeu {
 			}
 		}
 		return this.missile == null;
+	}
+
+	public getDynamites():Dynamite[]{
+		return this.tDynamite;
 	}
 }

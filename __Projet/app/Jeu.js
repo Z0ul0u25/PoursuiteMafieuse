@@ -1,4 +1,4 @@
-define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Menu", "./Bouton", "./Missile"], function (require, exports, Rue_1, Ricardo_1, Maki_1, Wasabi_1, Menu_1, Bouton_1, Missile_1) {
+define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Menu", "./Bouton", "./Missile", "./Explosion"], function (require, exports, Rue_1, Ricardo_1, Maki_1, Wasabi_1, Menu_1, Bouton_1, Missile_1, Explosion_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Jeu = void 0;
@@ -55,12 +55,22 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
             });
         };
         Jeu.prototype.gestionMissile = function (posX, posY) {
+            var _this = this;
             if (posX === void 0) { posX = -1; }
             if (posY === void 0) { posY = -1; }
             if (posX != -1) {
                 if (this.missile == null) {
                     this.missile = new Missile_1.Missile(this.refScene, this.ricardo.x + 12, this.ricardo.y - 83);
                     this.refScene.addEventListener("tick", this._gestionMissile, false);
+                }
+                else {
+                    this.tAntagoniste.forEach(function (antagoniste) {
+                        var point = _this.missile.parent.localToLocal(_this.missile.x, _this.missile.y, antagoniste);
+                        if (antagoniste.hitTest(point.x, point.y)) {
+                            new Explosion_1.Explosion(_this.refScene, _this.missile.x, _this.missile.y);
+                            _this.missile.y = -200;
+                        }
+                    });
                 }
                 if (this.missile.y < -100) {
                     this.refScene.removeEventListener("tick", this._gestionMissile);
@@ -69,6 +79,9 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
                 }
             }
             return this.missile == null;
+        };
+        Jeu.prototype.getDynamites = function () {
+            return this.tDynamite;
         };
         return Jeu;
     }());
