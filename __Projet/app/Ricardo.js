@@ -19,10 +19,11 @@ define(["require", "exports", "./Explosion", "./Voiture"], function (require, ex
     exports.Ricardo = void 0;
     var Ricardo = /** @class */ (function (_super) {
         __extends(Ricardo, _super);
-        function Ricardo(refScene, refJeu, posX, posY) {
+        function Ricardo(refScene, refJeu, posX, posY, refAfficheurVie) {
             var _this = _super.call(this, refScene, posX, posY) || this;
             _this.refScene = null;
             _this.refJeu = null;
+            _this.refAfficheurVie = null;
             _this.minuterieBouger = null;
             _this.touchesEnfoncees = null;
             _this.timeoutMissile = null;
@@ -38,12 +39,14 @@ define(["require", "exports", "./Explosion", "./Voiture"], function (require, ex
             _this._faireBouger = _this.faireBouger.bind(_this);
             _this.refScene = refScene;
             _this.refJeu = refJeu;
+            _this.refAfficheurVie = refAfficheurVie;
+            _this.name = "Ricardo";
             _this.pointVie = 4;
             _this.accelDelta = 0.4;
             _this.vitesseMax = 5;
             _this.rotationRatio = 3;
             // Haut, Droite, Bas, Gauche
-            _this.zoneLimite = [window.lib.properties.height / 2, window.lib.properties.width - 32, window.lib.properties.height - 50, 32];
+            _this.zoneLimite = [window.lib.properties.height / 2, window.lib.properties.width - 32, window.lib.properties.height - 128, 32];
             _this.touchesEnfoncees = [false, false, false, false];
             window.onkeydown = _this._activerTouche;
             window.onkeyup = _this._desactiverTouche;
@@ -167,6 +170,18 @@ define(["require", "exports", "./Explosion", "./Voiture"], function (require, ex
                     dynamite.y = 1000;
                 }
             });
+        };
+        Ricardo.prototype.jmeSuisFaitToucherPisCaFaitMal = function (degreDeViolenceRecu) {
+            _super.prototype.jmeSuisFaitToucherPisCaFaitMal.call(this, degreDeViolenceRecu);
+            this.refAfficheurVie.maj(this.pointVie);
+            if (this.pointVie <= 0) {
+                this.refJeu.finDuJeu();
+                this.removeAllEventListeners();
+                window.onkeydown = null;
+                window.onkeyup = null;
+                clearInterval(this.minuterieBouger);
+                this.minuterieBouger = null;
+            }
         };
         Ricardo.prototype.detruire = function () {
             this._faireBouger = null;

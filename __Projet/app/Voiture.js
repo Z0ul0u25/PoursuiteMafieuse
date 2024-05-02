@@ -25,8 +25,8 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
             _this.vitesseY = 0;
             return _this;
         }
-        Voiture.prototype.jmeSuisFaitToucherPisCaFaitMal = function (degrerDeViolenceRecu) {
-            this.pointVie -= degrerDeViolenceRecu;
+        Voiture.prototype.jmeSuisFaitToucherPisCaFaitMal = function (degreDeViolenceRecu) {
+            this.pointVie -= degreDeViolenceRecu;
             if (this.pointVie <= 0) {
                 this.gotoAndPlay("mort");
             }

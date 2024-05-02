@@ -22,6 +22,7 @@ define(["require", "exports", "./Antagoniste"], function (require, exports, Anta
         function Maki(refScene, posX, posY) {
             var _this = _super.call(this, refScene, posX, posY) || this;
             _this.pointVie = 2;
+            _this.name = "Maki";
             return _this;
         }
         Maki.prototype.faireBouger = function () {

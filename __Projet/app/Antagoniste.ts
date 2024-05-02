@@ -25,8 +25,19 @@ export abstract class Antagoniste extends Voiture {
 		return new Dynamite(this.refScene, this.x, this.y);
 	}
 
+	private sortiDecran():void{
+		this.y += this.vitesseY;
+		if (this.y <= -128){this.detruire();}
+	}
+
+	public departDeFin():void{
+		this.vitesseY = -5;
+		this.addEventListener("tick", this.sortiDecran.bind(this), false);
+	}
+
 	public detruire(): void {
 		this.removeAllEventListeners();
+		console.log(this.name);
 		super.detruire();
 	}
 }

@@ -30,8 +30,19 @@ define(["require", "exports", "./Dynamite", "./Voiture"], function (require, exp
         Antagoniste.prototype.lanceDynamite = function () {
             return new Dynamite_1.Dynamite(this.refScene, this.x, this.y);
         };
+        Antagoniste.prototype.sortiDecran = function () {
+            this.y += this.vitesseY;
+            if (this.y <= -128) {
+                this.detruire();
+            }
+        };
+        Antagoniste.prototype.departDeFin = function () {
+            this.vitesseY = -5;
+            this.addEventListener("tick", this.sortiDecran.bind(this), false);
+        };
         Antagoniste.prototype.detruire = function () {
             this.removeAllEventListeners();
+            console.log(this.name);
             _super.prototype.detruire.call(this);
         };
         return Antagoniste;

@@ -18,6 +18,10 @@ export class Rue extends ObjetVisible {
 		super.detruire();
 	}
 
+	public arreterDefilement():void{
+		this.removeEventListener("tick", this._defilement);
+	}
+
 	private defilement(): void{
 		this.y+=20;
 		if(this.y >= window.lib.properties.height){

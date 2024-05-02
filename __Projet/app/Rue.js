@@ -33,6 +33,9 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
         Rue.prototype.detruire = function () {
             _super.prototype.detruire.call(this);
         };
+        Rue.prototype.arreterDefilement = function () {
+            this.removeEventListener("tick", this._defilement);
+        };
         Rue.prototype.defilement = function () {
             this.y += 20;
             if (this.y >= window.lib.properties.height) {

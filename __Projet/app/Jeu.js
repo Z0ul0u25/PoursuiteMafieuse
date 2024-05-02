@@ -1,4 +1,4 @@
-define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Menu", "./Bouton", "./Missile", "./Explosion"], function (require, exports, Rue_1, Ricardo_1, Maki_1, Wasabi_1, Menu_1, Bouton_1, Missile_1, Explosion_1) {
+define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Menu", "./Bouton", "./Missile", "./Explosion", "./AfficheurVie"], function (require, exports, Rue_1, Ricardo_1, Maki_1, Wasabi_1, Menu_1, Bouton_1, Missile_1, Explosion_1, AfficheurVie_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Jeu = void 0;
@@ -8,22 +8,24 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
             this.rue = null;
             this.menu = null;
             this.bouton = null;
+            this.afficheurVie = null;
             this.ricardo = null;
             this.tAntagoniste = [];
             this.tDynamite = [];
             this.missile = null;
-            // private tminDynamite:number[] = [];
+            this.tminDynamite = [];
             this._gestionMissile = this.gestionMissile.bind(this);
             this.refScene = refScene;
             this.afficherMenu();
         }
         Jeu.prototype.debuter = function () {
             this.rue = new Rue_1.Rue(this.refScene);
-            this.ricardo = new Ricardo_1.Ricardo(this.refScene, this, window.lib.properties.width / 2, window.lib.properties.height - 60);
+            this.afficheurVie = new AfficheurVie_1.AfficheurVie(this.refScene);
+            this.ricardo = new Ricardo_1.Ricardo(this.refScene, this, window.lib.properties.width / 2, window.lib.properties.height - 128, this.afficheurVie);
             this.tAntagoniste.push(new Maki_1.Maki(this.refScene, window.lib.properties.width * 0.35, 150));
             this.tAntagoniste.push(new Wasabi_1.Wasabi(this.refScene, window.lib.properties.width * 0.65, 150));
             for (var i = 0; i < this.tAntagoniste.length; i++) {
-                window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random() * 200) + 1000 + i * 200, this.tAntagoniste[i]);
+                this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random() * 200) + 1000 + i * 200, this.tAntagoniste[i]));
             }
         };
         Jeu.prototype.afficherMenu = function () {
@@ -82,6 +84,16 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
                 }
             }
             return this.missile == null;
+        };
+        Jeu.prototype.finDuJeu = function () {
+            for (var i = 0; i < this.tminDynamite.length; i++) {
+                clearInterval(this.tminDynamite[i]);
+            }
+            this.rue.arreterDefilement();
+            for (var i = 0; i < this.tAntagoniste.length; i++) {
+                this.tAntagoniste[i].departDeFin();
+                console.log(this.tAntagoniste[i].name + " Go bye bye!");
+            }
         };
         Jeu.prototype.getDynamites = function () {
             return this.tDynamite;

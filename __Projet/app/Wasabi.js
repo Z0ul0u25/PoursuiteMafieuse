@@ -22,6 +22,7 @@ define(["require", "exports", "./Antagoniste"], function (require, exports, Anta
         function Wasabi(refScene, posX, posY) {
             var _this = _super.call(this, refScene, posX, posY) || this;
             _this.sens = 1;
+            _this.name = "Wasabi";
             _this.accelDelta = 0.5;
             _this.vitesseMax = 8;
             _this.vitesseX = null;

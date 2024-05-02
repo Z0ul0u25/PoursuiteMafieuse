@@ -6,6 +6,7 @@ export class Wasabi extends Antagoniste {
 
 	public constructor(refScene, posX, posY) {
 		super(refScene, posX, posY);
+		this.name = "Wasabi";
 
 		this.accelDelta = 0.5;
 		this.vitesseMax = 8;

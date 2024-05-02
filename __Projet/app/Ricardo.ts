@@ -1,3 +1,4 @@
+import { AfficheurVie } from "./AfficheurVie";
 import { Dynamite } from "./Dynamite";
 import { Explosion } from "./Explosion";
 import { Jeu } from "./Jeu";
@@ -12,6 +13,7 @@ export class Ricardo extends Voiture {
 
 	private refScene: createjs.Stage = null;
 	private refJeu: Jeu = null;
+	private refAfficheurVie = null;
 
 	private minuterieBouger: number = null;
 	private touchesEnfoncees: Array<boolean> = null;
@@ -28,18 +30,21 @@ export class Ricardo extends Voiture {
 	private _desactiverTouche = this.desactiverTouche.bind(this);
 	private _faireBouger = this.faireBouger.bind(this);
 
-	constructor(refScene: createjs.Stage, refJeu: Jeu, posX: number, posY: number) {
+	constructor(refScene: createjs.Stage, refJeu: Jeu, posX: number, posY: number, refAfficheurVie:AfficheurVie) {
 		super(refScene, posX, posY);
+
 		this.refScene = refScene;
 		this.refJeu = refJeu;
+		this.refAfficheurVie = refAfficheurVie;
 
+		this.name = "Ricardo";
 		this.pointVie = 4;
 
 		this.accelDelta = 0.4;
 		this.vitesseMax = 5;
 		this.rotationRatio = 3;
 		// Haut, Droite, Bas, Gauche
-		this.zoneLimite = [window.lib.properties.height / 2, window.lib.properties.width - 32, window.lib.properties.height - 50, 32]
+		this.zoneLimite = [window.lib.properties.height / 2, window.lib.properties.width - 32, window.lib.properties.height - 128, 32]
 		this.touchesEnfoncees = [false, false, false, false];
 
 		window.onkeydown = this._activerTouche;
@@ -174,6 +179,19 @@ export class Ricardo extends Voiture {
 				dynamite.y = 1000;
 			}
 		});
+	}
+
+	public jmeSuisFaitToucherPisCaFaitMal(degreDeViolenceRecu: number): void {
+		super.jmeSuisFaitToucherPisCaFaitMal(degreDeViolenceRecu);
+		this.refAfficheurVie.maj(this.pointVie);
+		if (this.pointVie <= 0) {
+			this.refJeu.finDuJeu();
+			this.removeAllEventListeners();
+			window.onkeydown = null;
+			window.onkeyup = null;
+			clearInterval(this.minuterieBouger);
+			this.minuterieBouger = null;
+		}
 	}
 
 	public detruire(): void {

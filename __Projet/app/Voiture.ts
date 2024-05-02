@@ -19,8 +19,8 @@ export abstract class Voiture extends ObjetVisible{
 
 	protected abstract faireBouger():void;
 
-	public jmeSuisFaitToucherPisCaFaitMal(degrerDeViolenceRecu: number): void {
-		this.pointVie -= degrerDeViolenceRecu;
+	public jmeSuisFaitToucherPisCaFaitMal(degreDeViolenceRecu: number): void {
+		this.pointVie -= degreDeViolenceRecu;
 		if (this.pointVie <= 0) {
 			this.gotoAndPlay("mort");
 		}

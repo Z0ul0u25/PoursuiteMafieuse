@@ -8,19 +8,21 @@ import { Antagoniste } from "./Antagoniste";
 import { Dynamite } from "./Dynamite";
 import { Missile } from "./Missile";
 import { Explosion } from "./Explosion";
+import { AfficheurVie } from "./AfficheurVie";
 
 export class Jeu {
 	private refScene: createjs.Stage = null;
 	private rue: Rue = null;
 	private menu: Menu = null;
 	private bouton: Bouton = null;
+	private afficheurVie:AfficheurVie = null;
 
 	private ricardo: Ricardo = null;
 	private tAntagoniste: Antagoniste[] = [];
 
 	private tDynamite: Dynamite[] = [];
 	private missile: Missile = null;
-	// private tminDynamite:number[] = [];
+	private tminDynamite:number[] = [];
 
 	private _gestionMissile = this.gestionMissile.bind(this);
 
@@ -30,13 +32,18 @@ export class Jeu {
 	}
 
 	public debuter(): void {
+
 		this.rue = new Rue(this.refScene);
-		this.ricardo = new Ricardo(this.refScene, this, window.lib.properties.width / 2, window.lib.properties.height - 60);
+		this.afficheurVie = new AfficheurVie(this.refScene);
+
+		this.ricardo = new Ricardo(this.refScene, this, window.lib.properties.width / 2, window.lib.properties.height - 128, this.afficheurVie);
+
 		this.tAntagoniste.push(new Maki(this.refScene, window.lib.properties.width * 0.35, 150));
 		this.tAntagoniste.push(new Wasabi(this.refScene, window.lib.properties.width * 0.65, 150));
 		for (let i = 0; i < this.tAntagoniste.length; i++) {
-			window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random()*200) + 1000 + i*200, this.tAntagoniste[i]);
+			this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random()*200) + 1000 + i*200, this.tAntagoniste[i]));
 		}
+
 	}
 
 	private afficherMenu(): void {
@@ -93,6 +100,17 @@ export class Jeu {
 			}
 		}
 		return this.missile == null;
+	}
+
+	public finDuJeu():void{
+		for (let i = 0; i < this.tminDynamite.length; i++) {
+			clearInterval(this.tminDynamite[i]);
+		}
+		this.rue.arreterDefilement();
+		for (let i = 0; i < this.tAntagoniste.length; i++) {
+			this.tAntagoniste[i].departDeFin();
+			console.log(this.tAntagoniste[i].name + " Go bye bye!");
+		}
 	}
 
 	public getDynamites():Dynamite[]{

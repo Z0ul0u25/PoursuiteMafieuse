@@ -7,6 +7,7 @@ export class Maki extends Antagoniste{
 	public constructor(refScene, posX, posY) {
 		super(refScene, posX, posY);
 		this.pointVie = 2;
+		this.name = "Maki";
 	}
 
 	protected faireBouger(): void {
