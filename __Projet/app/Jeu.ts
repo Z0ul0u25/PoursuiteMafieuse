@@ -10,6 +10,7 @@ import { Missile } from "./Missile";
 import { Explosion } from "./Explosion";
 import { AfficheurVie } from "./AfficheurVie";
 import { ObjetVisible } from "./ObjetVisible";
+import { Boss } from "./Boss";
 
 export class Jeu {
 	private refScene: createjs.Stage = null;
@@ -46,6 +47,11 @@ export class Jeu {
 			this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random()*200) + 1000 + i*200, this.tAntagoniste[i]));
 		}
 
+	}
+
+	private debuterNiveau2():void{
+		console.log("NIVEAU 2");
+		this.tAntagoniste.push(new Boss(window.lib.properties.width/2, -200, this.ricardo));
 	}
 
 	private afficherMenu(): void {
@@ -117,8 +123,15 @@ export class Jeu {
 	}
 
 	public detruireAntagoniste(unAntagoniste:Antagoniste):void{
+		clearInterval(this.tminDynamite[this.tAntagoniste.indexOf(unAntagoniste)]);
+
+		this.tminDynamite.splice(this.tAntagoniste.indexOf(unAntagoniste), 1);
 		this.tAntagoniste.splice(this.tAntagoniste.indexOf(unAntagoniste), 1);
+
 		unAntagoniste.detruire();
+		if (this.tAntagoniste.length == 0){
+			this.debuterNiveau2();
+		}
 	}
 
 	public getDynamites():Dynamite[]{

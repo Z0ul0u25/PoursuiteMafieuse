@@ -7,7 +7,7 @@ export abstract class Voiture extends ObjetVisible{
 	protected vitesseX:number;
 	protected vitesseY:number;
 	protected abstract rotationRatio:number;
-	protected abstract zoneLimite:number[];
+	protected abstract zoneLimite:number[]; // [Haut, Droite, Bas, Gauche]
 	protected abstract pointVie:number;
 
 

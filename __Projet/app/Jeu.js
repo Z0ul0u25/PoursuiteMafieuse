@@ -1,4 +1,4 @@
-define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Menu", "./Bouton", "./Missile", "./Explosion", "./AfficheurVie", "./ObjetVisible"], function (require, exports, Rue_1, Ricardo_1, Maki_1, Wasabi_1, Menu_1, Bouton_1, Missile_1, Explosion_1, AfficheurVie_1, ObjetVisible_1) {
+define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Menu", "./Bouton", "./Missile", "./Explosion", "./AfficheurVie", "./ObjetVisible", "./Boss"], function (require, exports, Rue_1, Ricardo_1, Maki_1, Wasabi_1, Menu_1, Bouton_1, Missile_1, Explosion_1, AfficheurVie_1, ObjetVisible_1, Boss_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Jeu = void 0;
@@ -28,6 +28,10 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
             for (var i = 0; i < this.tAntagoniste.length; i++) {
                 this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random() * 200) + 1000 + i * 200, this.tAntagoniste[i]));
             }
+        };
+        Jeu.prototype.debuterNiveau2 = function () {
+            console.log("NIVEAU 2");
+            this.tAntagoniste.push(new Boss_1.Boss(window.lib.properties.width / 2, -200, this.ricardo));
         };
         Jeu.prototype.afficherMenu = function () {
             this.menu = new Menu_1.Menu();
@@ -96,8 +100,13 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
             }
         };
         Jeu.prototype.detruireAntagoniste = function (unAntagoniste) {
+            clearInterval(this.tminDynamite[this.tAntagoniste.indexOf(unAntagoniste)]);
+            this.tminDynamite.splice(this.tAntagoniste.indexOf(unAntagoniste), 1);
             this.tAntagoniste.splice(this.tAntagoniste.indexOf(unAntagoniste), 1);
             unAntagoniste.detruire();
+            if (this.tAntagoniste.length == 0) {
+                this.debuterNiveau2();
+            }
         };
         Jeu.prototype.getDynamites = function () {
             return this.tDynamite;

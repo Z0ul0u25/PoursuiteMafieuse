@@ -179,6 +179,9 @@ define(["require", "exports", "./Explosion", "./ObjetVisible", "./Voiture"], fun
                 this.minuterieBouger = null;
             }
         };
+        Ricardo.prototype.getPos = function () {
+            return new createjs.Point(this.x, this.y);
+        };
         Ricardo.prototype.detruire = function () {
             this._faireBouger = null;
             this._desactiverTouche = null;
