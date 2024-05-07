@@ -27,6 +27,9 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
             this.frameBounds = window.lib.ClipAfficheurVie.prototype.frameBounds;
         };
         AfficheurVie.prototype.maj = function (pv) {
+            if (pv < 0) {
+                pv = 0;
+            }
             this.gotoAndStop(Math.floor(8 - pv * 2));
         };
         AfficheurVie.prototype.detruire = function () {

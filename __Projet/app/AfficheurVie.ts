@@ -11,6 +11,9 @@ export class AfficheurVie extends ObjetVisible {
 	}
 
 	public maj(pv: number): void {
+		if (pv < 0){
+			pv = 0;
+		}
 		this.gotoAndStop(Math.floor(8 - pv * 2));
 	}
 
