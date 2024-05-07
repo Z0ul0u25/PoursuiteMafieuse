@@ -1,8 +1,9 @@
 import { Antagoniste } from "./Antagoniste";
+import { ObjetVisible } from "./ObjetVisible";
 
 export class Wasabi extends Antagoniste {
 	protected pointVie: number;
-	private sens = 1;
+	private sens:number = 1;
 
 	public constructor(posX: number, posY: number) {
 		super(posX, posY);
@@ -41,8 +42,8 @@ export class Wasabi extends Antagoniste {
 		this.y += this.vitesseY;
 		this.rotation = this.vitesseX * this.rotationRatio * this.sens;
 
-		if (this.y >= window.lib.properties.height + 100) {
-			super.detruire();
+		if (this.y > window.lib.properties.height + 128){
+			ObjetVisible.refJeu.detruireAntagoniste(this);
 		}
 	}
 

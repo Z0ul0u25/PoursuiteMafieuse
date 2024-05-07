@@ -26,10 +26,10 @@ define(["require", "exports", "./Antagoniste", "./ObjetVisible"], function (requ
             return _this;
         }
         Maki.prototype.faireBouger = function () {
-            if (this.y >= window.lib.properties.height + 128) {
+            this.y += this.vitesseY;
+            if (this.y > window.lib.properties.height + 128) {
                 ObjetVisible_1.ObjetVisible.refJeu.detruireAntagoniste(this);
             }
-            this.y += this.vitesseY;
         };
         Maki.prototype.dessiner = function () {
             window.lib.ClipMaki.call(this);

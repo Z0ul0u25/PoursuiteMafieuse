@@ -13,7 +13,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-define(["require", "exports", "./Antagoniste"], function (require, exports, Antagoniste_1) {
+define(["require", "exports", "./Antagoniste", "./ObjetVisible"], function (require, exports, Antagoniste_1, ObjetVisible_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Wasabi = void 0;
@@ -57,8 +57,8 @@ define(["require", "exports", "./Antagoniste"], function (require, exports, Anta
             this.x += this.vitesseX * this.sens;
             this.y += this.vitesseY;
             this.rotation = this.vitesseX * this.rotationRatio * this.sens;
-            if (this.y >= window.lib.properties.height + 100) {
-                _super.prototype.detruire.call(this);
+            if (this.y > window.lib.properties.height + 128) {
+                ObjetVisible_1.ObjetVisible.refJeu.detruireAntagoniste(this);
             }
         };
         Wasabi.prototype.dessiner = function () {

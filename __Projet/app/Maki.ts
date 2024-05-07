@@ -12,10 +12,11 @@ export class Maki extends Antagoniste{
 	}
 
 	protected faireBouger(): void {
-		if (this.y >= window.lib.properties.height + 128) {
+		this.y += this.vitesseY;
+
+		if (this.y > window.lib.properties.height + 128){
 			ObjetVisible.refJeu.detruireAntagoniste(this);
 		}
-		this.y += this.vitesseY;
 	}
 	protected dessiner(): void {
 		window.lib.ClipMaki.call(this);
