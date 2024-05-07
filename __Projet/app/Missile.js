@@ -19,10 +19,11 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
     exports.Missile = void 0;
     var Missile = /** @class */ (function (_super) {
         __extends(Missile, _super);
-        function Missile(refScene, posX, posY) {
+        function Missile(refScene, posX, posY, rotation) {
             var _this = _super.call(this, refScene, posX, posY) || this;
             _this.vitesse = null;
             _this.vitesse = 3;
+            _this.rotation = rotation;
             _this.addEventListener("tick", _this.bouger.bind(_this), false);
             return _this;
         }
@@ -31,7 +32,8 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
             this.frameBounds = window.lib.ClipMissile.prototype.frameBounds;
         };
         Missile.prototype.bouger = function () {
-            this.y -= this.vitesse += 2;
+            this.y -= Math.cos(this.rotation * (Math.PI / 180)) * (this.vitesse += 2);
+            this.x += Math.sin(this.rotation * (Math.PI / 180)) * this.vitesse;
         };
         Missile.prototype.detruire = function () {
             this.removeAllEventListeners();

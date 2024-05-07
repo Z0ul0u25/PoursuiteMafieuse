@@ -3,9 +3,10 @@ import { ObjetVisible } from "./ObjetVisible";
 export class Missile extends ObjetVisible {
 	vitesse: number = null;
 
-	constructor(refScene: createjs.Stage, posX: number, posY: number) {
+	constructor(refScene: createjs.Stage, posX: number, posY: number, rotation:number) {
 		super(refScene, posX, posY);
 		this.vitesse = 3;
+		this.rotation = rotation;
 
 		this.addEventListener("tick", this.bouger.bind(this), false);
 	}
@@ -16,7 +17,8 @@ export class Missile extends ObjetVisible {
 	}
 
 	private bouger(): void {
-		this.y -= this.vitesse += 2;
+		this.y -= Math.cos(this.rotation*(Math.PI/180))* (this.vitesse += 2);
+		this.x += Math.sin(this.rotation*(Math.PI/180))* this.vitesse;
 	}
 
 	public detruire(): void {

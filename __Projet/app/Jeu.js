@@ -64,7 +64,7 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
             if (posY === void 0) { posY = -1; }
             if (posX != -1) {
                 if (this.missile == null) {
-                    this.missile = new Missile_1.Missile(this.refScene, this.ricardo.x + 12, this.ricardo.y - 83);
+                    this.missile = new Missile_1.Missile(this.refScene, this.ricardo.x + 12, this.ricardo.y - 83, this.ricardo.rotation);
                     this.refScene.addEventListener("tick", this._gestionMissile, false);
                 }
                 else {
@@ -95,6 +95,7 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
                 console.log(this.tAntagoniste[i].name + " Go bye bye!");
             }
         };
+        Jeu.prototype.detruireAntagoniste = function () { };
         Jeu.prototype.getDynamites = function () {
             return this.tDynamite;
         };

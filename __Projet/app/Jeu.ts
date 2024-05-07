@@ -81,7 +81,7 @@ export class Jeu {
 	public gestionMissile(posX: number = -1, posY: number = -1): Boolean {
 		if (posX != -1) {
 			if (this.missile == null) {
-				this.missile = new Missile(this.refScene, this.ricardo.x + 12, this.ricardo.y - 83);
+				this.missile = new Missile(this.refScene, this.ricardo.x + 12, this.ricardo.y - 83, this.ricardo.rotation);
 				this.refScene.addEventListener("tick", this._gestionMissile, false);
 			} else {
 				this.tAntagoniste.forEach(antagoniste => {
@@ -106,12 +106,16 @@ export class Jeu {
 		for (let i = 0; i < this.tminDynamite.length; i++) {
 			clearInterval(this.tminDynamite[i]);
 		}
+
 		this.rue.arreterDefilement();
+
 		for (let i = 0; i < this.tAntagoniste.length; i++) {
 			this.tAntagoniste[i].departDeFin();
 			console.log(this.tAntagoniste[i].name + " Go bye bye!");
 		}
 	}
+
+	detruireAntagoniste():void{}
 
 	public getDynamites():Dynamite[]{
 		return this.tDynamite;
