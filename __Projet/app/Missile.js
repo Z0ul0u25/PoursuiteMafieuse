@@ -19,8 +19,8 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
     exports.Missile = void 0;
     var Missile = /** @class */ (function (_super) {
         __extends(Missile, _super);
-        function Missile(refScene, posX, posY, rotation) {
-            var _this = _super.call(this, refScene, posX, posY) || this;
+        function Missile(refJeu, posX, posY, rotation) {
+            var _this = _super.call(this, refJeu, posX, posY) || this;
             _this.vitesse = null;
             _this.vitesse = 3;
             _this.rotation = rotation;

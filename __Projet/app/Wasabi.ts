@@ -1,11 +1,12 @@
 import { Antagoniste } from "./Antagoniste";
+import { Jeu } from "./Jeu";
 
 export class Wasabi extends Antagoniste {
 	protected pointVie: number;
 	private sens = 1;
 
-	public constructor(refScene, posX, posY) {
-		super(refScene, posX, posY);
+	public constructor(refJeu:Jeu, posX:number, posY:number) {
+		super(refJeu, posX, posY);
 		this.name = "Wasabi";
 
 		this.accelDelta = 0.5;

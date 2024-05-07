@@ -1,8 +1,9 @@
+import { Jeu } from "./Jeu";
 import { ObjetVisible } from "./ObjetVisible";
 
 export class AfficheurVie extends ObjetVisible {
-	constructor(refScene: createjs.Stage) {
-		super(refScene, 5, window.lib.properties.height - 69);
+	constructor(refJeu:Jeu) {
+		super(refJeu, 5, window.lib.properties.height - 69);
 	}
 
 	protected dessiner(): void {

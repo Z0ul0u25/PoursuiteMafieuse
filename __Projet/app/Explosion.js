@@ -19,8 +19,8 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
     exports.Explosion = void 0;
     var Explosion = /** @class */ (function (_super) {
         __extends(Explosion, _super);
-        function Explosion(refScene, posX, posY) {
-            var _this = _super.call(this, refScene, posX, posY) || this;
+        function Explosion(refJeu, posX, posY) {
+            var _this = _super.call(this, refJeu, posX, posY) || this;
             _this.timeout = null;
             _this.scale = 2;
             // autodestruction après animation;

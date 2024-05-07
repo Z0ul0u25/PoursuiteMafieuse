@@ -1,8 +1,9 @@
+import { Jeu } from "./Jeu";
 import { ObjetVisible } from "./ObjetVisible";
 
 export class Dynamite extends ObjetVisible {
-	constructor(refScene: createjs.Stage, posX: number, posY: number) {
-		super(refScene, posX, posY);
+	constructor(refJeu:Jeu, posX: number, posY: number) {
+		super(refJeu, posX, posY);
 		this.addEventListener("tick", this.bouger.bind(this), false);
 	}
 

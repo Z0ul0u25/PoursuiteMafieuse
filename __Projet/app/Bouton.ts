@@ -1,10 +1,11 @@
+import { Jeu } from "./Jeu";
 import { ObjetVisible } from "./ObjetVisible";
 
 export class Bouton extends ObjetVisible {
 	private label = ["continuer", "lancer", "redemarrer"];
 
-	constructor(refStage: createjs.Stage, posX: number, posY: number, indexLabel:number) {
-		super(refStage, posX, posY);
+	constructor(refJeu:Jeu, posX: number, posY: number, indexLabel:number) {
+		super(refJeu, posX, posY);
 		this.setLabel(indexLabel);
 	}
 

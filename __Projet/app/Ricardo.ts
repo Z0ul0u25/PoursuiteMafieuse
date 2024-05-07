@@ -30,10 +30,10 @@ export class Ricardo extends Voiture {
 	private _desactiverTouche = this.desactiverTouche.bind(this);
 	private _faireBouger = this.faireBouger.bind(this);
 
-	constructor(refScene: createjs.Stage, refJeu: Jeu, posX: number, posY: number, refAfficheurVie:AfficheurVie) {
-		super(refScene, posX, posY);
+	constructor(refJeu: Jeu, posX: number, posY: number, refAfficheurVie:AfficheurVie) {
+		super(refJeu, posX, posY);
 
-		this.refScene = refScene;
+		this.refScene = refJeu.getScene();
 		this.refJeu = refJeu;
 		this.refAfficheurVie = refAfficheurVie;
 
@@ -174,7 +174,7 @@ export class Ricardo extends Voiture {
 		tDynamite.forEach(dynamite => {
 			let point: createjs.Point = dynamite.parent.localToLocal(dynamite.x, dynamite.y, this);
 			if (this.hitTest(point.x, point.y)) {
-				new Explosion(this.refScene, dynamite.x, dynamite.y);
+				new Explosion(this.refJeu, dynamite.x, dynamite.y);
 				this.jmeSuisFaitToucherPisCaFaitMal(1);
 				dynamite.y = 1000;
 			}

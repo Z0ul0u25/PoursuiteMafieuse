@@ -1,11 +1,12 @@
+import { Jeu } from "./Jeu";
 import { ObjetVisible } from "./ObjetVisible";
 export class Rue extends ObjetVisible {
 	private refScene:createjs.Stage = null;
 
 	private _defilement = this.defilement.bind(this);
 
-	constructor(refScene: createjs.Stage) {
-		super(refScene, 0, 0);
+	constructor(refJeu:Jeu) {
+		super(refJeu, 0, 0);
 		this.addEventListener("tick", this._defilement, false);
 	}
 

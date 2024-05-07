@@ -1,9 +1,10 @@
+import { Jeu } from "./Jeu";
 import { ObjetVisible } from "./ObjetVisible";
 
 export class Explosion extends ObjetVisible {
 	timeout: number = null;
-	constructor(refScene: createjs.Stage, posX: number, posY: number) {
-		super(refScene, posX, posY);
+	constructor(refJeu:Jeu, posX: number, posY: number) {
+		super(refJeu, posX, posY);
 		this.scale= 2;
 		// autodestruction après animation;
 		this.timeout = setTimeout(this.detruire.bind(this), 1000 / 30 * 15);

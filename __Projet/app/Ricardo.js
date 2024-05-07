@@ -19,8 +19,8 @@ define(["require", "exports", "./Explosion", "./Voiture"], function (require, ex
     exports.Ricardo = void 0;
     var Ricardo = /** @class */ (function (_super) {
         __extends(Ricardo, _super);
-        function Ricardo(refScene, refJeu, posX, posY, refAfficheurVie) {
-            var _this = _super.call(this, refScene, posX, posY) || this;
+        function Ricardo(refJeu, posX, posY, refAfficheurVie) {
+            var _this = _super.call(this, refJeu, posX, posY) || this;
             _this.refScene = null;
             _this.refJeu = null;
             _this.refAfficheurVie = null;
@@ -37,7 +37,7 @@ define(["require", "exports", "./Explosion", "./Voiture"], function (require, ex
             _this._activerTouche = _this.activerTouche.bind(_this);
             _this._desactiverTouche = _this.desactiverTouche.bind(_this);
             _this._faireBouger = _this.faireBouger.bind(_this);
-            _this.refScene = refScene;
+            _this.refScene = refJeu.getScene();
             _this.refJeu = refJeu;
             _this.refAfficheurVie = refAfficheurVie;
             _this.name = "Ricardo";
@@ -165,7 +165,7 @@ define(["require", "exports", "./Explosion", "./Voiture"], function (require, ex
             tDynamite.forEach(function (dynamite) {
                 var point = dynamite.parent.localToLocal(dynamite.x, dynamite.y, _this);
                 if (_this.hitTest(point.x, point.y)) {
-                    new Explosion_1.Explosion(_this.refScene, dynamite.x, dynamite.y);
+                    new Explosion_1.Explosion(_this.refJeu, dynamite.x, dynamite.y);
                     _this.jmeSuisFaitToucherPisCaFaitMal(1);
                     dynamite.y = 1000;
                 }

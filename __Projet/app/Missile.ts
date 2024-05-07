@@ -1,10 +1,11 @@
+import { Jeu } from "./Jeu";
 import { ObjetVisible } from "./ObjetVisible";
 
 export class Missile extends ObjetVisible {
 	vitesse: number = null;
 
-	constructor(refScene: createjs.Stage, posX: number, posY: number, rotation:number) {
-		super(refScene, posX, posY);
+	constructor(refJeu:Jeu, posX: number, posY: number, rotation:number) {
+		super(refJeu, posX, posY);
 		this.vitesse = 3;
 		this.rotation = rotation;
 

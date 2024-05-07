@@ -19,8 +19,8 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
     exports.Menu = void 0;
     var Menu = /** @class */ (function (_super) {
         __extends(Menu, _super);
-        function Menu(refScene) {
-            return _super.call(this, refScene, 0, 0) || this;
+        function Menu(refJeu) {
+            return _super.call(this, refJeu, 0, 0) || this;
         }
         Menu.prototype.dessiner = function () {
             window.lib.ClipMenu.call(this);

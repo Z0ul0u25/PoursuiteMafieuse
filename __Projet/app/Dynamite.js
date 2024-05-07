@@ -19,8 +19,8 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
     exports.Dynamite = void 0;
     var Dynamite = /** @class */ (function (_super) {
         __extends(Dynamite, _super);
-        function Dynamite(refScene, posX, posY) {
-            var _this = _super.call(this, refScene, posX, posY) || this;
+        function Dynamite(refJeu, posX, posY) {
+            var _this = _super.call(this, refJeu, posX, posY) || this;
             _this.addEventListener("tick", _this.bouger.bind(_this), false);
             return _this;
         }

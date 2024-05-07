@@ -19,8 +19,8 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
     exports.Bouton = void 0;
     var Bouton = /** @class */ (function (_super) {
         __extends(Bouton, _super);
-        function Bouton(refStage, posX, posY, indexLabel) {
-            var _this = _super.call(this, refStage, posX, posY) || this;
+        function Bouton(refJeu, posX, posY, indexLabel) {
+            var _this = _super.call(this, refJeu, posX, posY) || this;
             _this.label = ["continuer", "lancer", "redemarrer"];
             _this.setLabel(indexLabel);
             return _this;

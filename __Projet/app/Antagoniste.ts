@@ -1,5 +1,6 @@
 import { Dynamite } from "./Dynamite";
 import { Voiture } from "./Voiture";
+import { Jeu } from "./Jeu";
 
 export abstract class Antagoniste extends Voiture {
 	protected accelDelta: number;
@@ -8,21 +9,20 @@ export abstract class Antagoniste extends Voiture {
 	protected vitesseY: number;
 	protected rotationRatio: number;
 	protected zoneLimite: number[];
-	private refScene: createjs.Stage = null;
+	private refJeu:Jeu = null;
 
 	private _faireBouger = this.faireBouger.bind(this);
 
-	public constructor(refScene: createjs.Stage, posX: number, posY: number) {
-		super(refScene, posX, posY);
-		this.refScene = refScene;
-
+	public constructor(refJeu:Jeu, posX: number, posY: number) {
+		super(refJeu, posX, posY);
+		this.refJeu = refJeu;
 		this.addEventListener("tick", this._faireBouger, false);
 	}
 
 	protected abstract faireBouger(): void;
 
 	public lanceDynamite(): Dynamite {
-		return new Dynamite(this.refScene, this.x, this.y);
+		return new Dynamite(this.refJeu, this.x, this.y);
 	}
 
 	private sortiDecran():void{
@@ -37,7 +37,6 @@ export abstract class Antagoniste extends Voiture {
 
 	public detruire(): void {
 		this.removeAllEventListeners();
-		console.log(this.name);
 		super.detruire();
 	}
 }

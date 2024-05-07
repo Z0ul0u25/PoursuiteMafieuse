@@ -19,18 +19,18 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
             this.afficherMenu();
         }
         Jeu.prototype.debuter = function () {
-            this.rue = new Rue_1.Rue(this.refScene);
-            this.afficheurVie = new AfficheurVie_1.AfficheurVie(this.refScene);
-            this.ricardo = new Ricardo_1.Ricardo(this.refScene, this, window.lib.properties.width / 2, window.lib.properties.height - 128, this.afficheurVie);
-            this.tAntagoniste.push(new Maki_1.Maki(this.refScene, window.lib.properties.width * 0.35, 150));
-            this.tAntagoniste.push(new Wasabi_1.Wasabi(this.refScene, window.lib.properties.width * 0.65, 150));
+            this.rue = new Rue_1.Rue(this);
+            this.afficheurVie = new AfficheurVie_1.AfficheurVie(this);
+            this.ricardo = new Ricardo_1.Ricardo(this, window.lib.properties.width / 2, window.lib.properties.height - 128, this.afficheurVie);
+            this.tAntagoniste.push(new Maki_1.Maki(this, window.lib.properties.width * 0.35, 150));
+            this.tAntagoniste.push(new Wasabi_1.Wasabi(this, window.lib.properties.width * 0.65, 150));
             for (var i = 0; i < this.tAntagoniste.length; i++) {
                 this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random() * 200) + 1000 + i * 200, this.tAntagoniste[i]));
             }
         };
         Jeu.prototype.afficherMenu = function () {
-            this.menu = new Menu_1.Menu(this.refScene);
-            this.bouton = new Bouton_1.Bouton(this.refScene, 300, 666, 0);
+            this.menu = new Menu_1.Menu(this);
+            this.bouton = new Bouton_1.Bouton(this, 300, 666, 0);
             this.bouton.addEventListener("click", this.menuPageSuivante.bind(this), false);
         };
         Jeu.prototype.menuPageSuivante = function () {
@@ -64,14 +64,14 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
             if (posY === void 0) { posY = -1; }
             if (posX != -1) {
                 if (this.missile == null) {
-                    this.missile = new Missile_1.Missile(this.refScene, this.ricardo.x + 12, this.ricardo.y - 83, this.ricardo.rotation);
+                    this.missile = new Missile_1.Missile(this, this.ricardo.x + 12, this.ricardo.y - 83, this.ricardo.rotation);
                     this.refScene.addEventListener("tick", this._gestionMissile, false);
                 }
                 else {
                     this.tAntagoniste.forEach(function (antagoniste) {
                         var point = _this.missile.parent.localToLocal(_this.missile.x, _this.missile.y, antagoniste);
                         if (antagoniste.hitTest(point.x, point.y)) {
-                            new Explosion_1.Explosion(_this.refScene, _this.missile.x, _this.missile.y);
+                            new Explosion_1.Explosion(_this, _this.missile.x, _this.missile.y);
                             antagoniste.jmeSuisFaitToucherPisCaFaitMal(1);
                             _this.missile.y = -200;
                         }
@@ -92,12 +92,14 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
             this.rue.arreterDefilement();
             for (var i = 0; i < this.tAntagoniste.length; i++) {
                 this.tAntagoniste[i].departDeFin();
-                console.log(this.tAntagoniste[i].name + " Go bye bye!");
             }
         };
         Jeu.prototype.detruireAntagoniste = function () { };
         Jeu.prototype.getDynamites = function () {
             return this.tDynamite;
+        };
+        Jeu.prototype.getScene = function () {
+            return this.refScene;
         };
         return Jeu;
     }());

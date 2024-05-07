@@ -1,9 +1,10 @@
+import { Jeu } from "./Jeu";
 import { ObjetVisible } from "./ObjetVisible";
 
 export class Menu extends ObjetVisible {
 
-	constructor(refScene:createjs.Stage) {
-		super(refScene, 0, 0);
+	constructor(refJeu:Jeu) {
+		super(refJeu, 0, 0);
 	}
 
 	protected dessiner(): void {

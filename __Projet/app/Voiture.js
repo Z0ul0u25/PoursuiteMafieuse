@@ -19,8 +19,8 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
     exports.Voiture = void 0;
     var Voiture = /** @class */ (function (_super) {
         __extends(Voiture, _super);
-        function Voiture(refScene, posX, posY) {
-            var _this = _super.call(this, refScene, posX, posY) || this;
+        function Voiture(refJeu, posX, posY) {
+            var _this = _super.call(this, refJeu, posX, posY) || this;
             _this.vitesseX = 0;
             _this.vitesseY = 0;
             return _this;

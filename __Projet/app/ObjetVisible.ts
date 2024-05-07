@@ -1,11 +1,13 @@
+import { Jeu } from "./Jeu";
+
 export abstract class ObjetVisible extends createjs.MovieClip {
 	private refStage: createjs.Stage = null;
 
-	public constructor(refStage: createjs.Stage, posX: number, posY: number) {
+	public constructor(refJeu:Jeu, posX: number, posY: number) {
 		super();
 		this.gotoAndStop(0);
 		this.dessiner();
-		this.refStage = refStage;
+		this.refStage = refJeu.getScene();
 		this.refStage.addChild(this);
 
 		this.x = posX;

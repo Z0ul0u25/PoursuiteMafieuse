@@ -1,3 +1,4 @@
+import { Jeu } from "./Jeu";
 import { ObjetVisible } from "./ObjetVisible";
 
 export abstract class Voiture extends ObjetVisible{
@@ -11,8 +12,8 @@ export abstract class Voiture extends ObjetVisible{
 	protected abstract pointVie:number;
 
 
-	public constructor(refScene: createjs.Stage, posX:number, posY:number) {
-		super(refScene, posX, posY);
+	public constructor(refJeu:Jeu, posX:number, posY:number) {
+		super(refJeu, posX, posY);
 		this.vitesseX = 0;
 		this.vitesseY = 0;
 	}

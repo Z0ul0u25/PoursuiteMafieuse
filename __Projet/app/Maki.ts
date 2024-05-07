@@ -1,11 +1,12 @@
 import { Antagoniste } from "./Antagoniste";
+import { Jeu } from "./Jeu";
 
 export class Maki extends Antagoniste{
 	protected pointVie: number;
 
 
-	public constructor(refScene, posX, posY) {
-		super(refScene, posX, posY);
+	public constructor(refJeu:Jeu, posX:number, posY:number) {
+		super(refJeu, posX, posY);
 		this.pointVie = 2;
 		this.name = "Maki";
 	}
