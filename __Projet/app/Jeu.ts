@@ -9,6 +9,7 @@ import { Dynamite } from "./Dynamite";
 import { Missile } from "./Missile";
 import { Explosion } from "./Explosion";
 import { AfficheurVie } from "./AfficheurVie";
+import { ObjetVisible } from "./ObjetVisible";
 
 export class Jeu {
 	private refScene: createjs.Stage = null;
@@ -27,19 +28,20 @@ export class Jeu {
 	private _gestionMissile = this.gestionMissile.bind(this);
 
 	constructor(refScene:createjs.Stage) {
+		ObjetVisible.refJeu = this;
 		this.refScene = refScene;
 		this.afficherMenu();
 	}
 
 	public debuter(): void {
 
-		this.rue = new Rue(this);
-		this.afficheurVie = new AfficheurVie(this);
+		this.rue = new Rue();
+		this.afficheurVie = new AfficheurVie();
 
-		this.ricardo = new Ricardo(this, window.lib.properties.width / 2, window.lib.properties.height - 128, this.afficheurVie);
+		this.ricardo = new Ricardo(window.lib.properties.width / 2, window.lib.properties.height - 128, this.afficheurVie);
 
-		this.tAntagoniste.push(new Maki(this, window.lib.properties.width * 0.35, 150));
-		this.tAntagoniste.push(new Wasabi(this, window.lib.properties.width * 0.65, 150));
+		this.tAntagoniste.push(new Maki(window.lib.properties.width * 0.35, 150));
+		this.tAntagoniste.push(new Wasabi(window.lib.properties.width * 0.65, 150));
 		for (let i = 0; i < this.tAntagoniste.length; i++) {
 			this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random()*200) + 1000 + i*200, this.tAntagoniste[i]));
 		}
@@ -47,8 +49,8 @@ export class Jeu {
 	}
 
 	private afficherMenu(): void {
-		this.menu = new Menu(this);
-		this.bouton = new Bouton(this, 300, 666, 0);
+		this.menu = new Menu();
+		this.bouton = new Bouton(300, 666, 0);
 		this.bouton.addEventListener("click", this.menuPageSuivante.bind(this), false);
 	}
 
@@ -81,13 +83,13 @@ export class Jeu {
 	public gestionMissile(posX: number = -1, posY: number = -1): Boolean {
 		if (posX != -1) {
 			if (this.missile == null) {
-				this.missile = new Missile(this, this.ricardo.x + 12, this.ricardo.y - 83, this.ricardo.rotation);
+				this.missile = new Missile(this.ricardo.x + 12, this.ricardo.y - 83, this.ricardo.rotation);
 				this.refScene.addEventListener("tick", this._gestionMissile, false);
 			} else {
 				this.tAntagoniste.forEach(antagoniste => {
 					let point:createjs.Point = this.missile.parent.localToLocal(this.missile.x, this.missile.y, antagoniste);
 					if (antagoniste.hitTest(point.x, point.y)) {
-						new Explosion(this, this.missile.x, this.missile.y);
+						new Explosion(this.missile.x, this.missile.y);
 						antagoniste.jmeSuisFaitToucherPisCaFaitMal(1);
 						this.missile.y = -200
 					}
@@ -117,7 +119,6 @@ export class Jeu {
 	public detruireAntagoniste(unAntagoniste:Antagoniste):void{
 		this.tAntagoniste.splice(this.tAntagoniste.indexOf(unAntagoniste), 1);
 		unAntagoniste.detruire();
-		console.log(this.tAntagoniste);
 	}
 
 	public getDynamites():Dynamite[]{

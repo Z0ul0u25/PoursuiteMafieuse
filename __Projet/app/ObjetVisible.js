@@ -19,13 +19,12 @@ define(["require", "exports"], function (require, exports) {
     exports.ObjetVisible = void 0;
     var ObjetVisible = /** @class */ (function (_super) {
         __extends(ObjetVisible, _super);
-        function ObjetVisible(refJeu, posX, posY) {
+        function ObjetVisible(posX, posY) {
             var _this = _super.call(this) || this;
             _this.refStage = null;
             _this.gotoAndStop(0);
             _this.dessiner();
-            ObjetVisible.refJeu = refJeu;
-            _this.refStage = refJeu.getScene();
+            _this.refStage = ObjetVisible.refJeu.getScene();
             _this.refStage.addChild(_this);
             _this.x = posX;
             _this.y = posY;

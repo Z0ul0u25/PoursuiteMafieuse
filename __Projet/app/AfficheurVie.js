@@ -19,8 +19,8 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
     exports.AfficheurVie = void 0;
     var AfficheurVie = /** @class */ (function (_super) {
         __extends(AfficheurVie, _super);
-        function AfficheurVie(refJeu) {
-            return _super.call(this, refJeu, 5, window.lib.properties.height - 69) || this;
+        function AfficheurVie() {
+            return _super.call(this, 5, window.lib.properties.height - 69) || this;
         }
         AfficheurVie.prototype.dessiner = function () {
             window.lib.ClipAfficheurVie.call(this);

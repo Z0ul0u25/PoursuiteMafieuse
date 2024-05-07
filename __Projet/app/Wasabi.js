@@ -19,8 +19,8 @@ define(["require", "exports", "./Antagoniste"], function (require, exports, Anta
     exports.Wasabi = void 0;
     var Wasabi = /** @class */ (function (_super) {
         __extends(Wasabi, _super);
-        function Wasabi(refJeu, posX, posY) {
-            var _this = _super.call(this, refJeu, posX, posY) || this;
+        function Wasabi(posX, posY) {
+            var _this = _super.call(this, posX, posY) || this;
             _this.sens = 1;
             _this.name = "Wasabi";
             _this.accelDelta = 0.5;

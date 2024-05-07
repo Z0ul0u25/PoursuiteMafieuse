@@ -1,10 +1,9 @@
-import { Jeu } from "./Jeu";
 import { ObjetVisible } from "./ObjetVisible";
 
 export class Explosion extends ObjetVisible {
 	timeout: number = null;
-	constructor(refJeu:Jeu, posX: number, posY: number) {
-		super(refJeu, posX, posY);
+	constructor(posX: number, posY: number) {
+		super(posX, posY);
 		this.scale= 2;
 		// autodestruction après animation;
 		this.timeout = setTimeout(this.detruire.bind(this), 1000 / 30 * 15);

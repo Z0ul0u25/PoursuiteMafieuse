@@ -19,8 +19,8 @@ define(["require", "exports", "./Antagoniste", "./ObjetVisible"], function (requ
     exports.Maki = void 0;
     var Maki = /** @class */ (function (_super) {
         __extends(Maki, _super);
-        function Maki(refJeu, posX, posY) {
-            var _this = _super.call(this, refJeu, posX, posY) || this;
+        function Maki(posX, posY) {
+            var _this = _super.call(this, posX, posY) || this;
             _this.pointVie = 2;
             _this.name = "Maki";
             return _this;

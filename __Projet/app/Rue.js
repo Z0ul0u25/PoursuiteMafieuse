@@ -19,8 +19,8 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
     exports.Rue = void 0;
     var Rue = /** @class */ (function (_super) {
         __extends(Rue, _super);
-        function Rue(refJeu) {
-            var _this = _super.call(this, refJeu, 0, 0) || this;
+        function Rue() {
+            var _this = _super.call(this, 0, 0) || this;
             _this.refScene = null;
             _this._defilement = _this.defilement.bind(_this);
             _this.addEventListener("tick", _this._defilement, false);

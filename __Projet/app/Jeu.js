@@ -1,4 +1,4 @@
-define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Menu", "./Bouton", "./Missile", "./Explosion", "./AfficheurVie"], function (require, exports, Rue_1, Ricardo_1, Maki_1, Wasabi_1, Menu_1, Bouton_1, Missile_1, Explosion_1, AfficheurVie_1) {
+define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Menu", "./Bouton", "./Missile", "./Explosion", "./AfficheurVie", "./ObjetVisible"], function (require, exports, Rue_1, Ricardo_1, Maki_1, Wasabi_1, Menu_1, Bouton_1, Missile_1, Explosion_1, AfficheurVie_1, ObjetVisible_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Jeu = void 0;
@@ -15,22 +15,23 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
             this.missile = null;
             this.tminDynamite = [];
             this._gestionMissile = this.gestionMissile.bind(this);
+            ObjetVisible_1.ObjetVisible.refJeu = this;
             this.refScene = refScene;
             this.afficherMenu();
         }
         Jeu.prototype.debuter = function () {
-            this.rue = new Rue_1.Rue(this);
-            this.afficheurVie = new AfficheurVie_1.AfficheurVie(this);
-            this.ricardo = new Ricardo_1.Ricardo(this, window.lib.properties.width / 2, window.lib.properties.height - 128, this.afficheurVie);
-            this.tAntagoniste.push(new Maki_1.Maki(this, window.lib.properties.width * 0.35, 150));
-            this.tAntagoniste.push(new Wasabi_1.Wasabi(this, window.lib.properties.width * 0.65, 150));
+            this.rue = new Rue_1.Rue();
+            this.afficheurVie = new AfficheurVie_1.AfficheurVie();
+            this.ricardo = new Ricardo_1.Ricardo(window.lib.properties.width / 2, window.lib.properties.height - 128, this.afficheurVie);
+            this.tAntagoniste.push(new Maki_1.Maki(window.lib.properties.width * 0.35, 150));
+            this.tAntagoniste.push(new Wasabi_1.Wasabi(window.lib.properties.width * 0.65, 150));
             for (var i = 0; i < this.tAntagoniste.length; i++) {
                 this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random() * 200) + 1000 + i * 200, this.tAntagoniste[i]));
             }
         };
         Jeu.prototype.afficherMenu = function () {
-            this.menu = new Menu_1.Menu(this);
-            this.bouton = new Bouton_1.Bouton(this, 300, 666, 0);
+            this.menu = new Menu_1.Menu();
+            this.bouton = new Bouton_1.Bouton(300, 666, 0);
             this.bouton.addEventListener("click", this.menuPageSuivante.bind(this), false);
         };
         Jeu.prototype.menuPageSuivante = function () {
@@ -64,14 +65,14 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
             if (posY === void 0) { posY = -1; }
             if (posX != -1) {
                 if (this.missile == null) {
-                    this.missile = new Missile_1.Missile(this, this.ricardo.x + 12, this.ricardo.y - 83, this.ricardo.rotation);
+                    this.missile = new Missile_1.Missile(this.ricardo.x + 12, this.ricardo.y - 83, this.ricardo.rotation);
                     this.refScene.addEventListener("tick", this._gestionMissile, false);
                 }
                 else {
                     this.tAntagoniste.forEach(function (antagoniste) {
                         var point = _this.missile.parent.localToLocal(_this.missile.x, _this.missile.y, antagoniste);
                         if (antagoniste.hitTest(point.x, point.y)) {
-                            new Explosion_1.Explosion(_this, _this.missile.x, _this.missile.y);
+                            new Explosion_1.Explosion(_this.missile.x, _this.missile.y);
                             antagoniste.jmeSuisFaitToucherPisCaFaitMal(1);
                             _this.missile.y = -200;
                         }
@@ -97,7 +98,6 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
         Jeu.prototype.detruireAntagoniste = function (unAntagoniste) {
             this.tAntagoniste.splice(this.tAntagoniste.indexOf(unAntagoniste), 1);
             unAntagoniste.detruire();
-            console.log(this.tAntagoniste);
         };
         Jeu.prototype.getDynamites = function () {
             return this.tDynamite;

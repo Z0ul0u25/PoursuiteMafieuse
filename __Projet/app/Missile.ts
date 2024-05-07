@@ -1,11 +1,10 @@
-import { Jeu } from "./Jeu";
 import { ObjetVisible } from "./ObjetVisible";
 
 export class Missile extends ObjetVisible {
 	vitesse: number = null;
 
-	constructor(refJeu:Jeu, posX: number, posY: number, rotation:number) {
-		super(refJeu, posX, posY);
+	constructor(posX: number, posY: number, rotation:number) {
+		super(posX, posY);
 		this.vitesse = 3;
 		this.rotation = rotation;
 

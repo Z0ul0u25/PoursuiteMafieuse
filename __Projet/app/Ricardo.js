@@ -13,16 +13,14 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-define(["require", "exports", "./Explosion", "./Voiture"], function (require, exports, Explosion_1, Voiture_1) {
+define(["require", "exports", "./Explosion", "./ObjetVisible", "./Voiture"], function (require, exports, Explosion_1, ObjetVisible_1, Voiture_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Ricardo = void 0;
     var Ricardo = /** @class */ (function (_super) {
         __extends(Ricardo, _super);
-        function Ricardo(refJeu, posX, posY, refAfficheurVie) {
-            var _this = _super.call(this, refJeu, posX, posY) || this;
-            _this.refScene = null;
-            _this.refJeu = null;
+        function Ricardo(posX, posY, refAfficheurVie) {
+            var _this = _super.call(this, posX, posY) || this;
             _this.refAfficheurVie = null;
             _this.minuterieBouger = null;
             _this.touchesEnfoncees = null;
@@ -37,8 +35,6 @@ define(["require", "exports", "./Explosion", "./Voiture"], function (require, ex
             _this._activerTouche = _this.activerTouche.bind(_this);
             _this._desactiverTouche = _this.desactiverTouche.bind(_this);
             _this._faireBouger = _this.faireBouger.bind(_this);
-            _this.refScene = refJeu.getScene();
-            _this.refJeu = refJeu;
             _this.refAfficheurVie = refAfficheurVie;
             _this.name = "Ricardo";
             _this.pointVie = 4;
@@ -50,7 +46,7 @@ define(["require", "exports", "./Explosion", "./Voiture"], function (require, ex
             _this.touchesEnfoncees = [false, false, false, false];
             window.onkeydown = _this._activerTouche;
             window.onkeyup = _this._desactiverTouche;
-            _this.addEventListener("tick", _this.collisionDynamite.bind(_this, _this.refJeu.getDynamites()), false);
+            _this.addEventListener("tick", _this.collisionDynamite.bind(_this, ObjetVisible_1.ObjetVisible.refJeu.getDynamites()), false);
             return _this;
         }
         Ricardo.prototype.dessiner = function () {
@@ -77,7 +73,7 @@ define(["require", "exports", "./Explosion", "./Voiture"], function (require, ex
                     this.touchesEnfoncees[3] = true;
                     break;
                 case " ":
-                    if (this.timeoutMissile == null && this.refJeu.gestionMissile()) {
+                    if (this.timeoutMissile == null && ObjetVisible_1.ObjetVisible.refJeu.gestionMissile()) {
                         this.gotoAndPlay("tir");
                         this.timeoutMissile = setTimeout(this.apparitionMissile.bind(this), 1000 / 30 * 24);
                     }
@@ -156,7 +152,7 @@ define(["require", "exports", "./Explosion", "./Voiture"], function (require, ex
             }
         };
         Ricardo.prototype.apparitionMissile = function () {
-            this.refJeu.gestionMissile(this.x, this.y);
+            ObjetVisible_1.ObjetVisible.refJeu.gestionMissile(this.x, this.y);
             clearTimeout(this.timeoutMissile);
             this.timeoutMissile = null;
         };
@@ -165,7 +161,7 @@ define(["require", "exports", "./Explosion", "./Voiture"], function (require, ex
             tDynamite.forEach(function (dynamite) {
                 var point = dynamite.parent.localToLocal(dynamite.x, dynamite.y, _this);
                 if (_this.hitTest(point.x, point.y)) {
-                    new Explosion_1.Explosion(_this.refJeu, dynamite.x, dynamite.y);
+                    new Explosion_1.Explosion(ObjetVisible_1.ObjetVisible.refJeu, dynamite.x, dynamite.y);
                     _this.jmeSuisFaitToucherPisCaFaitMal(1);
                     dynamite.y = 1000;
                 }
@@ -175,7 +171,7 @@ define(["require", "exports", "./Explosion", "./Voiture"], function (require, ex
             _super.prototype.jmeSuisFaitToucherPisCaFaitMal.call(this, degreDeViolenceRecu);
             this.refAfficheurVie.maj(this.pointVie);
             if (this.pointVie <= 0) {
-                this.refJeu.finDuJeu();
+                ObjetVisible_1.ObjetVisible.refJeu.finDuJeu();
                 this.removeAllEventListeners();
                 window.onkeydown = null;
                 window.onkeyup = null;

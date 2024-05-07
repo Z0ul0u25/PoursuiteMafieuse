@@ -1,6 +1,5 @@
 import { Dynamite } from "./Dynamite";
 import { Voiture } from "./Voiture";
-import { Jeu } from "./Jeu";
 import { ObjetVisible } from "./ObjetVisible";
 
 export abstract class Antagoniste extends Voiture {
@@ -13,15 +12,15 @@ export abstract class Antagoniste extends Voiture {
 
 	private _faireBouger = this.faireBouger.bind(this);
 
-	public constructor(refJeu:Jeu, posX: number, posY: number) {
-		super(refJeu, posX, posY);
+	public constructor(posX: number, posY: number) {
+		super(posX, posY);
 		this.addEventListener("tick", this._faireBouger, false);
 	}
 
 	protected abstract faireBouger(): void;
 
 	public lanceDynamite(): Dynamite {
-		return new Dynamite(ObjetVisible.refJeu, this.x, this.y);
+		return new Dynamite(this.x, this.y);
 	}
 
 	private sortiDecran():void{

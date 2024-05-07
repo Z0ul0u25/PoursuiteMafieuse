@@ -1,7 +1,7 @@
 import { AfficheurVie } from "./AfficheurVie";
 import { Dynamite } from "./Dynamite";
 import { Explosion } from "./Explosion";
-import { Jeu } from "./Jeu";
+import { ObjetVisible } from "./ObjetVisible";
 import { Voiture } from "./Voiture";
 
 export class Ricardo extends Voiture {
@@ -11,8 +11,6 @@ export class Ricardo extends Voiture {
 	protected zoneLimite: number[];
 	protected pointVie: number;
 
-	private refScene: createjs.Stage = null;
-	private refJeu: Jeu = null;
 	private refAfficheurVie = null;
 
 	private minuterieBouger: number = null;
@@ -30,11 +28,9 @@ export class Ricardo extends Voiture {
 	private _desactiverTouche = this.desactiverTouche.bind(this);
 	private _faireBouger = this.faireBouger.bind(this);
 
-	constructor(refJeu: Jeu, posX: number, posY: number, refAfficheurVie:AfficheurVie) {
-		super(refJeu, posX, posY);
+	constructor(posX: number, posY: number, refAfficheurVie:AfficheurVie) {
+		super(posX, posY);
 
-		this.refScene = refJeu.getScene();
-		this.refJeu = refJeu;
 		this.refAfficheurVie = refAfficheurVie;
 
 		this.name = "Ricardo";
@@ -50,7 +46,7 @@ export class Ricardo extends Voiture {
 		window.onkeydown = this._activerTouche;
 		window.onkeyup = this._desactiverTouche;
 
-		this.addEventListener("tick", this.collisionDynamite.bind(this, this.refJeu.getDynamites()), false);
+		this.addEventListener("tick", this.collisionDynamite.bind(this, ObjetVisible.refJeu.getDynamites()), false);
 	}
 
 	protected dessiner(): void {
@@ -78,7 +74,7 @@ export class Ricardo extends Voiture {
 				this.touchesEnfoncees[3] = true;
 				break;
 			case " ":
-				if (this.timeoutMissile == null && this.refJeu.gestionMissile()) {
+				if (this.timeoutMissile == null && ObjetVisible.refJeu.gestionMissile()) {
 					this.gotoAndPlay("tir");
 					this.timeoutMissile = setTimeout(this.apparitionMissile.bind(this), 1000 / 30 * 24);
 				}
@@ -165,7 +161,7 @@ export class Ricardo extends Voiture {
 	}
 
 	private apparitionMissile() {
-		this.refJeu.gestionMissile(this.x, this.y);
+		ObjetVisible.refJeu.gestionMissile(this.x, this.y);
 		clearTimeout(this.timeoutMissile);
 		this.timeoutMissile = null;
 	}
@@ -174,7 +170,7 @@ export class Ricardo extends Voiture {
 		tDynamite.forEach(dynamite => {
 			let point: createjs.Point = dynamite.parent.localToLocal(dynamite.x, dynamite.y, this);
 			if (this.hitTest(point.x, point.y)) {
-				new Explosion(this.refJeu, dynamite.x, dynamite.y);
+				new Explosion(ObjetVisible.refJeu, dynamite.x, dynamite.y);
 				this.jmeSuisFaitToucherPisCaFaitMal(1);
 				dynamite.y = 1000;
 			}
@@ -185,7 +181,7 @@ export class Ricardo extends Voiture {
 		super.jmeSuisFaitToucherPisCaFaitMal(degreDeViolenceRecu);
 		this.refAfficheurVie.maj(this.pointVie);
 		if (this.pointVie <= 0) {
-			this.refJeu.finDuJeu();
+			ObjetVisible.refJeu.finDuJeu();
 			this.removeAllEventListeners();
 			window.onkeydown = null;
 			window.onkeyup = null;

@@ -1,10 +1,9 @@
-import { Jeu } from "./Jeu";
 import { ObjetVisible } from "./ObjetVisible";
 
 export class Menu extends ObjetVisible {
 
-	constructor(refJeu:Jeu) {
-		super(refJeu, 0, 0);
+	constructor() {
+		super(0, 0);
 	}
 
 	protected dessiner(): void {

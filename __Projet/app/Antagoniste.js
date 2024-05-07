@@ -19,14 +19,14 @@ define(["require", "exports", "./Dynamite", "./Voiture", "./ObjetVisible"], func
     exports.Antagoniste = void 0;
     var Antagoniste = /** @class */ (function (_super) {
         __extends(Antagoniste, _super);
-        function Antagoniste(refJeu, posX, posY) {
-            var _this = _super.call(this, refJeu, posX, posY) || this;
+        function Antagoniste(posX, posY) {
+            var _this = _super.call(this, posX, posY) || this;
             _this._faireBouger = _this.faireBouger.bind(_this);
             _this.addEventListener("tick", _this._faireBouger, false);
             return _this;
         }
         Antagoniste.prototype.lanceDynamite = function () {
-            return new Dynamite_1.Dynamite(ObjetVisible_1.ObjetVisible.refJeu, this.x, this.y);
+            return new Dynamite_1.Dynamite(this.x, this.y);
         };
         Antagoniste.prototype.sortiDecran = function () {
             if (this.y <= -128) {

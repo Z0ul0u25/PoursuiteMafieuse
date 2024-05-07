@@ -1,4 +1,3 @@
-import { Jeu } from "./Jeu";
 import { ObjetVisible } from "./ObjetVisible";
 
 export abstract class Voiture extends ObjetVisible{
@@ -12,8 +11,8 @@ export abstract class Voiture extends ObjetVisible{
 	protected abstract pointVie:number;
 
 
-	public constructor(refJeu:Jeu, posX:number, posY:number) {
-		super(refJeu, posX, posY);
+	public constructor(posX:number, posY:number) {
+		super(posX, posY);
 		this.vitesseX = 0;
 		this.vitesseY = 0;
 	}

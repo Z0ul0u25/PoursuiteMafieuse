@@ -1,11 +1,10 @@
-import { Jeu } from "./Jeu";
 import { ObjetVisible } from "./ObjetVisible";
 
 export class Bouton extends ObjetVisible {
 	private label = ["continuer", "lancer", "redemarrer"];
 
-	constructor(refJeu:Jeu, posX: number, posY: number, indexLabel:number) {
-		super(refJeu, posX, posY);
+	constructor(posX: number, posY: number, indexLabel:number) {
+		super(posX, posY);
 		this.setLabel(indexLabel);
 	}
 
