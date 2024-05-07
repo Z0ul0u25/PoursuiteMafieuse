@@ -94,7 +94,11 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
                 this.tAntagoniste[i].departDeFin();
             }
         };
-        Jeu.prototype.detruireAntagoniste = function () { };
+        Jeu.prototype.detruireAntagoniste = function (unAntagoniste) {
+            this.tAntagoniste.splice(this.tAntagoniste.indexOf(unAntagoniste), 1);
+            unAntagoniste.detruire();
+            console.log(this.tAntagoniste);
+        };
         Jeu.prototype.getDynamites = function () {
             return this.tDynamite;
         };

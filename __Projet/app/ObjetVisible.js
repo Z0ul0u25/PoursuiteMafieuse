@@ -24,6 +24,7 @@ define(["require", "exports"], function (require, exports) {
             _this.refStage = null;
             _this.gotoAndStop(0);
             _this.dessiner();
+            ObjetVisible.refJeu = refJeu;
             _this.refStage = refJeu.getScene();
             _this.refStage.addChild(_this);
             _this.x = posX;
@@ -37,6 +38,7 @@ define(["require", "exports"], function (require, exports) {
         ObjetVisible.prototype.detruire = function () {
             this.refStage.removeChild(this);
         };
+        ObjetVisible.refJeu = null;
         return ObjetVisible;
     }(createjs.MovieClip));
     exports.ObjetVisible = ObjetVisible;

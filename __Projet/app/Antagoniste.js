@@ -13,7 +13,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-define(["require", "exports", "./Dynamite", "./Voiture"], function (require, exports, Dynamite_1, Voiture_1) {
+define(["require", "exports", "./Dynamite", "./Voiture", "./ObjetVisible"], function (require, exports, Dynamite_1, Voiture_1, ObjetVisible_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Antagoniste = void 0;
@@ -21,19 +21,16 @@ define(["require", "exports", "./Dynamite", "./Voiture"], function (require, exp
         __extends(Antagoniste, _super);
         function Antagoniste(refJeu, posX, posY) {
             var _this = _super.call(this, refJeu, posX, posY) || this;
-            _this.refJeu = null;
             _this._faireBouger = _this.faireBouger.bind(_this);
-            _this.refJeu = refJeu;
             _this.addEventListener("tick", _this._faireBouger, false);
             return _this;
         }
         Antagoniste.prototype.lanceDynamite = function () {
-            return new Dynamite_1.Dynamite(this.refJeu, this.x, this.y);
+            return new Dynamite_1.Dynamite(ObjetVisible_1.ObjetVisible.refJeu, this.x, this.y);
         };
         Antagoniste.prototype.sortiDecran = function () {
-            this.y += this.vitesseY;
             if (this.y <= -128) {
-                this.detruire();
+                ObjetVisible_1.ObjetVisible.refJeu.detruireAntagoniste(this);
             }
         };
         Antagoniste.prototype.departDeFin = function () {

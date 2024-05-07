@@ -29,6 +29,7 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
             this.pointVie -= degreDeViolenceRecu;
             if (this.pointVie <= 0) {
                 this.gotoAndPlay("mort");
+                this.vitesseY = 20;
             }
         };
         Voiture.prototype.detruire = function () {

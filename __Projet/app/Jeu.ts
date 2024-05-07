@@ -114,7 +114,11 @@ export class Jeu {
 		}
 	}
 
-	detruireAntagoniste():void{}
+	public detruireAntagoniste(unAntagoniste:Antagoniste):void{
+		this.tAntagoniste.splice(this.tAntagoniste.indexOf(unAntagoniste), 1);
+		unAntagoniste.detruire();
+		console.log(this.tAntagoniste);
+	}
 
 	public getDynamites():Dynamite[]{
 		return this.tDynamite;
