@@ -25,8 +25,8 @@ define(["require", "exports", "./Dynamite", "./Voiture", "./ObjetVisible"], func
             _this.addEventListener("tick", _this._faireBouger, false);
             return _this;
         }
-        Antagoniste.prototype.lanceDynamite = function () {
-            return new Dynamite_1.Dynamite(this.x, this.y);
+        Antagoniste.prototype.lanceDynamite = function (deltaX, deltaY) {
+            return new Dynamite_1.Dynamite(this.x + deltaX, this.y + deltaY);
         };
         Antagoniste.prototype.sortiDecran = function () {
             if (this.y <= -128) {

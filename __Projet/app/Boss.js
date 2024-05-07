@@ -34,7 +34,6 @@ define(["require", "exports", "./Antagoniste", "./ObjetVisible"], function (requ
             return _this;
         }
         Boss.prototype.faireBouger = function () {
-            console.log(this.x, this.y);
             switch (this.etat) {
                 case "entree":
                     this.vitesseY -= 0.05;

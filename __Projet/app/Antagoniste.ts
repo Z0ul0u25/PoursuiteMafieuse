@@ -19,8 +19,8 @@ export abstract class Antagoniste extends Voiture {
 
 	protected abstract faireBouger(): void;
 
-	public lanceDynamite(): Dynamite {
-		return new Dynamite(this.x, this.y);
+	public lanceDynamite(deltaX:number, deltaY:number): Dynamite {
+		return new Dynamite(this.x + deltaX, this.y+deltaY);
 	}
 
 	private sortiDecran():void{

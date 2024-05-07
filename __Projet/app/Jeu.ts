@@ -17,18 +17,18 @@ export class Jeu {
 	private rue: Rue = null;
 	private menu: Menu = null;
 	private bouton: Bouton = null;
-	private afficheurVie:AfficheurVie = null;
+	private afficheurVie: AfficheurVie = null;
 
 	private ricardo: Ricardo = null;
 	private tAntagoniste: Antagoniste[] = [];
 
 	private tDynamite: Dynamite[] = [];
 	private missile: Missile = null;
-	private tminDynamite:number[] = [];
+	private tminDynamite: number[] = [];
 
 	private _gestionMissile = this.gestionMissile.bind(this);
 
-	constructor(refScene:createjs.Stage) {
+	constructor(refScene: createjs.Stage) {
 		ObjetVisible.refJeu = this;
 		this.refScene = refScene;
 		this.afficherMenu();
@@ -44,14 +44,16 @@ export class Jeu {
 		this.tAntagoniste.push(new Maki(window.lib.properties.width * 0.35, 150));
 		this.tAntagoniste.push(new Wasabi(window.lib.properties.width * 0.65, 150));
 		for (let i = 0; i < this.tAntagoniste.length; i++) {
-			this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random()*200) + 1000 + i*200, this.tAntagoniste[i]));
+			this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random() * 200) + 1000 + i * 200, this.tAntagoniste[i]));
 		}
 
 	}
 
-	private debuterNiveau2():void{
+	private debuterNiveau2(): void {
 		console.log("NIVEAU 2");
-		this.tAntagoniste.push(new Boss(window.lib.properties.width/2, -200, this.ricardo));
+		this.tAntagoniste.push(new Boss(window.lib.properties.width / 2, -200, this.ricardo));
+		this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), 1000, this.tAntagoniste[0], -20));
+		this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), 1000, this.tAntagoniste[0], 20));
 	}
 
 	private afficherMenu(): void {
@@ -71,10 +73,10 @@ export class Jeu {
 		}
 	}
 
-	private gestionDynamite(antagoniste: Antagoniste): void {
-		if(this.refScene.tickEnabled){
+	private gestionDynamite(antagoniste: Antagoniste, deltaX: number = 0, deltaY: number = 0): void {
+		if (this.refScene.tickEnabled) {
 			// Ajout de la dynamite
-			this.tDynamite.push(antagoniste.lanceDynamite());
+			this.tDynamite.push(antagoniste.lanceDynamite(deltaX, deltaY));
 
 			// Suppression de dynamite hors vu
 			this.tDynamite.forEach(dynamite => {
@@ -93,7 +95,7 @@ export class Jeu {
 				this.refScene.addEventListener("tick", this._gestionMissile, false);
 			} else {
 				this.tAntagoniste.forEach(antagoniste => {
-					let point:createjs.Point = this.missile.parent.localToLocal(this.missile.x, this.missile.y, antagoniste);
+					let point: createjs.Point = this.missile.parent.localToLocal(this.missile.x, this.missile.y, antagoniste);
 					if (antagoniste.hitTest(point.x, point.y)) {
 						new Explosion(this.missile.x, this.missile.y);
 						antagoniste.jmeSuisFaitToucherPisCaFaitMal(1);
@@ -110,7 +112,7 @@ export class Jeu {
 		return this.missile == null;
 	}
 
-	public finDuJeu():void{
+	public finDuJeu(): void {
 		for (let i = 0; i < this.tminDynamite.length; i++) {
 			clearInterval(this.tminDynamite[i]);
 		}
@@ -122,23 +124,31 @@ export class Jeu {
 		}
 	}
 
-	public detruireAntagoniste(unAntagoniste:Antagoniste):void{
-		clearInterval(this.tminDynamite[this.tAntagoniste.indexOf(unAntagoniste)]);
+	public detruireAntagoniste(unAntagoniste: Antagoniste): void {
+		let isBoss = unAntagoniste.name == "Boss";
+		if (!isBoss) {
+			clearInterval(this.tminDynamite[this.tAntagoniste.indexOf(unAntagoniste)]);
+			this.tminDynamite.splice(this.tAntagoniste.indexOf(unAntagoniste), 1);
+		} else {
+			for (let i = 0; i < this.tminDynamite.length; i++) {
+				clearInterval(this.tminDynamite[i]);
+			}
+			this.tminDynamite=[];
+		}
 
-		this.tminDynamite.splice(this.tAntagoniste.indexOf(unAntagoniste), 1);
 		this.tAntagoniste.splice(this.tAntagoniste.indexOf(unAntagoniste), 1);
 
 		unAntagoniste.detruire();
-		if (this.tAntagoniste.length == 0){
+		if (!isBoss && this.tAntagoniste.length == 0) {
 			this.debuterNiveau2();
 		}
 	}
 
-	public getDynamites():Dynamite[]{
+	public getDynamites(): Dynamite[] {
 		return this.tDynamite;
 	}
 
-	public getScene():createjs.Stage{
+	public getScene(): createjs.Stage {
 		return this.refScene;
 	}
 }

@@ -32,6 +32,8 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
         Jeu.prototype.debuterNiveau2 = function () {
             console.log("NIVEAU 2");
             this.tAntagoniste.push(new Boss_1.Boss(window.lib.properties.width / 2, -200, this.ricardo));
+            this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), 1000, this.tAntagoniste[0], -20));
+            this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), 1000, this.tAntagoniste[0], 20));
         };
         Jeu.prototype.afficherMenu = function () {
             this.menu = new Menu_1.Menu();
@@ -49,11 +51,13 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
                 this.debuter();
             }
         };
-        Jeu.prototype.gestionDynamite = function (antagoniste) {
+        Jeu.prototype.gestionDynamite = function (antagoniste, deltaX, deltaY) {
             var _this = this;
+            if (deltaX === void 0) { deltaX = 0; }
+            if (deltaY === void 0) { deltaY = 0; }
             if (this.refScene.tickEnabled) {
                 // Ajout de la dynamite
-                this.tDynamite.push(antagoniste.lanceDynamite());
+                this.tDynamite.push(antagoniste.lanceDynamite(deltaX, deltaY));
                 // Suppression de dynamite hors vu
                 this.tDynamite.forEach(function (dynamite) {
                     if (dynamite.y > window.lib.properties.height + 100) {
@@ -100,11 +104,20 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
             }
         };
         Jeu.prototype.detruireAntagoniste = function (unAntagoniste) {
-            clearInterval(this.tminDynamite[this.tAntagoniste.indexOf(unAntagoniste)]);
-            this.tminDynamite.splice(this.tAntagoniste.indexOf(unAntagoniste), 1);
+            var isBoss = unAntagoniste.name == "Boss";
+            if (!isBoss) {
+                clearInterval(this.tminDynamite[this.tAntagoniste.indexOf(unAntagoniste)]);
+                this.tminDynamite.splice(this.tAntagoniste.indexOf(unAntagoniste), 1);
+            }
+            else {
+                for (var i = 0; i < this.tminDynamite.length; i++) {
+                    clearInterval(this.tminDynamite[i]);
+                }
+                this.tminDynamite = [];
+            }
             this.tAntagoniste.splice(this.tAntagoniste.indexOf(unAntagoniste), 1);
             unAntagoniste.detruire();
-            if (this.tAntagoniste.length == 0) {
+            if (!isBoss && this.tAntagoniste.length == 0) {
                 this.debuterNiveau2();
             }
         };

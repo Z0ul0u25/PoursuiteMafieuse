@@ -25,7 +25,6 @@ export class Boss extends Antagoniste {
 	}
 
 	protected faireBouger(): void {
-		console.log(this.x, this.y);
 		switch (this.etat) {
 			case "entree":
 				this.vitesseY -= 0.05;
@@ -35,7 +34,6 @@ export class Boss extends Antagoniste {
 				}
 				break;
 			default:
-
 				if (this.pointVie > 0) {
 					if (this.sens == 1 && this.x >= this.zoneLimite[1]) {
 						if (this.vitesseX > 0) {
