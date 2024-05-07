@@ -4,7 +4,7 @@ export class Wasabi extends Antagoniste {
 	protected pointVie: number;
 	private sens = 1;
 
-	public constructor(posX:number, posY:number) {
+	public constructor(posX: number, posY: number) {
 		super(posX, posY);
 		this.name = "Wasabi";
 
@@ -19,9 +19,7 @@ export class Wasabi extends Antagoniste {
 	}
 
 	protected faireBouger(): void {
-		if (this.pointVie <= 0) {
-			this.y += 20;
-		} else {
+		if (this.pointVie > 0) {
 			if (this.sens == 1 && this.x >= this.zoneLimite[1]) {
 				if (this.vitesseX > 0) {
 					this.vitesseX -= this.accelDelta;

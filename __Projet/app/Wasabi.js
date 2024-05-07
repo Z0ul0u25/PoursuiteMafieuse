@@ -33,10 +33,7 @@ define(["require", "exports", "./Antagoniste"], function (require, exports, Anta
             return _this;
         }
         Wasabi.prototype.faireBouger = function () {
-            if (this.pointVie <= 0) {
-                this.y += 20;
-            }
-            else {
+            if (this.pointVie > 0) {
                 if (this.sens == 1 && this.x >= this.zoneLimite[1]) {
                     if (this.vitesseX > 0) {
                         this.vitesseX -= this.accelDelta;

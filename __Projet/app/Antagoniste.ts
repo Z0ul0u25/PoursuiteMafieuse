@@ -29,6 +29,7 @@ export abstract class Antagoniste extends Voiture {
 
 	public departDeFin():void{
 		this.vitesseY = -5;
+
 		this.addEventListener("tick", this.sortiDecran.bind(this), false);
 	}
 
