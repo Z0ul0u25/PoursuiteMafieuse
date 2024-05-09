@@ -44,24 +44,22 @@ define(["require", "exports", "./Antagoniste", "./ObjetVisible"], function (requ
                     break;
                 default:
                     if (this.pointVie > 0) {
-                        if (this.sens == 1 && this.x >= this.zoneLimite[1]) {
-                            if (this.vitesseX > 0) {
-                                this.vitesseX -= this.accelDelta;
-                            }
-                            else {
-                                this.sens = -1;
-                            }
-                        }
-                        else if (this.sens == -1 && this.x <= this.zoneLimite[3]) {
-                            if (this.vitesseX > 0) {
-                                this.vitesseX -= this.accelDelta;
-                            }
-                            else {
-                                this.sens = 1;
-                            }
-                        }
-                        else if (this.vitesseX < this.vitesseMax) {
+                        if (this.x < this.refRicardo.x - 42 && this.vitesseX < this.vitesseMax) {
                             this.vitesseX += this.accelDelta;
+                        }
+                        else if (this.x > this.refRicardo.x + 42 && this.vitesseX > this.vitesseMax * -1) {
+                            this.vitesseX -= this.accelDelta;
+                        }
+                        else if (this.vitesseX != 0) {
+                            this.vitesseX -= this.accelDelta * Math.sign(this.vitesseX);
+                            if (this.vitesseX < this.accelDelta && this.vitesseX > this.accelDelta * -1) {
+                                this.vitesseX = 0;
+                                var ram = Math.random();
+                                console.log(ram > 0.9);
+                                if (ram > 0.9) {
+                                    console.log("time to ram");
+                                }
+                            }
                         }
                     }
                     break;

@@ -52,8 +52,8 @@ export class Jeu {
 	private debuterNiveau2(): void {
 		console.log("NIVEAU 2");
 		this.tAntagoniste.push(new Boss(window.lib.properties.width / 2, -200, this.ricardo));
-		this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), 1000, this.tAntagoniste[0], -20));
-		this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), 1000, this.tAntagoniste[0], 20));
+		this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), 800, this.tAntagoniste[0], -20));
+		this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), 800, this.tAntagoniste[0], 20));
 	}
 
 	private afficherMenu(): void {
