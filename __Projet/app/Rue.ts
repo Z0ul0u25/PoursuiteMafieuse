@@ -25,7 +25,9 @@ export class Rue extends ObjetVisible {
 	private defilement(): void{
 		this.y+=20;
 		if(this.y >= window.lib.properties.height){
-			this.y = 0;
+			// À 0 il y a une fine line blanche qui apparait
+			// Donc on le met à 1
+			this.y = 1;
 		}
 	}
 
