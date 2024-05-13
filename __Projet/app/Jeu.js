@@ -32,8 +32,8 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
         Jeu.prototype.debuterNiveau2 = function () {
             console.log("NIVEAU 2");
             this.tAntagoniste.push(new Boss_1.Boss(window.lib.properties.width / 2, -200, this.ricardo));
-            this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), 800, this.tAntagoniste[0], -20));
-            this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), 800, this.tAntagoniste[0], 20));
+            this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random() * 200) + 700, this.tAntagoniste[0], -20));
+            this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random() * 200) + 700, this.tAntagoniste[0], 20));
         };
         Jeu.prototype.afficherMenu = function () {
             this.menu = new Menu_1.Menu();
