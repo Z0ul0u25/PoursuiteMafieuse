@@ -72,6 +72,7 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
                 }
                 else {
                     this.tAntagoniste.forEach(function (antagoniste) {
+                        console.log(_this.missile.parent);
                         var point = _this.missile.parent.localToLocal(_this.missile.x, _this.missile.y, antagoniste);
                         if (antagoniste.hitTest(point.x, point.y)) {
                             new Explosion_1.Explosion(_this.missile.x, _this.missile.y);

@@ -91,6 +91,7 @@ export class Jeu {
 				this.refScene.addEventListener("tick", this._gestionMissile, false);
 			} else {
 				this.tAntagoniste.forEach(antagoniste => {
+					console.log(this.missile.parent);
 					let point: createjs.Point = this.missile.parent.localToLocal(this.missile.x, this.missile.y, antagoniste);
 					if (antagoniste.hitTest(point.x, point.y)) {
 						new Explosion(this.missile.x, this.missile.y);
