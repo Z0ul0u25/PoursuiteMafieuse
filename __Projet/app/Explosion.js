@@ -25,6 +25,7 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
             _this.scale = 2;
             // autodestruction après animation;
             _this.timeout = setTimeout(_this.detruire.bind(_this), 1000 / 30 * 15);
+            createjs.Sound.play("explosion");
             return _this;
         }
         Explosion.prototype.dessiner = function () {

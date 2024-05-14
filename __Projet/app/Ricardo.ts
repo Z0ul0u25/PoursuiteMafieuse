@@ -162,6 +162,7 @@ export class Ricardo extends Voiture {
 
 	private apparitionMissile() {
 		ObjetVisible.refJeu.gestionMissile(this.x, this.y);
+		createjs.Sound.play("missile"+Math.round(Math.random()));
 		clearTimeout(this.timeoutMissile);
 		this.timeoutMissile = null;
 	}
@@ -170,7 +171,7 @@ export class Ricardo extends Voiture {
 		tDynamite.forEach(dynamite => {
 			let point: createjs.Point = dynamite.parent.localToLocal(dynamite.x, dynamite.y, this);
 			if (this.hitTest(point.x, point.y)) {
-				new Explosion(ObjetVisible.refJeu, dynamite.x, dynamite.y);
+				new Explosion(dynamite.x, dynamite.y);
 				this.jmeSuisFaitToucherPisCaFaitMal(1);
 				dynamite.y = 1000;
 			}

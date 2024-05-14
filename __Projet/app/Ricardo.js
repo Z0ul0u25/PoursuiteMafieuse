@@ -153,6 +153,7 @@ define(["require", "exports", "./Explosion", "./ObjetVisible", "./Voiture"], fun
         };
         Ricardo.prototype.apparitionMissile = function () {
             ObjetVisible_1.ObjetVisible.refJeu.gestionMissile(this.x, this.y);
+            createjs.Sound.play("missile" + Math.round(Math.random()));
             clearTimeout(this.timeoutMissile);
             this.timeoutMissile = null;
         };
@@ -161,7 +162,7 @@ define(["require", "exports", "./Explosion", "./ObjetVisible", "./Voiture"], fun
             tDynamite.forEach(function (dynamite) {
                 var point = dynamite.parent.localToLocal(dynamite.x, dynamite.y, _this);
                 if (_this.hitTest(point.x, point.y)) {
-                    new Explosion_1.Explosion(ObjetVisible_1.ObjetVisible.refJeu, dynamite.x, dynamite.y);
+                    new Explosion_1.Explosion(dynamite.x, dynamite.y);
                     _this.jmeSuisFaitToucherPisCaFaitMal(1);
                     dynamite.y = 1000;
                 }

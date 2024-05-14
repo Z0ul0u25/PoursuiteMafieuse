@@ -7,6 +7,7 @@ export class Explosion extends ObjetVisible {
 		this.scale= 2;
 		// autodestruction après animation;
 		this.timeout = setTimeout(this.detruire.bind(this), 1000 / 30 * 15);
+		createjs.Sound.play("explosion");
 	}
 
 	protected dessiner(): void {
