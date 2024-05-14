@@ -66,6 +66,8 @@ function handleComplete(evt,comp) {
 	AdobeAn.compositionLoaded(lib.properties.id);
 	fnStartAnimation();
 }
+function playSound(id, loop, offset) {
+	return createjs.Sound.play(id, {'interrupt':createjs.Sound.INTERRUPT_EARLY, 'loop': loop, 'offset': offset});}
 	</script>
 	<!-- write your code here -->
 	<!-- On désactive le onLoad de la balise body: onload="init();" BEN -->

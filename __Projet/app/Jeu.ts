@@ -3,7 +3,6 @@ import { Ricardo } from "./Ricardo";
 import { Maki } from "./Maki";
 import { Wasabi } from "./Wasabi";
 import { Menu } from "./Menu";
-import { Bouton } from "./Bouton";
 import { Antagoniste } from "./Antagoniste";
 import { Dynamite } from "./Dynamite";
 import { Missile } from "./Missile";
@@ -16,7 +15,6 @@ export class Jeu {
 	private refScene: createjs.Stage = null;
 	private rue: Rue = null;
 	private menu: Menu = null;
-	private bouton: Bouton = null;
 	private afficheurVie: AfficheurVie = null;
 
 	private ricardo: Ricardo = null;
@@ -25,6 +23,8 @@ export class Jeu {
 	private tDynamite: Dynamite[] = [];
 	private missile: Missile = null;
 	private tminDynamite: number[] = [];
+
+	public musique:createjs.Sound = null;
 
 	private _gestionMissile = this.gestionMissile.bind(this);
 
@@ -47,31 +47,27 @@ export class Jeu {
 			this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random() * 200) + 1000 + i * 200, this.tAntagoniste[i]));
 		}
 
+		this.musique = createjs.Sound.play("musique_n1", {interrupt: createjs.Sound.INTERRUPT_ANY, loop:-1, volume:0.5});
+	}
+
+	private chargementNiveau2():void{
+		createjs.Sound.stop();
+		this.musique = createjs.Sound.play("musique_n2_in", {interrupt: createjs.Sound.INTERRUPT_ANY, loop:0, volume:0.5});
+		this.musique.on("complete", this.debuterNiveau2.bind(this));
 	}
 
 	private debuterNiveau2(): void {
+		this.musique = createjs.Sound.play("musique_n2_loop", {interrupt: createjs.Sound.INTERRUPT_ANY, loop:-1, volume:0.5})
 		console.log("NIVEAU 2");
-		this.tAntagoniste.push(new Boss(window.lib.properties.width / 2, -200, this.ricardo));
+		this.tAntagoniste.push(new Boss(window.lib.properties.width / 2, -150, this.ricardo));
 		this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random() * 200) + 700, this.tAntagoniste[0], -20));
 		this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random() * 200) + 700, this.tAntagoniste[0], 20));
 	}
 
 	private afficherMenu(): void {
 		this.menu = new Menu();
-		this.bouton = new Bouton(300, 666, 0);
-		this.bouton.addEventListener("click", this.menuPageSuivante.bind(this), false);
 	}
 
-	private menuPageSuivante(): void {
-		if (this.menu.currentFrame == 0) {
-			this.menu.pageSuivante();
-			this.bouton.setLabel(1);
-		} else {
-			this.menu.detruire();
-			this.bouton.detruire();
-			this.debuter();
-		}
-	}
 
 	private gestionDynamite(antagoniste: Antagoniste, deltaX: number = 0, deltaY: number = 0): void {
 		if (this.refScene.tickEnabled) {
@@ -139,8 +135,8 @@ export class Jeu {
 		this.tAntagoniste.splice(this.tAntagoniste.indexOf(unAntagoniste), 1);
 
 		unAntagoniste.detruire();
-		if (!isBoss && this.tAntagoniste.length == 0) {
-			this.debuterNiveau2();
+		if (!isBoss && this.tAntagoniste.length == 0 && this.ricardo.getVie() > 0) {
+			this.chargementNiveau2();
 		}
 	}
 

@@ -1,4 +1,4 @@
-define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Menu", "./Bouton", "./Missile", "./Explosion", "./AfficheurVie", "./ObjetVisible", "./Boss"], function (require, exports, Rue_1, Ricardo_1, Maki_1, Wasabi_1, Menu_1, Bouton_1, Missile_1, Explosion_1, AfficheurVie_1, ObjetVisible_1, Boss_1) {
+define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Menu", "./Missile", "./Explosion", "./AfficheurVie", "./ObjetVisible", "./Boss"], function (require, exports, Rue_1, Ricardo_1, Maki_1, Wasabi_1, Menu_1, Missile_1, Explosion_1, AfficheurVie_1, ObjetVisible_1, Boss_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Jeu = void 0;
@@ -7,13 +7,13 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
             this.refScene = null;
             this.rue = null;
             this.menu = null;
-            this.bouton = null;
             this.afficheurVie = null;
             this.ricardo = null;
             this.tAntagoniste = [];
             this.tDynamite = [];
             this.missile = null;
             this.tminDynamite = [];
+            this.musique = null;
             this._gestionMissile = this.gestionMissile.bind(this);
             ObjetVisible_1.ObjetVisible.refJeu = this;
             this.refScene = refScene;
@@ -28,28 +28,22 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
             for (var i = 0; i < this.tAntagoniste.length; i++) {
                 this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random() * 200) + 1000 + i * 200, this.tAntagoniste[i]));
             }
+            this.musique = createjs.Sound.play("musique_n1", { interrupt: createjs.Sound.INTERRUPT_ANY, loop: -1, volume: 0.5 });
+        };
+        Jeu.prototype.chargementNiveau2 = function () {
+            createjs.Sound.stop();
+            this.musique = createjs.Sound.play("musique_n2_in", { interrupt: createjs.Sound.INTERRUPT_ANY, loop: 0, volume: 0.5 });
+            this.musique.on("complete", this.debuterNiveau2.bind(this));
         };
         Jeu.prototype.debuterNiveau2 = function () {
+            this.musique = createjs.Sound.play("musique_n2_loop", { interrupt: createjs.Sound.INTERRUPT_ANY, loop: -1, volume: 0.5 });
             console.log("NIVEAU 2");
-            this.tAntagoniste.push(new Boss_1.Boss(window.lib.properties.width / 2, -200, this.ricardo));
+            this.tAntagoniste.push(new Boss_1.Boss(window.lib.properties.width / 2, -150, this.ricardo));
             this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random() * 200) + 700, this.tAntagoniste[0], -20));
             this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random() * 200) + 700, this.tAntagoniste[0], 20));
         };
         Jeu.prototype.afficherMenu = function () {
             this.menu = new Menu_1.Menu();
-            this.bouton = new Bouton_1.Bouton(300, 666, 0);
-            this.bouton.addEventListener("click", this.menuPageSuivante.bind(this), false);
-        };
-        Jeu.prototype.menuPageSuivante = function () {
-            if (this.menu.currentFrame == 0) {
-                this.menu.pageSuivante();
-                this.bouton.setLabel(1);
-            }
-            else {
-                this.menu.detruire();
-                this.bouton.detruire();
-                this.debuter();
-            }
         };
         Jeu.prototype.gestionDynamite = function (antagoniste, deltaX, deltaY) {
             var _this = this;
@@ -117,8 +111,8 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
             }
             this.tAntagoniste.splice(this.tAntagoniste.indexOf(unAntagoniste), 1);
             unAntagoniste.detruire();
-            if (!isBoss && this.tAntagoniste.length == 0) {
-                this.debuterNiveau2();
+            if (!isBoss && this.tAntagoniste.length == 0 && this.ricardo.getVie() > 0) {
+                this.chargementNiveau2();
             }
         };
         Jeu.prototype.getDynamites = function () {
