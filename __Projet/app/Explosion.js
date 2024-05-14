@@ -24,7 +24,7 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
             _this.timeout = null;
             _this.scale = 2;
             // autodestruction après animation;
-            _this.timeout = setTimeout(_this.detruire.bind(_this), 1000 / 30 * 15);
+            _this.timeout = setTimeout(_this.destructeur.bind(_this), 1000 / 30 * 15);
             createjs.Sound.play("explosion");
             return _this;
         }
@@ -32,10 +32,10 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
             window.lib.ClipExplosion.call(this);
             this.frameBounds = window.lib.ClipExplosion.prototype.frameBounds;
         };
-        Explosion.prototype.detruire = function () {
+        Explosion.prototype.destructeur = function () {
             clearTimeout(this.timeout);
             this.timeout = null;
-            _super.prototype.detruire.call(this);
+            _super.prototype.destructeur.call(this);
         };
         return Explosion;
     }(ObjetVisible_1.ObjetVisible));

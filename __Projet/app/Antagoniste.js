@@ -38,9 +38,9 @@ define(["require", "exports", "./Dynamite", "./Voiture", "./ObjetVisible"], func
             this.vitesseY = -5;
             this.addEventListener("tick", this.sortiDecran.bind(this), false);
         };
-        Antagoniste.prototype.detruire = function () {
+        Antagoniste.prototype.destructeur = function () {
             this.removeAllEventListeners();
-            _super.prototype.detruire.call(this);
+            _super.prototype.destructeur.call(this);
         };
         return Antagoniste;
     }(Voiture_1.Voiture));

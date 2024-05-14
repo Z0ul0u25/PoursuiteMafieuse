@@ -32,6 +32,10 @@ define(["require", "exports", "./Antagoniste", "./ObjetVisible"], function (requ
             _this.zoneLimite = [64, window.lib.properties.width - 188, window.lib.properties.height / 2 - 32, window.lib.properties.width / 2 + 96];
             return _this;
         }
+        Wasabi.prototype.dessiner = function () {
+            window.lib.ClipWasabi.call(this);
+            this.frameBounds = window.lib.ClipWasabi.prototype.frameBounds;
+        };
         Wasabi.prototype.faireBouger = function () {
             if (this.pointVie > 0) {
                 if (this.sens == 1 && this.x >= this.zoneLimite[1]) {
@@ -61,9 +65,8 @@ define(["require", "exports", "./Antagoniste", "./ObjetVisible"], function (requ
                 ObjetVisible_1.ObjetVisible.refJeu.detruireAntagoniste(this);
             }
         };
-        Wasabi.prototype.dessiner = function () {
-            window.lib.ClipWasabi.call(this);
-            this.frameBounds = window.lib.ClipWasabi.prototype.frameBounds;
+        Wasabi.prototype.destructeur = function () {
+            _super.prototype.destructeur.call(this);
         };
         return Wasabi;
     }(Antagoniste_1.Antagoniste));

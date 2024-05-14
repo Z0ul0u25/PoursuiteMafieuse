@@ -32,8 +32,9 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
         Bouton.prototype.setLabel = function (indexLable) {
             this.gotoAndStop(this.label[indexLable]);
         };
-        Bouton.prototype.detruire = function () {
-            _super.prototype.detruire.call(this);
+        Bouton.prototype.destructeur = function () {
+            this.label = null;
+            _super.prototype.destructeur.call(this);
         };
         return Bouton;
     }(ObjetVisible_1.ObjetVisible));

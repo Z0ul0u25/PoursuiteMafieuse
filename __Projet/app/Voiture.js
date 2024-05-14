@@ -33,7 +33,7 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
                 this.vitesseX = 0;
             }
         };
-        Voiture.prototype.detruire = function () {
+        Voiture.prototype.destructeur = function () {
             this.accelDelta = null;
             this.vitesseMax = null;
             this.vitesseX = null;
@@ -41,7 +41,7 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
             this.rotationRatio = null;
             this.zoneLimite = null;
             this.pointVie = null;
-            _super.prototype.detruire.call(this);
+            _super.prototype.destructeur.call(this);
         };
         return Voiture;
     }(ObjetVisible_1.ObjetVisible));

@@ -4,9 +4,9 @@ export class Explosion extends ObjetVisible {
 	timeout: number = null;
 	constructor(posX: number, posY: number) {
 		super(posX, posY);
-		this.scale= 2;
+		this.scale = 2;
 		// autodestruction après animation;
-		this.timeout = setTimeout(this.detruire.bind(this), 1000 / 30 * 15);
+		this.timeout = setTimeout(this.destructeur.bind(this), 1000 / 30 * 15);
 		createjs.Sound.play("explosion");
 	}
 
@@ -15,9 +15,9 @@ export class Explosion extends ObjetVisible {
 		this.frameBounds = window.lib.ClipExplosion.prototype.frameBounds;
 	}
 
-	public detruire(): void {
+	public destructeur(): void {
 		clearTimeout(this.timeout);
 		this.timeout = null;
-		super.detruire();
+		super.destructeur();
 	}
 }

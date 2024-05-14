@@ -70,4 +70,10 @@ export class Boss extends Antagoniste {
 		window.lib.ClipBoss.call(this);
 		this.frameBounds = window.lib.ClipBoss.prototype.frameBounds;
 	}
+
+	public destructeur(): void {
+		this.refRicardo = null;
+		this.etat = null;
+		super.destructeur();
+	}
 }

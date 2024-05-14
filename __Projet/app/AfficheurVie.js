@@ -32,8 +32,8 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
             }
             this.gotoAndStop(Math.floor(8 - pv * 2));
         };
-        AfficheurVie.prototype.detruire = function () {
-            _super.prototype.detruire.call(this);
+        AfficheurVie.prototype.destructeur = function () {
+            _super.prototype.destructeur.call(this);
         };
         return AfficheurVie;
     }(ObjetVisible_1.ObjetVisible));

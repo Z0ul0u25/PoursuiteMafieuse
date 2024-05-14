@@ -34,7 +34,10 @@ define(["require", "exports"], function (require, exports) {
         ObjetVisible.prototype.retournerMonClip = function () {
             return this;
         };
-        ObjetVisible.prototype.detruire = function () {
+        ObjetVisible.prototype.destructeur = function () {
+            this.x = null;
+            this.y = null;
+            this.name = null;
             this.refStage.removeChild(this);
         };
         ObjetVisible.refJeu = null;

@@ -33,8 +33,8 @@ export abstract class Antagoniste extends Voiture {
 		this.addEventListener("tick", this.sortiDecran.bind(this), false);
 	}
 
-	public detruire(): void {
+	public destructeur(): void {
 		this.removeAllEventListeners();
-		super.detruire();
+		super.destructeur();
 	}
 }

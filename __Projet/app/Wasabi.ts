@@ -19,6 +19,11 @@ export class Wasabi extends Antagoniste {
 		this.zoneLimite = [64, window.lib.properties.width - 188, window.lib.properties.height / 2 - 32, window.lib.properties.width / 2 + 96];
 	}
 
+	protected dessiner(): void {
+		window.lib.ClipWasabi.call(this);
+		this.frameBounds = window.lib.ClipWasabi.prototype.frameBounds;
+	}
+
 	protected faireBouger(): void {
 		if (this.pointVie > 0) {
 			if (this.sens == 1 && this.x >= this.zoneLimite[1]) {
@@ -47,9 +52,7 @@ export class Wasabi extends Antagoniste {
 		}
 	}
 
-	protected dessiner(): void {
-		window.lib.ClipWasabi.call(this);
-		this.frameBounds = window.lib.ClipWasabi.prototype.frameBounds;
+	public destructeur(): void {
+		super.destructeur();
 	}
-
 }

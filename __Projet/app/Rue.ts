@@ -1,7 +1,5 @@
 import { ObjetVisible } from "./ObjetVisible";
 export class Rue extends ObjetVisible {
-	private refScene:createjs.Stage = null;
-
 	private _defilement = this.defilement.bind(this);
 
 	constructor() {
@@ -12,10 +10,6 @@ export class Rue extends ObjetVisible {
 	protected dessiner(): void {
 		window.lib.ClipRue.call(this);
 		this.frameBounds = window.lib.ClipRue.prototype.frameBounds;
-	}
-
-	public detruire(): void {
-		super.detruire();
 	}
 
 	public arreterDefilement():void{
@@ -31,4 +25,9 @@ export class Rue extends ObjetVisible {
 		}
 	}
 
+	public destructeur(): void {
+		this._defilement = null;
+		this.removeAllEventListeners();
+		super.destructeur();
+	}
 }

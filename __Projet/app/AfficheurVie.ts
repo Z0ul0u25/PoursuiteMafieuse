@@ -17,7 +17,7 @@ export class AfficheurVie extends ObjetVisible {
 		this.gotoAndStop(Math.floor(8 - pv * 2));
 	}
 
-	public detruire(): void {
-		super.detruire();
+	public destructeur(): void {
+		super.destructeur();
 	}
 }

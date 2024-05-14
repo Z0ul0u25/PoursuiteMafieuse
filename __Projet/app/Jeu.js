@@ -22,11 +22,11 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
         Jeu.prototype.debuter = function () {
             createjs.Sound.stop();
             if (this.rue != null) {
-                this.rue.detruire();
-                this.afficheurVie.detruire();
-                this.ricardo.detruire();
+                this.rue.destructeur();
+                this.afficheurVie.destructeur();
+                this.ricardo.destructeur();
                 this.tAntagoniste.forEach(function (antagoniste) {
-                    antagoniste.detruire();
+                    antagoniste.destructeur();
                 });
             }
             this.rue = new Rue_1.Rue();
@@ -73,7 +73,7 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
                 // Suppression de dynamite hors vu
                 this.tDynamite.forEach(function (dynamite) {
                     if (dynamite.y > window.lib.properties.height + 100) {
-                        dynamite.detruire();
+                        dynamite.destructeur();
                         _this.tDynamite.splice(_this.tDynamite.indexOf(dynamite), 1);
                     }
                 });
@@ -100,7 +100,7 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
                 }
                 if (this.missile.y < -100) {
                     this.refScene.removeEventListener("tick", this._gestionMissile);
-                    this.missile.detruire();
+                    this.missile.destructeur();
                     this.missile = null;
                 }
             }
@@ -131,7 +131,7 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
                 }
             }
             this.tAntagoniste.splice(this.tAntagoniste.indexOf(unAntagoniste), 1);
-            unAntagoniste.detruire();
+            unAntagoniste.destructeur();
             if (!isBoss && this.tAntagoniste.length == 0 && this.ricardo.getVie() > 0) {
                 this.chargementNiveau2();
             }

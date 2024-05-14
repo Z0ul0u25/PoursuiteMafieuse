@@ -17,7 +17,8 @@ export class Bouton extends ObjetVisible {
 		this.gotoAndStop(this.label[indexLable]);
 	}
 
-	public detruire():void{
-		super.detruire();
+	public destructeur():void{
+		this.label = null;
+		super.destructeur();
 	}
 }

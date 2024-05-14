@@ -77,6 +77,11 @@ define(["require", "exports", "./Antagoniste", "./ObjetVisible"], function (requ
             window.lib.ClipBoss.call(this);
             this.frameBounds = window.lib.ClipBoss.prototype.frameBounds;
         };
+        Boss.prototype.destructeur = function () {
+            this.refRicardo = null;
+            this.etat = null;
+            _super.prototype.destructeur.call(this);
+        };
         return Boss;
     }(Antagoniste_1.Antagoniste));
     exports.Boss = Boss;

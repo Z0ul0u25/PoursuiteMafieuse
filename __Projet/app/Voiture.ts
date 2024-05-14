@@ -28,7 +28,7 @@ export abstract class Voiture extends ObjetVisible{
 		}
 	}
 
-	public detruire(): void {
+	public destructeur(): void {
 		this.accelDelta = null;
 		this.vitesseMax = null;
 		this.vitesseX = null;
@@ -36,6 +36,6 @@ export abstract class Voiture extends ObjetVisible{
 		this.rotationRatio = null;
 		this.zoneLimite = null;
 		this.pointVie = null;
-		super.detruire();
+		super.destructeur();
 	}
 }

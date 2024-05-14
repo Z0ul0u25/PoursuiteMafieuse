@@ -28,12 +28,12 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
             window.lib.ClipDynamite.call(this);
             this.frameBounds = window.lib.ClipDynamite.prototype.frameBounds;
         };
-        Dynamite.prototype.detruire = function () {
-            this.removeAllEventListeners();
-            _super.prototype.detruire.call(this);
-        };
         Dynamite.prototype.bouger = function () {
             this.y += 20;
+        };
+        Dynamite.prototype.destructeur = function () {
+            this.removeAllEventListeners();
+            _super.prototype.destructeur.call(this);
         };
         return Dynamite;
     }(ObjetVisible_1.ObjetVisible));

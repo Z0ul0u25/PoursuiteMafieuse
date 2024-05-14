@@ -37,7 +37,6 @@ export class Menu extends ObjetVisible {
 			this.bouton.setLabel(1);
 		} else {
 			this.visible = false;
-
 			ObjetVisible.refJeu.debuter();
 		}
 	}
@@ -51,15 +50,19 @@ export class Menu extends ObjetVisible {
 		console.log("Errrrror");
 	}
 
-	public detruire(): void {
-		super.detruire();
-	}
-
 	public setVisibilite(b:boolean):void{
 		this.visible = b;
 	}
 
 	public getRefBouton():Bouton{
+		this.bouton.gotoAndStop(2);
 		return this.bouton;
+	}
+
+	public destructeur(): void {
+		this.bouton.destructeur();
+		this.bouton = null;
+		this.removeAllEventListeners();
+		super.destructeur();
 	}
 }

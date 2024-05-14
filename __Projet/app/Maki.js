@@ -35,6 +35,9 @@ define(["require", "exports", "./Antagoniste", "./ObjetVisible"], function (requ
             window.lib.ClipMaki.call(this);
             this.frameBounds = window.lib.ClipMaki.prototype.frameBounds;
         };
+        Maki.prototype.destructeur = function () {
+            _super.prototype.destructeur.call(this);
+        };
         return Maki;
     }(Antagoniste_1.Antagoniste));
     exports.Maki = Maki;

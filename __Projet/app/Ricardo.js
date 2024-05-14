@@ -186,7 +186,7 @@ define(["require", "exports", "./Explosion", "./ObjetVisible", "./Voiture"], fun
         Ricardo.prototype.getVie = function () {
             return this.pointVie;
         };
-        Ricardo.prototype.detruire = function () {
+        Ricardo.prototype.destructeur = function () {
             this._faireBouger = null;
             this._desactiverTouche = null;
             this._activerTouche = null;
@@ -197,7 +197,7 @@ define(["require", "exports", "./Explosion", "./ObjetVisible", "./Voiture"], fun
             this.touchesEnfoncees = null;
             window.onkeydown = null;
             window.onkeyup = null;
-            _super.prototype.detruire.call(this);
+            _super.prototype.destructeur.call(this);
         };
         return Ricardo;
     }(Voiture_1.Voiture));

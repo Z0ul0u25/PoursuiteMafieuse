@@ -21,9 +21,9 @@ export class Missile extends ObjetVisible {
 		this.x += Math.sin(this.rotation*(Math.PI/180))* this.vitesse;
 	}
 
-	public detruire(): void {
+	public destructeur(): void {
 		this.removeAllEventListeners();
 		this.vitesse = null;
-		super.detruire();
+		super.destructeur();
 	}
 }

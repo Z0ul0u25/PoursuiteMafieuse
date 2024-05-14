@@ -199,7 +199,7 @@ export class Ricardo extends Voiture {
 		return this.pointVie;
 	}
 
-	public detruire(): void {
+	public destructeur(): void {
 		this._faireBouger = null;
 		this._desactiverTouche = null;
 		this._activerTouche = null;
@@ -213,6 +213,6 @@ export class Ricardo extends Voiture {
 		window.onkeydown = null;
 		window.onkeyup = null;
 
-		super.detruire();
+		super.destructeur();
 	}
 }

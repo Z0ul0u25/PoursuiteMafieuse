@@ -39,11 +39,11 @@ export class Jeu {
 		createjs.Sound.stop();
 
 		if (this.rue != null) {
-			this.rue.detruire();
-			this.afficheurVie.detruire();
-			this.ricardo.detruire();
+			this.rue.destructeur();
+			this.afficheurVie.destructeur();
+			this.ricardo.destructeur();
 			this.tAntagoniste.forEach(antagoniste => {
-				antagoniste.detruire();
+				antagoniste.destructeur();
 			});
 		}
 		this.rue = new Rue();
@@ -94,7 +94,7 @@ export class Jeu {
 			// Suppression de dynamite hors vu
 			this.tDynamite.forEach(dynamite => {
 				if (dynamite.y > window.lib.properties.height + 100) {
-					dynamite.detruire();
+					dynamite.destructeur();
 					this.tDynamite.splice(this.tDynamite.indexOf(dynamite), 1);
 				}
 			});
@@ -118,7 +118,7 @@ export class Jeu {
 			}
 			if (this.missile.y < -100) {
 				this.refScene.removeEventListener("tick", this._gestionMissile);
-				this.missile.detruire();
+				this.missile.destructeur();
 				this.missile = null;
 			}
 		}
@@ -154,7 +154,7 @@ export class Jeu {
 
 		this.tAntagoniste.splice(this.tAntagoniste.indexOf(unAntagoniste), 1);
 
-		unAntagoniste.detruire();
+		unAntagoniste.destructeur();
 		if (!isBoss && this.tAntagoniste.length == 0 && this.ricardo.getVie() > 0) {
 			this.chargementNiveau2();
 		}

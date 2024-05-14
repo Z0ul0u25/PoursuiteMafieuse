@@ -23,4 +23,8 @@ export class Maki extends Antagoniste{
 		this.frameBounds = window.lib.ClipMaki.prototype.frameBounds;
 	}
 
+	public destructeur(): void {
+		super.destructeur();
+	}
+
 }

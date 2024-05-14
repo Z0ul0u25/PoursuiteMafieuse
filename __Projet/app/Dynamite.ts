@@ -11,12 +11,13 @@ export class Dynamite extends ObjetVisible {
 		this.frameBounds = window.lib.ClipDynamite.prototype.frameBounds;
 	}
 
-	public detruire(): void {
-		this.removeAllEventListeners();
-		super.detruire();
-	}
-
 	private bouger() {
 		this.y += 20;
 	}
+
+	public destructeur(): void {
+		this.removeAllEventListeners();
+		super.destructeur();
+	}
+
 }

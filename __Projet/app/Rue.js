@@ -21,7 +21,6 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
         __extends(Rue, _super);
         function Rue() {
             var _this = _super.call(this, 0, 0) || this;
-            _this.refScene = null;
             _this._defilement = _this.defilement.bind(_this);
             _this.addEventListener("tick", _this._defilement, false);
             return _this;
@@ -29,9 +28,6 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
         Rue.prototype.dessiner = function () {
             window.lib.ClipRue.call(this);
             this.frameBounds = window.lib.ClipRue.prototype.frameBounds;
-        };
-        Rue.prototype.detruire = function () {
-            _super.prototype.detruire.call(this);
         };
         Rue.prototype.arreterDefilement = function () {
             this.removeEventListener("tick", this._defilement);
@@ -43,6 +39,11 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
                 // Donc on le met à 1
                 this.y = 1;
             }
+        };
+        Rue.prototype.destructeur = function () {
+            this._defilement = null;
+            this.removeAllEventListeners();
+            _super.prototype.destructeur.call(this);
         };
         return Rue;
     }(ObjetVisible_1.ObjetVisible));

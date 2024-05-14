@@ -35,10 +35,10 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
             this.y -= Math.cos(this.rotation * (Math.PI / 180)) * (this.vitesse += 2);
             this.x += Math.sin(this.rotation * (Math.PI / 180)) * this.vitesse;
         };
-        Missile.prototype.detruire = function () {
+        Missile.prototype.destructeur = function () {
             this.removeAllEventListeners();
             this.vitesse = null;
-            _super.prototype.detruire.call(this);
+            _super.prototype.destructeur.call(this);
         };
         return Missile;
     }(ObjetVisible_1.ObjetVisible));

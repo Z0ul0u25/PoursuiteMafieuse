@@ -22,7 +22,10 @@ export abstract class ObjetVisible extends createjs.MovieClip {
 		return this;
 	}
 
-	public detruire(): void {
+	public destructeur(): void {
+		this.x = null;
+		this.y = null;
+		this.name = null;
 		this.refStage.removeChild(this);
 	}
 }

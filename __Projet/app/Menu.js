@@ -56,14 +56,18 @@ define(["require", "exports", "./ObjetVisible", "./Bouton"], function (require, 
         Menu.prototype.chargementErreur = function () {
             console.log("Errrrror");
         };
-        Menu.prototype.detruire = function () {
-            _super.prototype.detruire.call(this);
-        };
         Menu.prototype.setVisibilite = function (b) {
             this.visible = b;
         };
         Menu.prototype.getRefBouton = function () {
+            this.bouton.gotoAndStop(2);
             return this.bouton;
+        };
+        Menu.prototype.destructeur = function () {
+            this.bouton.destructeur();
+            this.bouton = null;
+            this.removeAllEventListeners();
+            _super.prototype.destructeur.call(this);
         };
         return Menu;
     }(ObjetVisible_1.ObjetVisible));
