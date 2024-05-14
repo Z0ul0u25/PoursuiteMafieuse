@@ -104,8 +104,7 @@ define(["require", "exports", "./Explosion", "./ObjetVisible", "./Voiture"], fun
                     this.touchesEnfoncees[3] = false;
                     break;
                 case "p": //Debug Key
-                    console.log("DEBUG STATUS \n======");
-                    console.log(ObjetVisible_1.ObjetVisible.refJeu.menu);
+                    // Écrire les console log ici
                     break;
                 default:
                     break;

@@ -109,8 +109,7 @@ export class Ricardo extends Voiture {
 				break;
 
 			case "p": //Debug Key
-				console.log("DEBUG STATUS \n======");
-				console.log(ObjetVisible.refJeu.menu);
+				// Écrire les console log ici
 				break;
 			default:
 				break;
