@@ -8,6 +8,7 @@ export class Explosion extends ObjetVisible {
 		// autodestruction après animation;
 		this.timeout = setTimeout(this.detruire.bind(this), 1000 / 30 * 15);
 	}
+
 	protected dessiner(): void {
 		window.lib.ClipExplosion.call(this);
 		this.frameBounds = window.lib.ClipExplosion.prototype.frameBounds;

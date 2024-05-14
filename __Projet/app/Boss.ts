@@ -22,6 +22,7 @@ export class Boss extends Antagoniste {
 
 
 		this.vitesseY = 7;
+		this.stop();
 	}
 
 	protected faireBouger(): void {
@@ -29,6 +30,7 @@ export class Boss extends Antagoniste {
 			case "entree":
 				this.vitesseY -= 0.05;
 				if (this.y > this.zoneLimite[0]) {
+					this.play();
 					this.etat = "defaut"
 					this.vitesseY = 0;
 				}

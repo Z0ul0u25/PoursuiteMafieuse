@@ -31,6 +31,7 @@ define(["require", "exports", "./Antagoniste", "./ObjetVisible"], function (requ
             _this.rotationRatio = 2;
             _this.zoneLimite = [196, window.lib.properties.width - 188, window.lib.properties.height - 32, 188];
             _this.vitesseY = 7;
+            _this.stop();
             return _this;
         }
         Boss.prototype.faireBouger = function () {
@@ -38,6 +39,7 @@ define(["require", "exports", "./Antagoniste", "./ObjetVisible"], function (requ
                 case "entree":
                     this.vitesseY -= 0.05;
                     if (this.y > this.zoneLimite[0]) {
+                        this.play();
                         this.etat = "defaut";
                         this.vitesseY = 0;
                     }

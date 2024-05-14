@@ -182,6 +182,9 @@ define(["require", "exports", "./Explosion", "./ObjetVisible", "./Voiture"], fun
         Ricardo.prototype.getPos = function () {
             return new createjs.Point(this.x, this.y);
         };
+        Ricardo.prototype.getVie = function () {
+            return this.pointVie;
+        };
         Ricardo.prototype.detruire = function () {
             this._faireBouger = null;
             this._desactiverTouche = null;

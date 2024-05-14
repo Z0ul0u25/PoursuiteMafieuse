@@ -34,6 +34,7 @@ define(["require", "exports", "./Dynamite", "./Voiture", "./ObjetVisible"], func
             }
         };
         Antagoniste.prototype.departDeFin = function () {
+            this.gotoAndStop(0);
             this.vitesseY = -5;
             this.addEventListener("tick", this.sortiDecran.bind(this), false);
         };

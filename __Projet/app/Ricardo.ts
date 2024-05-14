@@ -194,6 +194,10 @@ export class Ricardo extends Voiture {
 		return new createjs.Point(this.x, this.y);
 	}
 
+	public getVie():number{
+		return this.pointVie;
+	}
+
 	public detruire(): void {
 		this._faireBouger = null;
 		this._desactiverTouche = null;
