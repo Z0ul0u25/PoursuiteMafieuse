@@ -40,17 +40,14 @@ define(["require", "exports", "./ObjetVisible", "./Bouton"], function (require, 
             this.frameBounds = window.lib.ClipMenu.prototype.frameBounds;
         };
         Menu.prototype.pageSuivante = function () {
-            if (this.currentFrame == 0) {
-                this.gotoAndStop(this.currentFrame + 1);
+            if (this.currentFrame != 1) {
+                this.gotoAndStop(1);
                 this.bouton.setLabel(1);
             }
             else {
-                this.bouton.detruire();
                 this.visible = false;
                 ObjetVisible_1.ObjetVisible.refJeu.debuter();
             }
-        };
-        Menu.prototype.chargement = function () {
         };
         Menu.prototype.chargementFini = function () {
             this.bouton = new Bouton_1.Bouton(300, 666, 0);
@@ -61,6 +58,12 @@ define(["require", "exports", "./ObjetVisible", "./Bouton"], function (require, 
         };
         Menu.prototype.detruire = function () {
             _super.prototype.detruire.call(this);
+        };
+        Menu.prototype.setVisibilite = function (b) {
+            this.visible = b;
+        };
+        Menu.prototype.getRefBouton = function () {
+            return this.bouton;
         };
         return Menu;
     }(ObjetVisible_1.ObjetVisible));

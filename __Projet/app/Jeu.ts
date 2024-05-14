@@ -24,7 +24,7 @@ export class Jeu {
 	private missile: Missile = null;
 	private tminDynamite: number[] = [];
 
-	public musique:createjs.Sound = null;
+	public musique: createjs.Sound = null;
 
 	private _gestionMissile = this.gestionMissile.bind(this);
 
@@ -36,6 +36,16 @@ export class Jeu {
 
 	public debuter(): void {
 
+		createjs.Sound.stop();
+
+		if (this.rue != null) {
+			this.rue.detruire();
+			this.afficheurVie.detruire();
+			this.ricardo.detruire();
+			this.tAntagoniste.forEach(antagoniste => {
+				antagoniste.detruire();
+			});
+		}
 		this.rue = new Rue();
 		this.afficheurVie = new AfficheurVie();
 
@@ -47,25 +57,32 @@ export class Jeu {
 			this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random() * 200) + 1000 + i * 200, this.tAntagoniste[i]));
 		}
 
-		this.musique = createjs.Sound.play("musique_n1", {interrupt: createjs.Sound.INTERRUPT_ANY, loop:-1, volume:0.5});
+		this.musique = createjs.Sound.play("musique_n1", { interrupt: createjs.Sound.INTERRUPT_ANY, loop: -1, volume: 0.5 });
 	}
 
-	private chargementNiveau2():void{
+	private chargementNiveau2(): void {
 		createjs.Sound.stop();
-		this.musique = createjs.Sound.play("musique_n2_in", {interrupt: createjs.Sound.INTERRUPT_ANY, loop:0, volume:0.5});
+		this.musique = createjs.Sound.play("musique_n2_in", { interrupt: createjs.Sound.INTERRUPT_ANY, loop: 0, volume: 0.5 });
 		this.musique.on("complete", this.debuterNiveau2.bind(this));
 	}
 
 	private debuterNiveau2(): void {
-		this.musique = createjs.Sound.play("musique_n2_loop", {interrupt: createjs.Sound.INTERRUPT_ANY, loop:-1, volume:0.5})
+		this.musique = createjs.Sound.play("musique_n2_loop", { interrupt: createjs.Sound.INTERRUPT_ANY, loop: -1, volume: 0.5 })
 		console.log("NIVEAU 2");
 		this.tAntagoniste.push(new Boss(window.lib.properties.width / 2, -150, this.ricardo));
 		this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random() * 200) + 700, this.tAntagoniste[0], -20));
 		this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random() * 200) + 700, this.tAntagoniste[0], 20));
 	}
 
-	private afficherMenu(): void {
-		this.menu = new Menu();
+	public afficherMenu(etat: string = ""): void {
+		if (this.menu == null) {
+			this.menu = new Menu();
+		} else {
+			this.refScene.swapChildren(this.menu, this.refScene.children[this.refScene.children.length - 2]);
+			this.refScene.swapChildren(this.menu.getRefBouton(), this.refScene.children[this.refScene.children.length - 1])
+			this.menu.setVisibilite(true);
+			this.menu.gotoAndStop(etat);
+		}
 	}
 
 
@@ -91,7 +108,6 @@ export class Jeu {
 				this.refScene.addEventListener("tick", this._gestionMissile, false);
 			} else {
 				this.tAntagoniste.forEach(antagoniste => {
-					console.log(this.missile.parent);
 					let point: createjs.Point = this.missile.parent.localToLocal(this.missile.x, this.missile.y, antagoniste);
 					if (antagoniste.hitTest(point.x, point.y)) {
 						new Explosion(this.missile.x, this.missile.y);
@@ -130,7 +146,10 @@ export class Jeu {
 			for (let i = 0; i < this.tminDynamite.length; i++) {
 				clearInterval(this.tminDynamite[i]);
 			}
-			this.tminDynamite=[];
+			this.tminDynamite = [];
+			if (this.ricardo.getVie() > 0) {
+				this.afficherMenu("gagne");
+			}
 		}
 
 		this.tAntagoniste.splice(this.tAntagoniste.indexOf(unAntagoniste), 1);

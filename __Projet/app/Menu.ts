@@ -32,19 +32,14 @@ export class Menu extends ObjetVisible {
 	}
 
 	public pageSuivante():void{
-		if (this.currentFrame == 0) {
-			this.gotoAndStop(this.currentFrame+1);
+		if (this.currentFrame != 1) {
+			this.gotoAndStop(1);
 			this.bouton.setLabel(1);
 		} else {
-			this.bouton.detruire();
 			this.visible = false;
 
 			ObjetVisible.refJeu.debuter();
 		}
-	}
-
-	private chargement():void{
-
 	}
 
 	private chargementFini():void{
@@ -58,5 +53,13 @@ export class Menu extends ObjetVisible {
 
 	public detruire(): void {
 		super.detruire();
+	}
+
+	public setVisibilite(b:boolean):void{
+		this.visible = b;
+	}
+
+	public getRefBouton():Bouton{
+		return this.bouton;
 	}
 }

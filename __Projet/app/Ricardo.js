@@ -105,7 +105,7 @@ define(["require", "exports", "./Explosion", "./ObjetVisible", "./Voiture"], fun
                     break;
                 case "p": //Debug Key
                     console.log("DEBUG STATUS \n======");
-                    this.gotoAndPlay("mort");
+                    console.log(ObjetVisible_1.ObjetVisible.refJeu.menu);
                     break;
                 default:
                     break;
@@ -178,6 +178,7 @@ define(["require", "exports", "./Explosion", "./ObjetVisible", "./Voiture"], fun
                 window.onkeyup = null;
                 clearInterval(this.minuterieBouger);
                 this.minuterieBouger = null;
+                setTimeout(ObjetVisible_1.ObjetVisible.refJeu.afficherMenu.bind(ObjetVisible_1.ObjetVisible.refJeu), 2000, "perdu");
             }
         };
         Ricardo.prototype.getPos = function () {

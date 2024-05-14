@@ -20,6 +20,15 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
             this.afficherMenu();
         }
         Jeu.prototype.debuter = function () {
+            createjs.Sound.stop();
+            if (this.rue != null) {
+                this.rue.detruire();
+                this.afficheurVie.detruire();
+                this.ricardo.detruire();
+                this.tAntagoniste.forEach(function (antagoniste) {
+                    antagoniste.detruire();
+                });
+            }
             this.rue = new Rue_1.Rue();
             this.afficheurVie = new AfficheurVie_1.AfficheurVie();
             this.ricardo = new Ricardo_1.Ricardo(window.lib.properties.width / 2, window.lib.properties.height - 128, this.afficheurVie);
@@ -42,8 +51,17 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
             this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random() * 200) + 700, this.tAntagoniste[0], -20));
             this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random() * 200) + 700, this.tAntagoniste[0], 20));
         };
-        Jeu.prototype.afficherMenu = function () {
-            this.menu = new Menu_1.Menu();
+        Jeu.prototype.afficherMenu = function (etat) {
+            if (etat === void 0) { etat = ""; }
+            if (this.menu == null) {
+                this.menu = new Menu_1.Menu();
+            }
+            else {
+                this.refScene.swapChildren(this.menu, this.refScene.children[this.refScene.children.length - 2]);
+                this.refScene.swapChildren(this.menu.getRefBouton(), this.refScene.children[this.refScene.children.length - 1]);
+                this.menu.setVisibilite(true);
+                this.menu.gotoAndStop(etat);
+            }
         };
         Jeu.prototype.gestionDynamite = function (antagoniste, deltaX, deltaY) {
             var _this = this;
@@ -72,7 +90,6 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
                 }
                 else {
                     this.tAntagoniste.forEach(function (antagoniste) {
-                        console.log(_this.missile.parent);
                         var point = _this.missile.parent.localToLocal(_this.missile.x, _this.missile.y, antagoniste);
                         if (antagoniste.hitTest(point.x, point.y)) {
                             new Explosion_1.Explosion(_this.missile.x, _this.missile.y);
@@ -109,6 +126,9 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
                     clearInterval(this.tminDynamite[i]);
                 }
                 this.tminDynamite = [];
+                if (this.ricardo.getVie() > 0) {
+                    this.afficherMenu("gagne");
+                }
             }
             this.tAntagoniste.splice(this.tAntagoniste.indexOf(unAntagoniste), 1);
             unAntagoniste.detruire();

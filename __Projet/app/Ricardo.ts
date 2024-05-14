@@ -110,7 +110,7 @@ export class Ricardo extends Voiture {
 
 			case "p": //Debug Key
 				console.log("DEBUG STATUS \n======");
-				this.gotoAndPlay("mort");
+				console.log(ObjetVisible.refJeu.menu);
 				break;
 			default:
 				break;
@@ -188,6 +188,7 @@ export class Ricardo extends Voiture {
 			window.onkeyup = null;
 			clearInterval(this.minuterieBouger);
 			this.minuterieBouger = null;
+			setTimeout(ObjetVisible.refJeu.afficherMenu.bind(ObjetVisible.refJeu), 2000, "perdu");
 		}
 	}
 
