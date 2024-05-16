@@ -60,10 +60,15 @@ define(["require", "exports", "./Rue", "./Menu", "./Boss", "./Maki", "./Wasabi",
                 this.menu = new Menu_1.Menu();
             }
             else {
-                this.refScene.swapChildren(this.menu, this.refScene.children[this.refScene.children.length - 2]);
+                this.refScene.swapChildren(this.menu, this.refScene.children[this.refScene.children.length - 3]);
                 this.refScene.swapChildren(this.menu.getRefBouton(), this.refScene.children[this.refScene.children.length - 1]);
                 this.menu.setVisibilite(true);
                 this.menu.gotoAndStop(etat);
+            }
+            if (etat == "gagne") {
+                this.afficheurPts.x = 400;
+                this.afficheurPts.y = 500;
+                this.refScene.swapChildren(this.afficheurPts, this.refScene.children[this.refScene.children.length - 2]);
             }
         };
         Jeu.prototype.gestionDynamite = function (antagoniste, deltaX, deltaY) {

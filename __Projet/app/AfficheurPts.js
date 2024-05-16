@@ -32,7 +32,6 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
             _this.fond.alpha = 0.5;
             _this.fond.rotation = -20;
             ObjetVisible_1.ObjetVisible.refJeu.getScene().addChild(_this.fond);
-            console.log(_this.fond);
             return _this;
         }
         AfficheurPts.prototype.majPointage = function (valeur) {

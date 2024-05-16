@@ -18,8 +18,6 @@ export class AfficheurPts extends createjs.Text {
 		this.fond.alpha = 0.5;
 		this.fond.rotation = -20;
 		ObjetVisible.refJeu.getScene().addChild(this.fond);
-
-		console.log(this.fond);
 	}
 
 	public majPointage(valeur: number): void {
