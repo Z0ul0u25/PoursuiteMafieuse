@@ -164,6 +164,7 @@ define(["require", "exports", "./Explosion", "./ObjetVisible", "./Voiture"], fun
                     new Explosion_1.Explosion(dynamite.x, dynamite.y);
                     _this.jmeSuisFaitToucherPisCaFaitMal(1);
                     dynamite.y = 1000;
+                    ObjetVisible_1.ObjetVisible.refJeu.detruireDynamite(dynamite, true);
                 }
             });
         };

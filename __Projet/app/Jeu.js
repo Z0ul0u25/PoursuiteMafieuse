@@ -1,4 +1,4 @@
-define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Menu", "./Missile", "./Explosion", "./AfficheurVie", "./ObjetVisible", "./Boss"], function (require, exports, Rue_1, Ricardo_1, Maki_1, Wasabi_1, Menu_1, Missile_1, Explosion_1, AfficheurVie_1, ObjetVisible_1, Boss_1) {
+define(["require", "exports", "./Rue", "./Menu", "./Boss", "./Maki", "./Wasabi", "./Ricardo", "./Missile", "./Explosion", "./AfficheurVie", "./AfficheurPts", "./ObjetVisible"], function (require, exports, Rue_1, Menu_1, Boss_1, Maki_1, Wasabi_1, Ricardo_1, Missile_1, Explosion_1, AfficheurVie_1, AfficheurPts_1, ObjetVisible_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Jeu = void 0;
@@ -8,6 +8,7 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
             this.rue = null;
             this.menu = null;
             this.afficheurVie = null;
+            this.afficheurPts = null;
             this.ricardo = null;
             this.tAntagoniste = [];
             this.tDynamite = [];
@@ -23,8 +24,9 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
             createjs.Sound.stop();
             if (this.rue != null) {
                 this.rue.destructeur();
-                this.afficheurVie.destructeur();
                 this.ricardo.destructeur();
+                this.afficheurVie.destructeur();
+                this.afficheurPts.destructeur();
                 this.tAntagoniste.forEach(function (antagoniste) {
                     antagoniste.destructeur();
                 });
@@ -37,6 +39,8 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
             for (var i = 0; i < this.tAntagoniste.length; i++) {
                 this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random() * 200) + 1000 + i * 200, this.tAntagoniste[i]));
             }
+            this.afficheurPts = new AfficheurPts_1.AfficheurPts();
+            this.refScene.addChild(this.afficheurPts);
             this.musique = createjs.Sound.play("musique_n1", { interrupt: createjs.Sound.INTERRUPT_ANY, loop: -1, volume: 0.5 });
         };
         Jeu.prototype.chargementNiveau2 = function () {
@@ -46,7 +50,6 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
         };
         Jeu.prototype.debuterNiveau2 = function () {
             this.musique = createjs.Sound.play("musique_n2_loop", { interrupt: createjs.Sound.INTERRUPT_ANY, loop: -1, volume: 0.5 });
-            console.log("NIVEAU 2");
             this.tAntagoniste.push(new Boss_1.Boss(window.lib.properties.width / 2, -150, this.ricardo));
             this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random() * 200) + 700, this.tAntagoniste[0], -20));
             this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random() * 200) + 700, this.tAntagoniste[0], 20));
@@ -70,14 +73,25 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
             if (this.refScene.tickEnabled) {
                 // Ajout de la dynamite
                 this.tDynamite.push(antagoniste.lanceDynamite(deltaX, deltaY));
+                var nouvelleDynamite = this.tDynamite[this.tDynamite.length - 1];
+                // Place les afficheurs devant la dynamite
+                this.refScene.swapChildren(nouvelleDynamite, this.afficheurVie);
+                this.refScene.swapChildren(nouvelleDynamite, this.afficheurPts);
+                this.refScene.swapChildren(nouvelleDynamite, antagoniste);
                 // Suppression de dynamite hors vu
                 this.tDynamite.forEach(function (dynamite) {
                     if (dynamite.y > window.lib.properties.height + 100) {
-                        dynamite.destructeur();
-                        _this.tDynamite.splice(_this.tDynamite.indexOf(dynamite), 1);
+                        _this.detruireDynamite(dynamite, false);
                     }
                 });
             }
+        };
+        Jeu.prototype.detruireDynamite = function (dynamite, touche) {
+            if (touche) {
+                this.afficheurPts.majPointage(-100);
+            }
+            dynamite.destructeur();
+            this.tDynamite.splice(this.tDynamite.indexOf(dynamite), 1);
         };
         Jeu.prototype.gestionMissile = function (posX, posY) {
             var _this = this;
@@ -89,19 +103,21 @@ define(["require", "exports", "./Rue", "./Ricardo", "./Maki", "./Wasabi", "./Men
                     this.refScene.addEventListener("tick", this._gestionMissile, false);
                 }
                 else {
+                    var touche_1 = false;
                     this.tAntagoniste.forEach(function (antagoniste) {
                         var point = _this.missile.parent.localToLocal(_this.missile.x, _this.missile.y, antagoniste);
                         if (antagoniste.hitTest(point.x, point.y)) {
                             new Explosion_1.Explosion(_this.missile.x, _this.missile.y);
                             antagoniste.jmeSuisFaitToucherPisCaFaitMal(1);
-                            _this.missile.y = -200;
+                            touche_1 = true;
                         }
                     });
-                }
-                if (this.missile.y < -100) {
-                    this.refScene.removeEventListener("tick", this._gestionMissile);
-                    this.missile.destructeur();
-                    this.missile = null;
+                    if (touche_1 || this.missile.y < -100) {
+                        this.afficheurPts.majPointage((touche_1 ? 1000 : -100));
+                        this.refScene.removeEventListener("tick", this._gestionMissile);
+                        this.missile.destructeur();
+                        this.missile = null;
+                    }
                 }
             }
             return this.missile == null;

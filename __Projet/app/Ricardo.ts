@@ -173,6 +173,7 @@ export class Ricardo extends Voiture {
 				new Explosion(dynamite.x, dynamite.y);
 				this.jmeSuisFaitToucherPisCaFaitMal(1);
 				dynamite.y = 1000;
+				ObjetVisible.refJeu.detruireDynamite(dynamite, true);
 			}
 		});
 	}
