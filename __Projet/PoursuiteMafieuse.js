@@ -4,11 +4,11 @@ var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
 lib.ssMetadata = [
 		{name:"PoursuiteMafieuse_atlas_1", frames: [[0,0,1211,1803]]},
-		{name:"PoursuiteMafieuse_atlas_2", frames: [[0,0,1080,1480]]},
+		{name:"PoursuiteMafieuse_atlas_2", frames: [[0,392,114,128],[833,273,128,128],[498,264,148,148],[963,273,54,99],[826,533,51,33],[232,386,100,116],[122,130,108,286],[875,0,118,271],[0,130,120,260],[232,130,110,254],[473,0,400,86],[473,88,400,86],[498,176,283,86],[0,0,471,128],[0,522,111,52],[698,532,126,52],[833,403,128,128],[116,418,114,128],[498,414,128,128],[698,264,53,197],[963,374,50,77],[415,540,47,29],[879,533,51,33],[232,504,100,116],[421,130,38,42],[963,526,45,48],[783,176,48,354],[648,264,48,354],[344,130,75,362],[421,176,75,362],[963,453,38,71],[740,463,39,58],[374,494,39,58],[698,463,40,59],[833,176,37,84],[334,494,38,71],[464,540,32,32],[498,544,32,32],[532,544,32,32],[566,544,32,32],[600,544,32,32],[113,548,32,32]]},
 		{name:"PoursuiteMafieuse_atlas_3", frames: [[0,0,1080,1480]]},
 		{name:"PoursuiteMafieuse_atlas_4", frames: [[0,0,1080,1480]]},
 		{name:"PoursuiteMafieuse_atlas_5", frames: [[1082,1168,678,348],[0,1827,861,212],[0,1482,898,343],[0,0,1080,1480],[1082,0,925,1166],[1527,1678,471,128],[1527,1808,471,128],[1762,1168,235,508],[900,1518,219,508],[1121,1518,219,504],[1342,1518,183,488]]},
-		{name:"PoursuiteMafieuse_atlas_6", frames: [[0,392,114,128],[833,273,128,128],[498,264,148,148],[963,273,54,99],[826,533,51,33],[232,386,100,116],[122,130,108,286],[875,0,118,271],[0,130,120,260],[232,130,110,254],[473,0,400,86],[473,88,400,86],[498,176,283,86],[0,0,471,128],[0,522,111,52],[698,532,126,52],[833,403,128,128],[116,418,114,128],[498,414,128,128],[698,264,53,197],[963,374,50,77],[415,540,47,29],[879,533,51,33],[232,504,100,116],[421,130,38,42],[963,526,45,48],[783,176,48,354],[648,264,48,354],[344,130,75,362],[421,176,75,362],[963,453,38,71],[740,463,39,58],[374,494,39,58],[698,463,40,59],[833,176,37,84],[334,494,38,71],[464,540,32,32],[498,544,32,32],[532,544,32,32],[566,544,32,32],[600,544,32,32],[113,548,32,32]]}
+		{name:"PoursuiteMafieuse_atlas_6", frames: [[0,0,1080,1480]]}
 ];
 
 
@@ -33,27 +33,27 @@ lib.ssMetadata = [
 
 
 (lib.CachedBmp_42 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
-	this.gotoAndStop(0);
-}).prototype = p = new cjs.Sprite();
-
-
-
-(lib.CachedBmp_41 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
-	this.gotoAndStop(1);
-}).prototype = p = new cjs.Sprite();
-
-
-
-(lib.CachedBmp_40 = function() {
 	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(0);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.CachedBmp_39 = function() {
+(lib.CachedBmp_41 = function() {
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
+	this.gotoAndStop(1);
+}).prototype = p = new cjs.Sprite();
+
+
+
+(lib.CachedBmp_47 = function() {
+	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.gotoAndStop(0);
+}).prototype = p = new cjs.Sprite();
+
+
+
+(lib.CachedBmp_46 = function() {
 	this.initialize(ss["PoursuiteMafieuse_atlas_3"]);
 	this.gotoAndStop(0);
 }).prototype = p = new cjs.Sprite();
@@ -82,7 +82,7 @@ lib.ssMetadata = [
 
 
 (lib.CachedBmp_35 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(2);
 }).prototype = p = new cjs.Sprite();
 
@@ -96,49 +96,49 @@ lib.ssMetadata = [
 
 
 (lib.CachedBmp_33 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(3);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_31 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(4);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.CachedBmp_30 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+(lib.CachedBmp_45 = function() {
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(5);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_29 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(6);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_28 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(7);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_27 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(8);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_26 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(9);
 }).prototype = p = new cjs.Sprite();
 
@@ -159,7 +159,7 @@ lib.ssMetadata = [
 
 
 (lib.CachedBmp_23 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(10);
 }).prototype = p = new cjs.Sprite();
 
@@ -173,7 +173,7 @@ lib.ssMetadata = [
 
 
 (lib.CachedBmp_21 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(11);
 }).prototype = p = new cjs.Sprite();
 
@@ -187,49 +187,49 @@ lib.ssMetadata = [
 
 
 (lib.CachedBmp_19 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(12);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_18 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(13);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.CachedBmp_17 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+(lib.CachedBmp_44 = function() {
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(14);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_16 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(15);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_15 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(16);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_14 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(17);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_13 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(18);
 }).prototype = p = new cjs.Sprite();
 
@@ -264,49 +264,49 @@ lib.ssMetadata = [
 
 
 (lib.CachedBmp_8 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(19);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_7 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(20);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_32 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(21);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_5 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(22);
 }).prototype = p = new cjs.Sprite();
 
 
 
-(lib.CachedBmp_4 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+(lib.CachedBmp_43 = function() {
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(23);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_3 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(24);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.CachedBmp_2 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(25);
 }).prototype = p = new cjs.Sprite();
 
@@ -320,112 +320,112 @@ lib.ssMetadata = [
 
 
 (lib.Image15 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(26);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.Image15_1 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(27);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.Image16 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(28);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.Image16_1 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(29);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.BMP_1aeea946_357d_4868_baa8_ea2c26c2ff86 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(30);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.BMP_4480a84b_8363_4d57_b140_eefae2be5929 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(31);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.BMP_520d8efc_2092_42c2_85bb_c828215ed6c0 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(32);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.BMP_607c6570_e599_4091_8ea3_9cecdb0a0b82 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(33);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.BMP_7d4baf89_0d0e_4beb_a629_7f75cd3cab53 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(34);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.BMP_9ad057f3_ed82_4f8b_a8f2_cf5f6c2531af = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(35);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.explosion01 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(36);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.explosion02 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(37);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.explosion03 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(38);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.explosion04 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(39);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.explosion05 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(40);
 }).prototype = p = new cjs.Sprite();
 
 
 
 (lib.explosion06 = function() {
-	this.initialize(ss["PoursuiteMafieuse_atlas_6"]);
+	this.initialize(ss["PoursuiteMafieuse_atlas_2"]);
 	this.gotoAndStop(41);
 }).prototype = p = new cjs.Sprite();
 // helper functions:
@@ -488,7 +488,7 @@ if (reversed == null) { reversed = false; }
 	cjs.MovieClip.apply(this,[props]);
 
 	// Fin_perdu
-	this.instance = new lib.CachedBmp_39();
+	this.instance = new lib.CachedBmp_46();
 	this.instance.setTransform(0,0,0.5,0.5);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
@@ -511,7 +511,7 @@ if (reversed == null) { reversed = false; }
 	cjs.MovieClip.apply(this,[props]);
 
 	// Fin_gagne
-	this.instance = new lib.CachedBmp_40();
+	this.instance = new lib.CachedBmp_47();
 	this.instance.setTransform(0,0,0.5,0.5);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
@@ -1170,7 +1170,7 @@ if (reversed == null) { reversed = false; }
 	cjs.MovieClip.apply(this,[props]);
 
 	// Flat
-	this.instance = new lib.CachedBmp_17();
+	this.instance = new lib.CachedBmp_44();
 	this.instance.setTransform(-0.15,0,0.5,0.5);
 
 	this.instance_1 = new lib.Path_3();
@@ -1245,7 +1245,7 @@ if (reversed == null) { reversed = false; }
 	this.instance_8.setTransform(437.5,595.3,1,1,0,0,0,6.6,4.1);
 	this.instance_8.alpha = 0.2109;
 
-	this.instance_9 = new lib.CachedBmp_30();
+	this.instance_9 = new lib.CachedBmp_45();
 	this.instance_9.setTransform(394.7,584.25,0.5,0.5);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance_9},{t:this.instance_8},{t:this.instance_7},{t:this.instance_6},{t:this.instance_5},{t:this.instance_4}]}).wait(1));
@@ -1385,7 +1385,7 @@ if (reversed == null) { reversed = false; }
 	this.instance_4.setTransform(42.75,12.15,1,1,0,0,0,6.6,4.1);
 	this.instance_4.alpha = 0.2109;
 
-	this.instance_5 = new lib.CachedBmp_4();
+	this.instance_5 = new lib.CachedBmp_43();
 	this.instance_5.setTransform(0,1.1,0.5,0.5);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance_5},{t:this.instance_4},{t:this.instance_3},{t:this.instance_2},{t:this.instance_1},{t:this.instance}]}).wait(1));
@@ -2037,20 +2037,20 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/PoursuiteMafieuse_atlas_1.png?1716231250717", id:"PoursuiteMafieuse_atlas_1"},
-		{src:"images/PoursuiteMafieuse_atlas_2.png?1716231250717", id:"PoursuiteMafieuse_atlas_2"},
-		{src:"images/PoursuiteMafieuse_atlas_3.png?1716231250717", id:"PoursuiteMafieuse_atlas_3"},
-		{src:"images/PoursuiteMafieuse_atlas_4.png?1716231250717", id:"PoursuiteMafieuse_atlas_4"},
-		{src:"images/PoursuiteMafieuse_atlas_5.png?1716231250717", id:"PoursuiteMafieuse_atlas_5"},
-		{src:"images/PoursuiteMafieuse_atlas_6.png?1716231250718", id:"PoursuiteMafieuse_atlas_6"},
-		{src:"audio/explosion.mp3?1716231250820", id:"explosion"},
-		{src:"audio/explosion_dynamite.mp3?1716231250820", id:"explosion_dynamite"},
-		{src:"audio/collision.mp3?1716231250820", id:"collision"},
-		{src:"audio/missile0.mp3?1716231250820", id:"missile0"},
-		{src:"audio/missile1.mp3?1716231250820", id:"missile1"},
-		{src:"audio/musique_n1.mp3?1716231250820", id:"musique_n1"},
-		{src:"audio/musique_n2_in.mp3?1716231250820", id:"musique_n2_in"},
-		{src:"audio/musique_n2_loop.mp3?1716231250820", id:"musique_n2_loop"}
+		{src:"images/PoursuiteMafieuse_atlas_1.png?1716232559467", id:"PoursuiteMafieuse_atlas_1"},
+		{src:"images/PoursuiteMafieuse_atlas_2.png?1716232559467", id:"PoursuiteMafieuse_atlas_2"},
+		{src:"images/PoursuiteMafieuse_atlas_3.png?1716232559468", id:"PoursuiteMafieuse_atlas_3"},
+		{src:"images/PoursuiteMafieuse_atlas_4.png?1716232559468", id:"PoursuiteMafieuse_atlas_4"},
+		{src:"images/PoursuiteMafieuse_atlas_5.png?1716232559468", id:"PoursuiteMafieuse_atlas_5"},
+		{src:"images/PoursuiteMafieuse_atlas_6.png?1716232559468", id:"PoursuiteMafieuse_atlas_6"},
+		{src:"audio/explosion.mp3?1716232559557", id:"explosion"},
+		{src:"audio/explosion_dynamite.mp3?1716232559557", id:"explosion_dynamite"},
+		{src:"audio/collision.mp3?1716232559557", id:"collision"},
+		{src:"audio/missile0.mp3?1716232559557", id:"missile0"},
+		{src:"audio/missile1.mp3?1716232559557", id:"missile1"},
+		{src:"audio/musique_n1.mp3?1716232559557", id:"musique_n1"},
+		{src:"audio/musique_n2_in.mp3?1716232559557", id:"musique_n2_in"},
+		{src:"audio/musique_n2_loop.mp3?1716232559557", id:"musique_n2_loop"}
 	],
 	preloads: []
 };
