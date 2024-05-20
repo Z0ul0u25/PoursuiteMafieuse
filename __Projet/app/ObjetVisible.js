@@ -38,6 +38,7 @@ define(["require", "exports"], function (require, exports) {
             this.x = null;
             this.y = null;
             this.name = null;
+            this.removeAllEventListeners();
             this.refStage.removeChild(this);
         };
         ObjetVisible.refJeu = null;

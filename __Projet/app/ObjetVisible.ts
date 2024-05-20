@@ -26,6 +26,7 @@ export abstract class ObjetVisible extends createjs.MovieClip {
 		this.x = null;
 		this.y = null;
 		this.name = null;
+		this.removeAllEventListeners();
 		this.refStage.removeChild(this);
 	}
 }
