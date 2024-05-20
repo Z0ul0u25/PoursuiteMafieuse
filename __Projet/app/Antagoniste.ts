@@ -34,7 +34,6 @@ export abstract class Antagoniste extends Voiture {
 	}
 
 	public destructeur(): void {
-		this.removeAllEventListeners();
 		super.destructeur();
 	}
 }

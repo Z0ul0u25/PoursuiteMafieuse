@@ -39,7 +39,6 @@ define(["require", "exports", "./Dynamite", "./Voiture", "./ObjetVisible"], func
             this.addEventListener("tick", this.sortiDecran.bind(this), false);
         };
         Antagoniste.prototype.destructeur = function () {
-            this.removeAllEventListeners();
             _super.prototype.destructeur.call(this);
         };
         return Antagoniste;
