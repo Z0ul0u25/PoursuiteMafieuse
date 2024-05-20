@@ -161,7 +161,7 @@ define(["require", "exports", "./Explosion", "./ObjetVisible", "./Voiture"], fun
             tDynamite.forEach(function (dynamite) {
                 var point = dynamite.parent.localToLocal(dynamite.x, dynamite.y, _this);
                 if (_this.hitTest(point.x, point.y)) {
-                    new Explosion_1.Explosion(dynamite.x, dynamite.y);
+                    new Explosion_1.Explosion(dynamite.x, dynamite.y, true);
                     _this.jmeSuisFaitToucherPisCaFaitMal(1);
                     dynamite.y = 1000;
                     ObjetVisible_1.ObjetVisible.refJeu.detruireDynamite(dynamite, true);
@@ -172,13 +172,12 @@ define(["require", "exports", "./Explosion", "./ObjetVisible", "./Voiture"], fun
             _super.prototype.jmeSuisFaitToucherPisCaFaitMal.call(this, degreDeViolenceRecu);
             this.refAfficheurVie.maj(this.pointVie);
             if (this.pointVie <= 0) {
-                ObjetVisible_1.ObjetVisible.refJeu.finDuJeu();
+                ObjetVisible_1.ObjetVisible.refJeu.finDuJeuPerdu();
                 this.removeAllEventListeners();
                 window.onkeydown = null;
                 window.onkeyup = null;
                 clearInterval(this.minuterieBouger);
                 this.minuterieBouger = null;
-                setTimeout(ObjetVisible_1.ObjetVisible.refJeu.afficherMenu.bind(ObjetVisible_1.ObjetVisible.refJeu), 2000, "perdu");
             }
         };
         Ricardo.prototype.getPos = function () {

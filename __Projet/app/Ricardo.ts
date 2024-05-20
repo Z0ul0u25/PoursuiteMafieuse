@@ -170,7 +170,7 @@ export class Ricardo extends Voiture {
 		tDynamite.forEach(dynamite => {
 			let point: createjs.Point = dynamite.parent.localToLocal(dynamite.x, dynamite.y, this);
 			if (this.hitTest(point.x, point.y)) {
-				new Explosion(dynamite.x, dynamite.y);
+				new Explosion(dynamite.x, dynamite.y, true);
 				this.jmeSuisFaitToucherPisCaFaitMal(1);
 				dynamite.y = 1000;
 				ObjetVisible.refJeu.detruireDynamite(dynamite, true);
@@ -182,13 +182,12 @@ export class Ricardo extends Voiture {
 		super.jmeSuisFaitToucherPisCaFaitMal(degreDeViolenceRecu);
 		this.refAfficheurVie.maj(this.pointVie);
 		if (this.pointVie <= 0) {
-			ObjetVisible.refJeu.finDuJeu();
+			ObjetVisible.refJeu.finDuJeuPerdu();
 			this.removeAllEventListeners();
 			window.onkeydown = null;
 			window.onkeyup = null;
 			clearInterval(this.minuterieBouger);
 			this.minuterieBouger = null;
-			setTimeout(ObjetVisible.refJeu.afficherMenu.bind(ObjetVisible.refJeu), 2000, "perdu");
 		}
 	}
 

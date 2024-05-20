@@ -25,6 +25,7 @@ export class Jeu {
 	private tDynamite: Dynamite[] = [];
 	private missile: Missile = null;
 	private tminDynamite: number[] = [];
+	private pauseMinuteurDynmite: Boolean = null;
 
 	public musique: createjs.Sound = null;
 
@@ -45,9 +46,9 @@ export class Jeu {
 			this.ricardo.destructeur();
 			this.afficheurVie.destructeur();
 			this.afficheurPts.destructeur();
-			this.tAntagoniste.forEach(antagoniste => {
-				antagoniste.destructeur();
-			});
+			while (this.tAntagoniste.length != 0) {
+				this.tAntagoniste.pop().destructeur();
+			}
 		}
 		this.rue = new Rue();
 		this.afficheurVie = new AfficheurVie();
@@ -60,6 +61,8 @@ export class Jeu {
 		for (let i = 0; i < this.tAntagoniste.length; i++) {
 			this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random() * 200) + 1000 + i * 200, this.tAntagoniste[i]));
 		}
+
+		this.pauseMinuteurDynmite = false;
 
 		this.afficheurPts = new AfficheurPts();
 		this.refScene.addChild(this.afficheurPts);
@@ -85,21 +88,24 @@ export class Jeu {
 		if (this.menu == null) {
 			this.menu = new Menu();
 		} else {
+			this.menu.setVisibilite(true);
 			this.refScene.swapChildren(this.menu, this.refScene.children[this.refScene.children.length - 3]);
 			this.refScene.swapChildren(this.menu.getRefBouton(), this.refScene.children[this.refScene.children.length - 1])
-			this.menu.setVisibilite(true);
 			this.menu.gotoAndStop(etat);
 		}
+
 		if (etat == "gagne") {
 			this.afficheurPts.x = 400;
 			this.afficheurPts.y = 500;
 			this.refScene.swapChildren(this.afficheurPts, this.refScene.children[this.refScene.children.length - 2]);
+		} else{
+			this.refScene.swapChildren(this.afficheurPts, this.refScene.children[this.refScene.children.length - 3]);
 		}
 	}
 
 
 	private gestionDynamite(antagoniste: Antagoniste, deltaX: number = 0, deltaY: number = 0): void {
-		if (this.refScene.tickEnabled) {
+		if (this.refScene.tickEnabled && !this.pauseMinuteurDynmite) {
 			// Ajout de la dynamite
 			this.tDynamite.push(antagoniste.lanceDynamite(deltaX, deltaY));
 			const nouvelleDynamite: Dynamite = this.tDynamite[this.tDynamite.length - 1];
@@ -132,6 +138,16 @@ export class Jeu {
 		this.tDynamite.splice(this.tDynamite.indexOf(dynamite), 1);
 	}
 
+	public alternerPauseMinuteurDynamite():void{
+		this.pauseMinuteurDynmite = !this.pauseMinuteurDynmite;
+	}
+
+	public cacherPts():void{
+		if (this.afficheurPts != null){
+			this.afficheurPts.x = 1200;
+		}
+	}
+
 	public gestionMissile(posX: number = -1, posY: number = -1): Boolean {
 		if (posX != -1) {
 			if (this.missile == null) {
@@ -142,7 +158,7 @@ export class Jeu {
 				this.tAntagoniste.forEach(antagoniste => {
 					let point: createjs.Point = this.missile.parent.localToLocal(this.missile.x, this.missile.y, antagoniste);
 					if (antagoniste.hitTest(point.x, point.y)) {
-						new Explosion(this.missile.x, this.missile.y);
+						new Explosion(this.missile.x, this.missile.y, false);
 						antagoniste.jmeSuisFaitToucherPisCaFaitMal(1);
 						touche = true;
 					}
@@ -160,9 +176,10 @@ export class Jeu {
 		return this.missile == null;
 	}
 
-	public finDuJeu(): void {
-		for (let i = 0; i < this.tminDynamite.length; i++) {
-			clearInterval(this.tminDynamite[i]);
+	public finDuJeuPerdu(): void {
+
+		while (this.tminDynamite.length != 0) {
+			clearInterval(this.tminDynamite.pop());
 		}
 
 		this.rue.arreterDefilement();
@@ -170,6 +187,13 @@ export class Jeu {
 		for (let i = 0; i < this.tAntagoniste.length; i++) {
 			this.tAntagoniste[i].departDeFin();
 		}
+
+		setTimeout(this.afficherMenu.bind(this), 2000, "perdu");
+	}
+
+	public finDuJeuGagne():void{
+		this.afficherMenu("gagne");
+		this.ricardo.destructeur();
 	}
 
 	public detruireAntagoniste(unAntagoniste: Antagoniste): void {
@@ -183,7 +207,9 @@ export class Jeu {
 			}
 			this.tminDynamite = [];
 			if (this.ricardo.getVie() > 0) {
-				this.afficherMenu("gagne");
+				this.finDuJeuGagne();
+			}else{
+				this.finDuJeuPerdu();
 			}
 		}
 

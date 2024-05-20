@@ -43,6 +43,7 @@ define(["require", "exports", "./ObjetVisible", "./Bouton"], function (require, 
             if (this.currentFrame != 1) {
                 this.gotoAndStop(1);
                 this.bouton.setLabel(1);
+                ObjetVisible_1.ObjetVisible.refJeu.cacherPts();
             }
             else {
                 this.visible = false;

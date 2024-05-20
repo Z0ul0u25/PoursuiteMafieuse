@@ -14,6 +14,7 @@ define(["require", "exports", "./Rue", "./Menu", "./Boss", "./Maki", "./Wasabi",
             this.tDynamite = [];
             this.missile = null;
             this.tminDynamite = [];
+            this.pauseMinuteurDynmite = null;
             this.musique = null;
             this._gestionMissile = this.gestionMissile.bind(this);
             ObjetVisible_1.ObjetVisible.refJeu = this;
@@ -27,9 +28,9 @@ define(["require", "exports", "./Rue", "./Menu", "./Boss", "./Maki", "./Wasabi",
                 this.ricardo.destructeur();
                 this.afficheurVie.destructeur();
                 this.afficheurPts.destructeur();
-                this.tAntagoniste.forEach(function (antagoniste) {
-                    antagoniste.destructeur();
-                });
+                while (this.tAntagoniste.length != 0) {
+                    this.tAntagoniste.pop().destructeur();
+                }
             }
             this.rue = new Rue_1.Rue();
             this.afficheurVie = new AfficheurVie_1.AfficheurVie();
@@ -39,6 +40,7 @@ define(["require", "exports", "./Rue", "./Menu", "./Boss", "./Maki", "./Wasabi",
             for (var i = 0; i < this.tAntagoniste.length; i++) {
                 this.tminDynamite.push(window.setInterval(this.gestionDynamite.bind(this), Math.floor(Math.random() * 200) + 1000 + i * 200, this.tAntagoniste[i]));
             }
+            this.pauseMinuteurDynmite = false;
             this.afficheurPts = new AfficheurPts_1.AfficheurPts();
             this.refScene.addChild(this.afficheurPts);
             this.musique = createjs.Sound.play("musique_n1", { interrupt: createjs.Sound.INTERRUPT_ANY, loop: -1, volume: 0.5 });
@@ -60,9 +62,9 @@ define(["require", "exports", "./Rue", "./Menu", "./Boss", "./Maki", "./Wasabi",
                 this.menu = new Menu_1.Menu();
             }
             else {
+                this.menu.setVisibilite(true);
                 this.refScene.swapChildren(this.menu, this.refScene.children[this.refScene.children.length - 3]);
                 this.refScene.swapChildren(this.menu.getRefBouton(), this.refScene.children[this.refScene.children.length - 1]);
-                this.menu.setVisibilite(true);
                 this.menu.gotoAndStop(etat);
             }
             if (etat == "gagne") {
@@ -70,12 +72,15 @@ define(["require", "exports", "./Rue", "./Menu", "./Boss", "./Maki", "./Wasabi",
                 this.afficheurPts.y = 500;
                 this.refScene.swapChildren(this.afficheurPts, this.refScene.children[this.refScene.children.length - 2]);
             }
+            else {
+                this.refScene.swapChildren(this.afficheurPts, this.refScene.children[this.refScene.children.length - 3]);
+            }
         };
         Jeu.prototype.gestionDynamite = function (antagoniste, deltaX, deltaY) {
             var _this = this;
             if (deltaX === void 0) { deltaX = 0; }
             if (deltaY === void 0) { deltaY = 0; }
-            if (this.refScene.tickEnabled) {
+            if (this.refScene.tickEnabled && !this.pauseMinuteurDynmite) {
                 // Ajout de la dynamite
                 this.tDynamite.push(antagoniste.lanceDynamite(deltaX, deltaY));
                 var nouvelleDynamite = this.tDynamite[this.tDynamite.length - 1];
@@ -98,6 +103,14 @@ define(["require", "exports", "./Rue", "./Menu", "./Boss", "./Maki", "./Wasabi",
             dynamite.destructeur();
             this.tDynamite.splice(this.tDynamite.indexOf(dynamite), 1);
         };
+        Jeu.prototype.alternerPauseMinuteurDynamite = function () {
+            this.pauseMinuteurDynmite = !this.pauseMinuteurDynmite;
+        };
+        Jeu.prototype.cacherPts = function () {
+            if (this.afficheurPts != null) {
+                this.afficheurPts.x = 1200;
+            }
+        };
         Jeu.prototype.gestionMissile = function (posX, posY) {
             var _this = this;
             if (posX === void 0) { posX = -1; }
@@ -112,7 +125,7 @@ define(["require", "exports", "./Rue", "./Menu", "./Boss", "./Maki", "./Wasabi",
                     this.tAntagoniste.forEach(function (antagoniste) {
                         var point = _this.missile.parent.localToLocal(_this.missile.x, _this.missile.y, antagoniste);
                         if (antagoniste.hitTest(point.x, point.y)) {
-                            new Explosion_1.Explosion(_this.missile.x, _this.missile.y);
+                            new Explosion_1.Explosion(_this.missile.x, _this.missile.y, false);
                             antagoniste.jmeSuisFaitToucherPisCaFaitMal(1);
                             touche_1 = true;
                         }
@@ -127,14 +140,19 @@ define(["require", "exports", "./Rue", "./Menu", "./Boss", "./Maki", "./Wasabi",
             }
             return this.missile == null;
         };
-        Jeu.prototype.finDuJeu = function () {
-            for (var i = 0; i < this.tminDynamite.length; i++) {
-                clearInterval(this.tminDynamite[i]);
+        Jeu.prototype.finDuJeuPerdu = function () {
+            while (this.tminDynamite.length != 0) {
+                clearInterval(this.tminDynamite.pop());
             }
             this.rue.arreterDefilement();
             for (var i = 0; i < this.tAntagoniste.length; i++) {
                 this.tAntagoniste[i].departDeFin();
             }
+            setTimeout(this.afficherMenu.bind(this), 2000, "perdu");
+        };
+        Jeu.prototype.finDuJeuGagne = function () {
+            this.afficherMenu("gagne");
+            this.ricardo.destructeur();
         };
         Jeu.prototype.detruireAntagoniste = function (unAntagoniste) {
             var isBoss = unAntagoniste.name == "Boss";
@@ -148,7 +166,10 @@ define(["require", "exports", "./Rue", "./Menu", "./Boss", "./Maki", "./Wasabi",
                 }
                 this.tminDynamite = [];
                 if (this.ricardo.getVie() > 0) {
-                    this.afficherMenu("gagne");
+                    this.finDuJeuGagne();
+                }
+                else {
+                    this.finDuJeuPerdu();
                 }
             }
             this.tAntagoniste.splice(this.tAntagoniste.indexOf(unAntagoniste), 1);
