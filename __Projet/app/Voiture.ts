@@ -23,6 +23,9 @@ export abstract class Voiture extends ObjetVisible{
 		this.pointVie -= degreDeViolenceRecu;
 		if (this.pointVie <= 0) {
 			this.gotoAndPlay("mort");
+			if (this.name != "Ricardo" && this.name != "Boss"){
+				this.alpha = 0.5;
+			}
 			this.vitesseY = 20;
 			this.vitesseX = 0;
 		}
