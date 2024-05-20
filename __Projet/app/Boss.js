@@ -23,6 +23,7 @@ define(["require", "exports", "./Antagoniste", "./ObjetVisible"], function (requ
             var _this = _super.call(this, posX, posY) || this;
             _this.sens = 1;
             _this.etat = "entree";
+            _this.siTestCollisionActif = false;
             _this.refRicardo = refRicardo;
             _this.name = "Boss";
             _this.pointVie = 6;
@@ -44,6 +45,30 @@ define(["require", "exports", "./Antagoniste", "./ObjetVisible"], function (requ
                         this.vitesseY = 0;
                     }
                     break;
+                case "freine":
+                    if (this.y < 600) {
+                        if (this.vitesseY < this.vitesseMax * 2) {
+                            this.vitesseY += this.accelDelta * 2;
+                        }
+                    }
+                    else {
+                        this.etat = "accel";
+                    }
+                    break;
+                case "accel":
+                    if (this.y > 250) {
+                        if (this.vitesseY > -this.vitesseMax * 2) {
+                            this.vitesseY -= this.accelDelta * 1.4;
+                        }
+                    }
+                    else {
+                        this.etat = "defaut";
+                        this.play();
+                        ObjetVisible_1.ObjetVisible.refJeu.alternerPauseMinuteurDynamite();
+                    }
+                    break;
+                case "mort":
+                // géré dans le parent voiture.ts
                 default:
                     if (this.pointVie > 0) {
                         if (this.x < this.refRicardo.x - 42 && this.vitesseX < this.vitesseMax) {
@@ -57,10 +82,23 @@ define(["require", "exports", "./Antagoniste", "./ObjetVisible"], function (requ
                             if (this.vitesseX < this.accelDelta && this.vitesseX > this.accelDelta * -1) {
                                 this.vitesseX = 0;
                                 var ram = Math.random();
-                                console.log(ram > 0.9);
-                                if (ram > 0.9) {
-                                    console.log("time to ram");
+                                // Chance de Ram par tic
+                                if (ram > 0.2) {
+                                    this.etat = "freine";
+                                    ObjetVisible_1.ObjetVisible.refJeu.alternerPauseMinuteurDynamite();
+                                    this.stop();
+                                    this.vitesseX = 0;
+                                    if (!this.siTestCollisionActif) {
+                                        this.siTestCollisionActif = true;
+                                        this.addEventListener("tick", this.testCollisionRicardo.bind(this), false);
+                                    }
                                 }
+                            }
+                        }
+                        if (this.vitesseY < 0) {
+                            this.vitesseY += this.accelDelta * 3;
+                            if (this.vitesseY >= 0) {
+                                this.vitesseY = 0;
                             }
                         }
                     }
@@ -72,6 +110,22 @@ define(["require", "exports", "./Antagoniste", "./ObjetVisible"], function (requ
             if (this.y > window.lib.properties.height + 128) {
                 ObjetVisible_1.ObjetVisible.refJeu.detruireAntagoniste(this);
             }
+            if (this.pointVie <= 0) {
+                this.etat = "mort";
+                this.removeEventListener("tick", this.testCollisionRicardo.bind(this));
+                this.siTestCollisionActif = false;
+            }
+        };
+        Boss.prototype.testCollisionRicardo = function () {
+            if (this.siTestCollisionActif && this.getTransformedBounds().intersects(this.refRicardo.getTransformedBounds())) {
+                this.removeEventListener("tick", this.testCollisionRicardo.bind(this));
+                this.siTestCollisionActif = false;
+                this.vitesseY = 0;
+                this.etat = "accel";
+                this.refRicardo.jmeSuisFaitToucherPisCaFaitMal(0.5);
+                createjs.Sound.play("collision", { interrupt: createjs.Sound.INTERRUPT_ANY, loop: 0, volume: 0.7 });
+            }
+            // return this.getBounds().intersects(this.refRicardo.getBounds());
         };
         Boss.prototype.dessiner = function () {
             window.lib.ClipBoss.call(this);
