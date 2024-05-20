@@ -19,13 +19,14 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
     exports.Explosion = void 0;
     var Explosion = /** @class */ (function (_super) {
         __extends(Explosion, _super);
-        function Explosion(posX, posY) {
+        function Explosion(posX, posY, estDynamite) {
             var _this = _super.call(this, posX, posY) || this;
             _this.timeout = null;
             _this.scale = 2;
             // autodestruction après animation;
             _this.timeout = setTimeout(_this.destructeur.bind(_this), 1000 / 30 * 15);
-            createjs.Sound.play("explosion");
+            var type = (estDynamite ? "explosion_dynamite" : "explosion");
+            createjs.Sound.play(type);
             return _this;
         }
         Explosion.prototype.dessiner = function () {

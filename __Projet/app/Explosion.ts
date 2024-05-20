@@ -2,12 +2,14 @@ import { ObjetVisible } from "./ObjetVisible";
 
 export class Explosion extends ObjetVisible {
 	timeout: number = null;
-	constructor(posX: number, posY: number) {
+	constructor(posX: number, posY: number, estDynamite:boolean) {
 		super(posX, posY);
 		this.scale = 2;
 		// autodestruction après animation;
 		this.timeout = setTimeout(this.destructeur.bind(this), 1000 / 30 * 15);
-		createjs.Sound.play("explosion");
+
+		let type:string = (estDynamite?"explosion_dynamite":"explosion");
+		createjs.Sound.play(type);
 	}
 
 	protected dessiner(): void {
