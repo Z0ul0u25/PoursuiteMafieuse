@@ -1,0 +1,648 @@
+<svg version="1.1" baseProfile="full" width="2238.5" height="1727.0" viewbox="0 0 2238.5 1727" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+<desc >#.interface: fill=lightblue
+#.enumeration: fill=lightgreen
+#.type: fill=lightgray
+[AfficheurPts|+fond: Shape|+majPointage(): void;+destructeur(): void]
+[Text]&lt;:-[AfficheurPts]
+[AfficheurVie||\#dessiner(): void;+maj(): void;+destructeur(): void]
+[ObjetVisible]&lt;:-[AfficheurVie]
+[Antagoniste|\#accelDelta: number;\#vitesseMax: number;\#vitesseX: number;\#vitesseY: number;\#rotationRatio: number;\#zoneLimite: number\[\];-_faireBouger: any|\#abstract faireBouger(): void;+lanceDynamite(): Dynamite;-sortiDecran(): void;+departDeFin(): void;+destructeur(): void]
+[Voiture]&lt;:-[Antagoniste]
+[App|-scene: Stage;-jeu: Jeu|+initialiser(): void;-tickFocus(): void]
+[App]  -  [Jeu]
+[Boss|\#pointVie: number;-refRicardo: Ricardo;-sens: number;-etat: string;-siTestCollisionActif: boolean|\#faireBouger(): void;-testCollisionRicardo(): void;\#dessiner(): void;+destructeur(): void]
+[Antagoniste]&lt;:-[Boss]
+[Boss]  -  [Ricardo]
+[Bouton|-label: string\[\]|\#dessiner(): void;+setLabel(): void;+destructeur(): void]
+[ObjetVisible]&lt;:-[Bouton]
+[Dynamite||\#dessiner(): void;-bouger(): void;+destructeur(): void]
+[ObjetVisible]&lt;:-[Dynamite]
+[Explosion|+timeout: number|\#dessiner(): void;+destructeur(): void]
+[ObjetVisible]&lt;:-[Explosion]
+[Jeu|-refScene: Stage;-rue: Rue;-menu: Menu;-afficheurVie: AfficheurVie;-afficheurPts: AfficheurPts;-ricardo: Ricardo;-tAntagoniste: Antagoniste\[\];-tDynamite: Dynamite\[\];-missile: Missile;-tminDynamite: number\[\];-pauseMinuteurDynmite: Boolean;+musique: Sound;-_gestionMissile: any|+debuter(): void;-chargementNiveau2(): void;-debuterNiveau2(): void;+afficherMenu(): void;-gestionDynamite(): void;+detruireDynamite(): void;+alternerPauseMinuteurDynamite(): void;+cacherPts(): void;+gestionMissile(): Boolean;+finDuJeuPerdu(): void;+finDuJeuGagne(): void;+detruireAntagoniste(): void;+getDynamites(): Dynamite\[\];+getScene(): Stage]
+[Jeu]  -  [Rue]
+[Jeu]  -  [Menu]
+[Jeu]  -  [AfficheurVie]
+[Jeu]  -  [AfficheurPts]
+[Jeu]  -  [Ricardo]
+[Jeu]  - 0..* [Antagoniste]
+[Jeu]  - 0..* [Dynamite]
+[Jeu]  -  [Missile]
+[Maki|\#pointVie: number|\#faireBouger(): void;\#dessiner(): void;+destructeur(): void]
+[Antagoniste]&lt;:-[Maki]
+[Menu|-bouton: Bouton|\#dessiner(): void;+pageSuivante(): void;-chargementFini(): void;-chargementErreur(): void;+setVisibilite(): void;+getRefBouton(): Bouton;+destructeur(): void]
+[ObjetVisible]&lt;:-[Menu]
+[Menu]  -  [Bouton]
+[Missile|+vitesse: number|\#dessiner(): void;-bouger(): void;+destructeur(): void]
+[ObjetVisible]&lt;:-[Missile]
+[ObjetVisible|-refStage: Stage;+static refJeu: Jeu|\#abstract dessiner(): void;+retournerMonClip(): MovieClip;+destructeur(): void]
+[MovieClip]&lt;:-[ObjetVisible]
+[ObjetVisible]  -  [Jeu]
+[Ricardo|\#accelDelta: number;\#vitesseMax: number;\#rotationRatio: number;\#zoneLimite: number\[\];\#pointVie: number;-refAfficheurVie: any;-minuterieBouger: number;-touchesEnfoncees: boolean\[\];-timeoutMissile: any;-_activerTouche: any;-_desactiverTouche: any;-_faireBouger: any|\#dessiner(): void;-activerTouche(): void;-desactiverTouche(): void;\#faireBouger(): void;-apparitionMissile(): void;-collisionDynamite(): void;+jmeSuisFaitToucherPisCaFaitMal(): void;+getPos(): Point;+getVie(): number;+destructeur(): void]
+[Voiture]&lt;:-[Ricardo]
+[Rue|-_defilement: any|\#dessiner(): void;+arreterDefilement(): void;-defilement(): void;+destructeur(): void]
+[ObjetVisible]&lt;:-[Rue]
+[Voiture|\#abstract accelDelta: number;\#abstract vitesseMax: number;\#vitesseX: number;\#vitesseY: number;\#abstract rotationRatio: number;\#abstract zoneLimite: number\[\];\#abstract pointVie: number|\#abstract faireBouger(): void;+jmeSuisFaitToucherPisCaFaitMal(): void;+destructeur(): void]
+[ObjetVisible]&lt;:-[Voiture]
+[Wasabi|\#pointVie: number;-sens: number|\#dessiner(): void;\#faireBouger(): void;+destructeur(): void]
+[Antagoniste]&lt;:-[Wasabi]</desc>
+<g stroke-width="1.0" text-align="left" font="12pt Helvetica, Arial, sans-serif" font-size="12pt" font-family="Helvetica" font-weight="normal" font-style="normal">
+<g font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round" stroke="#33322E">
+<g stroke="transparent" fill="transparent">
+<rect x="0.0" y="0.0" height="1727.0" width="2238.5" stroke="none"></rect>
+</g>
+<g transform="translate(8, 8)" fill="#33322E">
+<g transform="translate(20, 20)" fill="#eee8d5" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal">
+<path d="M69.5 511.8 L69.5 737 L81.86749116607774 824.5 L81.9 824.5 " fill="none"></path>
+<path d="M74.8 511.8 L69.5 511.8 L64.2 511.8 L69.5 498.5 Z"></path>
+<path d="M805.8 157.5 L217 229 L217 483 L217 483 L217 737 L217 737 L273.5812720848057 828.5 L273.6 828.5 " fill="none"></path>
+<path d="M806.4 162.8 L805.8 157.5 L805.1 152.2 L819.0 155.9 Z"></path>
+<path d="M1792.0 600.3 L1693.25 737 L1707.8436395759718 757 L1707.8 757.0 " fill="none"></path>
+<path d="M1796.3 603.4 L1792.0 600.3 L1787.7 597.2 L1799.8 589.5 Z"></path>
+<path d="M1223.0 198.3 L1183 229 L1184.5748031496064 249 L1184.6 249.0 " fill="none"></path>
+<path d="M1662.2 891.1 L286.25 1020 L286.25 1040 L286.3 1040.0 " fill="none"></path>
+<path d="M1662.7 896.4 L1662.2 891.1 L1661.7 885.8 L1675.5 889.8 Z"></path>
+<path d="M286.3 1238.0 L286.25 1258 L1842.5 1453.1792179580013 L1842.5 1453.2 " fill="none"></path>
+<path d="M805.9 164.7 L430 229 L430 483 L430 483 L430 737 L430 737 L430 878.5 L430 878.5 L430 1020 L430 1020 L814.75 1117.3636363636363 L814.8 1117.4 " fill="none"></path>
+<path d="M806.8 169.9 L805.9 164.7 L805.0 159.4 L819.0 162.4 Z"></path>
+<path d="M806.3 187.5 L681 229 L681 483 L681 483 L681 737 L681 737 L693.9328621908127 828.5 L693.9 828.5 " fill="none"></path>
+<path d="M808.0 192.6 L806.3 187.5 L804.7 182.5 L819.0 183.3 Z"></path>
+<path d="M806.0 172.5 L555.5 229 L555.5 429 L555.5 429.0 " fill="none"></path>
+<path d="M807.2 177.7 L806.0 172.5 L804.8 167.3 L819.0 169.6 Z"></path>
+<path d="M1035.5 599.6 L838.25 737 L888.077738515901 809.5 L888.1 809.5 " fill="none"></path>
+<path d="M1203.0 717.0 L1203 737 L1236.922261484099 787 L1236.9 787.0 " fill="none"></path>
+<path d="M1035.5 532.7 L347.25 737 L319.6060070671378 828.5 L319.6 828.5 " fill="none"></path>
+<path d="M1035.5 524.5 L177 737 L122.89222614840989 824.5 L122.9 824.5 " fill="none"></path>
+<path d="M1370.5 528.6 L2136 737 L2136 878.5 L2136 878.5 L2136 1020 L2136 1020 L2136 1139 L2136 1139 L2136 1258 L2136 1258 L2124.5912240184757 1278 L2124.6 1278.0 " fill="none"></path>
+<text x="1925.5" y="756.2" stroke="none">0..*</text>
+<path d="M1370.5 540.2 L1946.25 737 L1917.5 764.1661101836394 L1917.5 764.2 " fill="none"></path>
+<text x="700.4" y="820.5" stroke="none">0..*</text>
+<path d="M1035.5 588.1 L798.25 737 L735.3639575971731 828.5 L735.4 828.5 " fill="none"></path>
+<path d="M1370.5 654.9 L1450.5 737 L1504.7756183745582 817 L1504.8 817.0 " fill="none"></path>
+<path d="M1796.5 1013.3 L1796.5 1020 L1796.5 1077.5 L1796.5 1077.5 " fill="none"></path>
+<path d="M1801.8 1013.3 L1796.5 1013.3 L1791.2 1013.3 L1796.5 1000.0 Z"></path>
+<path d="M1094.1 167.8 L1410.5 229 L1410.5 483 L1410.5 483 L1410.5 737 L1410.5 737 L1371.100706713781 787 L1371.1 787.0 " fill="none"></path>
+<path d="M1095.1 162.6 L1094.1 167.8 L1093.1 173.1 L1081.0 165.3 Z"></path>
+<path d="M1299.0 970.0 L1299 1020 L985.75 1113.484012539185 L985.8 1113.5 " fill="none"></path>
+<path d="M1094.2 160.8 L1568.25 229 L1568.25 483 L1568.25 483 L1568.25 737 L1568.25 737 L1555.953180212014 817 L1556.0 817.0 " fill="none"></path>
+<path d="M1095.0 155.5 L1094.2 160.8 L1093.4 166.0 L1081.0 158.9 Z"></path>
+<path d="M950.0 44.3 L950 51 L950 71 L950.0 71.0 " fill="none"></path>
+<path d="M955.3 44.3 L950.0 44.3 L944.7 44.3 L950.0 31.0 Z"></path>
+<path d="M1081.0 174.6 L1286.75 229 L1280.1555118110236 249 L1280.2 249.0 " fill="none"></path>
+<path d="M2012.4 598.1 L2176 737 L2176 878.5 L2176 878.5 L2176 1020 L2176 1020 L2176 1139 L2176 1139 L2176 1258 L2176 1258 L2160.896073903002 1278 L2160.9 1278.0 " fill="none"></path>
+<path d="M2015.8 594.1 L2012.4 598.1 L2008.9 602.2 L2002.2 589.5 Z"></path>
+<path d="M955.1 222.3 L955.5 229 L955.5 483 L955.5 483 L955.5 737 L955.5 737 L945.2526501766785 809.5 L945.3 809.5 " fill="none"></path>
+<path d="M960.4 222.0 L955.1 222.3 L949.8 222.6 L954.3 209.0 Z"></path>
+<path d="M1094.3 153.9 L1876.75 229 L1876.75 376.5 L1876.8 376.5 " fill="none"></path>
+<path d="M1094.8 148.5 L1094.3 153.9 L1093.8 159.2 L1081.0 152.6 Z"></path>
+<path d="M1928.6 966.3 L2009.5 1020 L2009.5 1070 L2009.5 1070.0 " fill="none"></path>
+<path d="M1931.6 961.8 L1928.6 966.3 L1925.7 970.7 L1917.5 958.9 Z"></path>
+<g data-name="AfficheurPts">
+<g fill="#eee8d5" stroke="#33322E" data-name="AfficheurPts">
+<rect x="0.0" y="824.5" height="108.0" width="179.0" data-name="AfficheurPts"></rect>
+<path d="M0.0 855.5 L179.0 855.5" fill="none" data-name="AfficheurPts"></path>
+<path d="M0.0 886.5 L179.0 886.5" fill="none" data-name="AfficheurPts"></path>
+</g>
+<g transform="translate(0, 824.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AfficheurPts">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="AfficheurPts">
+<a id="app\AfficheurPts.ts.AfficheurPts" xlink:href="app\AfficheurPts.ts"><text x="81.5" y="13.5" stroke="none" text-anchor="middle" data-name="AfficheurPts">AfficheurPts</text></a>
+
+</g>
+</g>
+<g transform="translate(0, 855.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AfficheurPts">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AfficheurPts">
+<text x="0.0" y="13.5" stroke="none" data-name="AfficheurPts">+fond: Shape</text>
+
+</g>
+</g>
+<g transform="translate(0, 886.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AfficheurPts">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AfficheurPts">
+<text x="0.0" y="13.5" stroke="none" data-name="AfficheurPts">+majPointage(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="AfficheurPts">+destructeur(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="Text">
+<g fill="#eee8d5" stroke="#33322E" data-name="Text">
+<rect x="44.5" y="467.5" height="31.0" width="50.0" data-name="Text"></rect>
+</g>
+<g transform="translate(44.5, 467.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Text">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Text">
+<text x="17.0" y="13.5" stroke="none" text-anchor="middle" data-name="Text">Text</text>
+
+</g>
+</g>
+</g>
+<g data-name="AfficheurVie">
+<g fill="#eee8d5" stroke="#33322E" data-name="AfficheurVie">
+<rect x="219.0" y="828.5" height="100.0" width="171.0" data-name="AfficheurVie"></rect>
+<path d="M219.0 859.5 L390.0 859.5" fill="none" data-name="AfficheurVie"></path>
+<path d="M219.0 867.5 L390.0 867.5" fill="none" data-name="AfficheurVie"></path>
+</g>
+<g transform="translate(219, 828.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AfficheurVie">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="AfficheurVie">
+<a id="app\AfficheurVie.ts.AfficheurVie" xlink:href="app\AfficheurVie.ts"><text x="77.5" y="13.5" stroke="none" text-anchor="middle" data-name="AfficheurVie">AfficheurVie</text></a>
+
+</g>
+</g>
+<g transform="translate(219, 859.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AfficheurVie">
+<g transform="translate(8, 8)" fill="#33322E" data-name="AfficheurVie">
+
+</g>
+</g>
+<g transform="translate(219, 867.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AfficheurVie">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AfficheurVie">
+<text x="0.0" y="13.5" stroke="none" data-name="AfficheurVie">#dessiner(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="AfficheurVie">+maj(): void</text>
+<text x="0.0" y="43.5" stroke="none" data-name="AfficheurVie">+destructeur(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="ObjetVisible">
+<g fill="#eee8d5" stroke="#33322E" data-name="ObjetVisible">
+<rect x="819.0" y="71.0" height="138.0" width="262.0" data-name="ObjetVisible"></rect>
+<path d="M819.0 102.0 L1081.0 102.0" fill="none" data-name="ObjetVisible"></path>
+<path d="M819.0 148.0 L1081.0 148.0" fill="none" data-name="ObjetVisible"></path>
+</g>
+<g transform="translate(819, 71)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ObjetVisible">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ObjetVisible">
+<a id="app\ObjetVisible.ts.ObjetVisible" xlink:href="app\ObjetVisible.ts"><text x="123.0" y="13.5" stroke="none" text-anchor="middle" data-name="ObjetVisible">ObjetVisible</text></a>
+
+</g>
+</g>
+<g transform="translate(819, 102)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ObjetVisible">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ObjetVisible">
+<text x="0.0" y="13.5" stroke="none" data-name="ObjetVisible">-refStage: Stage</text>
+<text x="0.0" y="28.5" stroke="none" data-name="ObjetVisible">+static refJeu: Jeu</text>
+
+</g>
+</g>
+<g transform="translate(819, 148)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ObjetVisible">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ObjetVisible">
+<text x="0.0" y="13.5" stroke="none" data-name="ObjetVisible">#abstract dessiner(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="ObjetVisible">+retournerMonClip(): MovieClip</text>
+<text x="0.0" y="43.5" stroke="none" data-name="ObjetVisible">+destructeur(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="Antagoniste">
+<g fill="#eee8d5" stroke="#33322E" data-name="Antagoniste">
+<rect x="1675.5" y="757.0" height="243.0" width="242.0" data-name="Antagoniste"></rect>
+<path d="M1675.5 788.0 L1917.5 788.0" fill="none" data-name="Antagoniste"></path>
+<path d="M1675.5 909.0 L1917.5 909.0" fill="none" data-name="Antagoniste"></path>
+</g>
+<g transform="translate(1675.5, 757)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Antagoniste">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Antagoniste">
+<a id="app\Antagoniste.ts.Antagoniste" xlink:href="app\Antagoniste.ts"><text x="113.0" y="13.5" stroke="none" text-anchor="middle" data-name="Antagoniste">Antagoniste</text></a>
+
+</g>
+</g>
+<g transform="translate(1675.5, 788)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Antagoniste">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Antagoniste">
+<text x="0.0" y="13.5" stroke="none" data-name="Antagoniste">#accelDelta: number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Antagoniste">#vitesseMax: number</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Antagoniste">#vitesseX: number</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Antagoniste">#vitesseY: number</text>
+<text x="0.0" y="73.5" stroke="none" data-name="Antagoniste">#rotationRatio: number</text>
+<text x="0.0" y="88.5" stroke="none" data-name="Antagoniste">#zoneLimite: number[]</text>
+<text x="0.0" y="103.5" stroke="none" data-name="Antagoniste">-_faireBouger: any</text>
+
+</g>
+</g>
+<g transform="translate(1675.5, 909)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Antagoniste">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Antagoniste">
+<text x="0.0" y="13.5" stroke="none" data-name="Antagoniste">#abstract faireBouger(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Antagoniste">+lanceDynamite(): Dynamite</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Antagoniste">-sortiDecran(): void</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Antagoniste">+departDeFin(): void</text>
+<text x="0.0" y="73.5" stroke="none" data-name="Antagoniste">+destructeur(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="Voiture">
+<g fill="#eee8d5" stroke="#33322E" data-name="Voiture">
+<rect x="1706.8" y="376.5" height="213.0" width="340.0" data-name="Voiture"></rect>
+<path d="M1706.8 407.5 L2046.8 407.5" fill="none" data-name="Voiture"></path>
+<path d="M1706.8 528.5 L2046.8 528.5" fill="none" data-name="Voiture"></path>
+</g>
+<g transform="translate(1706.75, 376.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Voiture">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Voiture">
+<a id="app\Voiture.ts.Voiture" xlink:href="app\Voiture.ts"><text x="162.0" y="13.5" stroke="none" text-anchor="middle" data-name="Voiture">Voiture</text></a>
+
+</g>
+</g>
+<g transform="translate(1706.75, 407.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Voiture">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Voiture">
+<text x="0.0" y="13.5" stroke="none" data-name="Voiture">#abstract accelDelta: number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Voiture">#abstract vitesseMax: number</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Voiture">#vitesseX: number</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Voiture">#vitesseY: number</text>
+<text x="0.0" y="73.5" stroke="none" data-name="Voiture">#abstract rotationRatio: number</text>
+<text x="0.0" y="88.5" stroke="none" data-name="Voiture">#abstract zoneLimite: number[]</text>
+<text x="0.0" y="103.5" stroke="none" data-name="Voiture">#abstract pointVie: number</text>
+
+</g>
+</g>
+<g transform="translate(1706.75, 528.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Voiture">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Voiture">
+<text x="0.0" y="13.5" stroke="none" data-name="Voiture">#abstract faireBouger(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Voiture">+jmeSuisFaitToucherPisCaFaitMal(): void</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Voiture">+destructeur(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="App">
+<g fill="#eee8d5" stroke="#33322E" data-name="App">
+<rect x="1223.0" y="78.5" height="123.0" width="152.0" data-name="App"></rect>
+<path d="M1223.0 109.5 L1375.0 109.5" fill="none" data-name="App"></path>
+<path d="M1223.0 155.5 L1375.0 155.5" fill="none" data-name="App"></path>
+</g>
+<g transform="translate(1223, 78.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="App">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="App">
+<a id="app\App.ts.App" xlink:href="app\App.ts"><text x="68.0" y="13.5" stroke="none" text-anchor="middle" data-name="App">App</text></a>
+
+</g>
+</g>
+<g transform="translate(1223, 109.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="App">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="App">
+<text x="0.0" y="13.5" stroke="none" data-name="App">-scene: Stage</text>
+<text x="0.0" y="28.5" stroke="none" data-name="App">-jeu: Jeu</text>
+
+</g>
+</g>
+<g transform="translate(1223, 155.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="App">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="App">
+<text x="0.0" y="13.5" stroke="none" data-name="App">+initialiser(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="App">-tickFocus(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="Jeu">
+<g fill="#eee8d5" stroke="#33322E" data-name="Jeu">
+<rect x="1035.5" y="249.0" height="468.0" width="335.0" data-name="Jeu"></rect>
+<path d="M1035.5 280.0 L1370.5 280.0" fill="none" data-name="Jeu"></path>
+<path d="M1035.5 491.0 L1370.5 491.0" fill="none" data-name="Jeu"></path>
+</g>
+<g transform="translate(1035.5, 249)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Jeu">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Jeu">
+<a id="app\Jeu.ts.Jeu" xlink:href="app\Jeu.ts"><text x="159.5" y="13.5" stroke="none" text-anchor="middle" data-name="Jeu">Jeu</text></a>
+
+</g>
+</g>
+<g transform="translate(1035.5, 280)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Jeu">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Jeu">
+<text x="0.0" y="13.5" stroke="none" data-name="Jeu">-refScene: Stage</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Jeu">-rue: Rue</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Jeu">-menu: Menu</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Jeu">-afficheurVie: AfficheurVie</text>
+<text x="0.0" y="73.5" stroke="none" data-name="Jeu">-afficheurPts: AfficheurPts</text>
+<text x="0.0" y="88.5" stroke="none" data-name="Jeu">-ricardo: Ricardo</text>
+<text x="0.0" y="103.5" stroke="none" data-name="Jeu">-tAntagoniste: Antagoniste[]</text>
+<text x="0.0" y="118.5" stroke="none" data-name="Jeu">-tDynamite: Dynamite[]</text>
+<text x="0.0" y="133.5" stroke="none" data-name="Jeu">-missile: Missile</text>
+<text x="0.0" y="148.5" stroke="none" data-name="Jeu">-tminDynamite: number[]</text>
+<text x="0.0" y="163.5" stroke="none" data-name="Jeu">-pauseMinuteurDynmite: Boolean</text>
+<text x="0.0" y="178.5" stroke="none" data-name="Jeu">+musique: Sound</text>
+<text x="0.0" y="193.5" stroke="none" data-name="Jeu">-_gestionMissile: any</text>
+
+</g>
+</g>
+<g transform="translate(1035.5, 491)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Jeu">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Jeu">
+<text x="0.0" y="13.5" stroke="none" data-name="Jeu">+debuter(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Jeu">-chargementNiveau2(): void</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Jeu">-debuterNiveau2(): void</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Jeu">+afficherMenu(): void</text>
+<text x="0.0" y="73.5" stroke="none" data-name="Jeu">-gestionDynamite(): void</text>
+<text x="0.0" y="88.5" stroke="none" data-name="Jeu">+detruireDynamite(): void</text>
+<text x="0.0" y="103.5" stroke="none" data-name="Jeu">+alternerPauseMinuteurDynamite(): void</text>
+<text x="0.0" y="118.5" stroke="none" data-name="Jeu">+cacherPts(): void</text>
+<text x="0.0" y="133.5" stroke="none" data-name="Jeu">+gestionMissile(): Boolean</text>
+<text x="0.0" y="148.5" stroke="none" data-name="Jeu">+finDuJeuPerdu(): void</text>
+<text x="0.0" y="163.5" stroke="none" data-name="Jeu">+finDuJeuGagne(): void</text>
+<text x="0.0" y="178.5" stroke="none" data-name="Jeu">+detruireAntagoniste(): void</text>
+<text x="0.0" y="193.5" stroke="none" data-name="Jeu">+getDynamites(): Dynamite[]</text>
+<text x="0.0" y="208.5" stroke="none" data-name="Jeu">+getScene(): Stage</text>
+
+</g>
+</g>
+</g>
+<g data-name="Boss">
+<g fill="#eee8d5" stroke="#33322E" data-name="Boss">
+<rect x="164.3" y="1040.0" height="198.0" width="244.0" data-name="Boss"></rect>
+<path d="M164.3 1071.0 L408.3 1071.0" fill="none" data-name="Boss"></path>
+<path d="M164.3 1162.0 L408.3 1162.0" fill="none" data-name="Boss"></path>
+</g>
+<g transform="translate(164.25, 1040)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Boss">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Boss">
+<a id="app\Boss.ts.Boss" xlink:href="app\Boss.ts"><text x="114.0" y="13.5" stroke="none" text-anchor="middle" data-name="Boss">Boss</text></a>
+
+</g>
+</g>
+<g transform="translate(164.25, 1071)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Boss">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Boss">
+<text x="0.0" y="13.5" stroke="none" data-name="Boss">#pointVie: number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Boss">-refRicardo: Ricardo</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Boss">-sens: number</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Boss">-etat: string</text>
+<text x="0.0" y="73.5" stroke="none" data-name="Boss">-siTestCollisionActif: boolean</text>
+
+</g>
+</g>
+<g transform="translate(164.25, 1162)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Boss">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Boss">
+<text x="0.0" y="13.5" stroke="none" data-name="Boss">#faireBouger(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Boss">-testCollisionRicardo(): void</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Boss">#dessiner(): void</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Boss">+destructeur(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="Ricardo">
+<g fill="#eee8d5" stroke="#33322E" data-name="Ricardo">
+<rect x="1842.5" y="1278.0" height="393.0" width="340.0" data-name="Ricardo"></rect>
+<path d="M1842.5 1309.0 L2182.5 1309.0" fill="none" data-name="Ricardo"></path>
+<path d="M1842.5 1505.0 L2182.5 1505.0" fill="none" data-name="Ricardo"></path>
+</g>
+<g transform="translate(1842.5, 1278)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Ricardo">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Ricardo">
+<a id="app\Ricardo.ts.Ricardo" xlink:href="app\Ricardo.ts"><text x="162.0" y="13.5" stroke="none" text-anchor="middle" data-name="Ricardo">Ricardo</text></a>
+
+</g>
+</g>
+<g transform="translate(1842.5, 1309)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Ricardo">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Ricardo">
+<text x="0.0" y="13.5" stroke="none" data-name="Ricardo">#accelDelta: number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Ricardo">#vitesseMax: number</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Ricardo">#rotationRatio: number</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Ricardo">#zoneLimite: number[]</text>
+<text x="0.0" y="73.5" stroke="none" data-name="Ricardo">#pointVie: number</text>
+<text x="0.0" y="88.5" stroke="none" data-name="Ricardo">-refAfficheurVie: any</text>
+<text x="0.0" y="103.5" stroke="none" data-name="Ricardo">-minuterieBouger: number</text>
+<text x="0.0" y="118.5" stroke="none" data-name="Ricardo">-touchesEnfoncees: boolean[]</text>
+<text x="0.0" y="133.5" stroke="none" data-name="Ricardo">-timeoutMissile: any</text>
+<text x="0.0" y="148.5" stroke="none" data-name="Ricardo">-_activerTouche: any</text>
+<text x="0.0" y="163.5" stroke="none" data-name="Ricardo">-_desactiverTouche: any</text>
+<text x="0.0" y="178.5" stroke="none" data-name="Ricardo">-_faireBouger: any</text>
+
+</g>
+</g>
+<g transform="translate(1842.5, 1505)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Ricardo">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Ricardo">
+<text x="0.0" y="13.5" stroke="none" data-name="Ricardo">#dessiner(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Ricardo">-activerTouche(): void</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Ricardo">-desactiverTouche(): void</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Ricardo">#faireBouger(): void</text>
+<text x="0.0" y="73.5" stroke="none" data-name="Ricardo">-apparitionMissile(): void</text>
+<text x="0.0" y="88.5" stroke="none" data-name="Ricardo">-collisionDynamite(): void</text>
+<text x="0.0" y="103.5" stroke="none" data-name="Ricardo">+jmeSuisFaitToucherPisCaFaitMal(): void</text>
+<text x="0.0" y="118.5" stroke="none" data-name="Ricardo">+getPos(): Point</text>
+<text x="0.0" y="133.5" stroke="none" data-name="Ricardo">+getVie(): number</text>
+<text x="0.0" y="148.5" stroke="none" data-name="Ricardo">+destructeur(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="Bouton">
+<g fill="#eee8d5" stroke="#33322E" data-name="Bouton">
+<rect x="814.8" y="1077.5" height="123.0" width="171.0" data-name="Bouton"></rect>
+<path d="M814.8 1108.5 L985.8 1108.5" fill="none" data-name="Bouton"></path>
+<path d="M814.8 1139.5 L985.8 1139.5" fill="none" data-name="Bouton"></path>
+</g>
+<g transform="translate(814.75, 1077.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Bouton">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Bouton">
+<a id="app\Bouton.ts.Bouton" xlink:href="app\Bouton.ts"><text x="77.5" y="13.5" stroke="none" text-anchor="middle" data-name="Bouton">Bouton</text></a>
+
+</g>
+</g>
+<g transform="translate(814.75, 1108.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Bouton">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Bouton">
+<text x="0.0" y="13.5" stroke="none" data-name="Bouton">-label: string[]</text>
+
+</g>
+</g>
+<g transform="translate(814.75, 1139.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Bouton">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Bouton">
+<text x="0.0" y="13.5" stroke="none" data-name="Bouton">#dessiner(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Bouton">+setLabel(): void</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Bouton">+destructeur(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="Dynamite">
+<g fill="#eee8d5" stroke="#33322E" data-name="Dynamite">
+<rect x="615.5" y="828.5" height="100.0" width="171.0" data-name="Dynamite"></rect>
+<path d="M615.5 859.5 L786.5 859.5" fill="none" data-name="Dynamite"></path>
+<path d="M615.5 867.5 L786.5 867.5" fill="none" data-name="Dynamite"></path>
+</g>
+<g transform="translate(615.5, 828.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Dynamite">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Dynamite">
+<a id="app\Dynamite.ts.Dynamite" xlink:href="app\Dynamite.ts"><text x="77.5" y="13.5" stroke="none" text-anchor="middle" data-name="Dynamite">Dynamite</text></a>
+
+</g>
+</g>
+<g transform="translate(615.5, 859.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Dynamite">
+<g transform="translate(8, 8)" fill="#33322E" data-name="Dynamite">
+
+</g>
+</g>
+<g transform="translate(615.5, 867.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Dynamite">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Dynamite">
+<text x="0.0" y="13.5" stroke="none" data-name="Dynamite">#dessiner(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Dynamite">-bouger(): void</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Dynamite">+destructeur(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="Explosion">
+<g fill="#eee8d5" stroke="#33322E" data-name="Explosion">
+<rect x="470.0" y="429.0" height="108.0" width="171.0" data-name="Explosion"></rect>
+<path d="M470.0 460.0 L641.0 460.0" fill="none" data-name="Explosion"></path>
+<path d="M470.0 491.0 L641.0 491.0" fill="none" data-name="Explosion"></path>
+</g>
+<g transform="translate(470, 429)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Explosion">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Explosion">
+<a id="app\Explosion.ts.Explosion" xlink:href="app\Explosion.ts"><text x="77.5" y="13.5" stroke="none" text-anchor="middle" data-name="Explosion">Explosion</text></a>
+
+</g>
+</g>
+<g transform="translate(470, 460)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Explosion">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Explosion">
+<text x="0.0" y="13.5" stroke="none" data-name="Explosion">+timeout: number</text>
+
+</g>
+</g>
+<g transform="translate(470, 491)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Explosion">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Explosion">
+<text x="0.0" y="13.5" stroke="none" data-name="Explosion">#dessiner(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Explosion">+destructeur(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="Rue">
+<g fill="#eee8d5" stroke="#33322E" data-name="Rue">
+<rect x="826.5" y="809.5" height="138.0" width="218.0" data-name="Rue"></rect>
+<path d="M826.5 840.5 L1044.5 840.5" fill="none" data-name="Rue"></path>
+<path d="M826.5 871.5 L1044.5 871.5" fill="none" data-name="Rue"></path>
+</g>
+<g transform="translate(826.5, 809.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Rue">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Rue">
+<a id="app\Rue.ts.Rue" xlink:href="app\Rue.ts"><text x="101.0" y="13.5" stroke="none" text-anchor="middle" data-name="Rue">Rue</text></a>
+
+</g>
+</g>
+<g transform="translate(826.5, 840.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Rue">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Rue">
+<text x="0.0" y="13.5" stroke="none" data-name="Rue">-_defilement: any</text>
+
+</g>
+</g>
+<g transform="translate(826.5, 871.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Rue">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Rue">
+<text x="0.0" y="13.5" stroke="none" data-name="Rue">#dessiner(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Rue">+arreterDefilement(): void</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Rue">-defilement(): void</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Rue">+destructeur(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="Menu">
+<g fill="#eee8d5" stroke="#33322E" data-name="Menu">
+<rect x="1189.0" y="787.0" height="183.0" width="220.0" data-name="Menu"></rect>
+<path d="M1189.0 818.0 L1409.0 818.0" fill="none" data-name="Menu"></path>
+<path d="M1189.0 849.0 L1409.0 849.0" fill="none" data-name="Menu"></path>
+</g>
+<g transform="translate(1189, 787)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Menu">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Menu">
+<a id="app\Menu.ts.Menu" xlink:href="app\Menu.ts"><text x="102.0" y="13.5" stroke="none" text-anchor="middle" data-name="Menu">Menu</text></a>
+
+</g>
+</g>
+<g transform="translate(1189, 818)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Menu">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Menu">
+<text x="0.0" y="13.5" stroke="none" data-name="Menu">-bouton: Bouton</text>
+
+</g>
+</g>
+<g transform="translate(1189, 849)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Menu">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Menu">
+<text x="0.0" y="13.5" stroke="none" data-name="Menu">#dessiner(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Menu">+pageSuivante(): void</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Menu">-chargementFini(): void</text>
+<text x="0.0" y="58.5" stroke="none" data-name="Menu">-chargementErreur(): void</text>
+<text x="0.0" y="73.5" stroke="none" data-name="Menu">+setVisibilite(): void</text>
+<text x="0.0" y="88.5" stroke="none" data-name="Menu">+getRefBouton(): Bouton</text>
+<text x="0.0" y="103.5" stroke="none" data-name="Menu">+destructeur(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="Missile">
+<g fill="#eee8d5" stroke="#33322E" data-name="Missile">
+<rect x="1461.0" y="817.0" height="123.0" width="171.0" data-name="Missile"></rect>
+<path d="M1461.0 848.0 L1632.0 848.0" fill="none" data-name="Missile"></path>
+<path d="M1461.0 879.0 L1632.0 879.0" fill="none" data-name="Missile"></path>
+</g>
+<g transform="translate(1461, 817)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Missile">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Missile">
+<a id="app\Missile.ts.Missile" xlink:href="app\Missile.ts"><text x="77.5" y="13.5" stroke="none" text-anchor="middle" data-name="Missile">Missile</text></a>
+
+</g>
+</g>
+<g transform="translate(1461, 848)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Missile">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Missile">
+<text x="0.0" y="13.5" stroke="none" data-name="Missile">+vitesse: number</text>
+
+</g>
+</g>
+<g transform="translate(1461, 879)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Missile">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Missile">
+<text x="0.0" y="13.5" stroke="none" data-name="Missile">#dessiner(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Missile">-bouger(): void</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Missile">+destructeur(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="Maki">
+<g fill="#eee8d5" stroke="#33322E" data-name="Maki">
+<rect x="1710.0" y="1077.5" height="123.0" width="173.0" data-name="Maki"></rect>
+<path d="M1710.0 1108.5 L1883.0 1108.5" fill="none" data-name="Maki"></path>
+<path d="M1710.0 1139.5 L1883.0 1139.5" fill="none" data-name="Maki"></path>
+</g>
+<g transform="translate(1710, 1077.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Maki">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Maki">
+<a id="app\Maki.ts.Maki" xlink:href="app\Maki.ts"><text x="78.5" y="13.5" stroke="none" text-anchor="middle" data-name="Maki">Maki</text></a>
+
+</g>
+</g>
+<g transform="translate(1710, 1108.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Maki">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Maki">
+<text x="0.0" y="13.5" stroke="none" data-name="Maki">#pointVie: number</text>
+
+</g>
+</g>
+<g transform="translate(1710, 1139.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Maki">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Maki">
+<text x="0.0" y="13.5" stroke="none" data-name="Maki">#faireBouger(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Maki">#dessiner(): void</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Maki">+destructeur(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="MovieClip">
+<g fill="#eee8d5" stroke="#33322E" data-name="MovieClip">
+<rect x="903.5" y="0.0" height="31.0" width="93.0" data-name="MovieClip"></rect>
+</g>
+<g transform="translate(903.5, 0)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="MovieClip">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="MovieClip">
+<text x="38.5" y="13.5" stroke="none" text-anchor="middle" data-name="MovieClip">MovieClip</text>
+
+</g>
+</g>
+</g>
+<g data-name="Wasabi">
+<g fill="#eee8d5" stroke="#33322E" data-name="Wasabi">
+<rect x="1923.0" y="1070.0" height="138.0" width="173.0" data-name="Wasabi"></rect>
+<path d="M1923.0 1101.0 L2096.0 1101.0" fill="none" data-name="Wasabi"></path>
+<path d="M1923.0 1147.0 L2096.0 1147.0" fill="none" data-name="Wasabi"></path>
+</g>
+<g transform="translate(1923, 1070)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Wasabi">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Wasabi">
+<a id="app\Wasabi.ts.Wasabi" xlink:href="app\Wasabi.ts"><text x="78.5" y="13.5" stroke="none" text-anchor="middle" data-name="Wasabi">Wasabi</text></a>
+
+</g>
+</g>
+<g transform="translate(1923, 1101)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Wasabi">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Wasabi">
+<text x="0.0" y="13.5" stroke="none" data-name="Wasabi">#pointVie: number</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Wasabi">-sens: number</text>
+
+</g>
+</g>
+<g transform="translate(1923, 1147)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="Wasabi">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="Wasabi">
+<text x="0.0" y="13.5" stroke="none" data-name="Wasabi">#dessiner(): void</text>
+<text x="0.0" y="28.5" stroke="none" data-name="Wasabi">#faireBouger(): void</text>
+<text x="0.0" y="43.5" stroke="none" data-name="Wasabi">+destructeur(): void</text>
+
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
