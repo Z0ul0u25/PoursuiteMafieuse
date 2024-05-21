@@ -17,8 +17,19 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Missile = void 0;
+    /**
+     * @class Missile
+     * @description Un Missile dans le jeu. Il ne peut y en avoir qu'un seul
+     * @author Philippe Gourdeau <2266603@csfoy.ca> <https://github.com/Z0ul0u25>
+     */
     var Missile = /** @class */ (function (_super) {
         __extends(Missile, _super);
+        /**
+         * Constructeur de Missile
+         * @param posX Position en X sur la scène
+         * @param posY Position en Y sur la scène
+         * @param rotation Rotation de l'objet
+         */
         function Missile(posX, posY, rotation) {
             var _this = _super.call(this, posX, posY) || this;
             _this.vitesse = null;
@@ -27,14 +38,23 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
             _this.addEventListener("tick", _this.bouger.bind(_this), false);
             return _this;
         }
+        /**
+         * Assigne le clip pour affichage visuel
+         */
         Missile.prototype.dessiner = function () {
             window.lib.ClipMissile.call(this);
             this.frameBounds = window.lib.ClipMissile.prototype.frameBounds;
         };
+        /**
+         * gère le mouvement du missile
+         */
         Missile.prototype.bouger = function () {
             this.y -= Math.cos(this.rotation * (Math.PI / 180)) * (this.vitesse += 2);
             this.x += Math.sin(this.rotation * (Math.PI / 180)) * this.vitesse;
         };
+        /**
+         * Destructeur
+         */
         Missile.prototype.destructeur = function () {
             this.removeAllEventListeners();
             this.vitesse = null;

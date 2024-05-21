@@ -17,8 +17,18 @@ define(["require", "exports", "./Antagoniste", "./ObjetVisible"], function (requ
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Wasabi = void 0;
+    /**
+     * @class Wasabi
+     * @description Deuxième Antagoniste du jeu
+     * @author Philippe Gourdeau <2266603@csfoy.ca> <https://github.com/Z0ul0u25>
+     */
     var Wasabi = /** @class */ (function (_super) {
         __extends(Wasabi, _super);
+        /**
+         * Constructeur de Wasabi
+         * @param posX Position en X sur la scène
+         * @param posY Position en Y sur la scène
+         */
         function Wasabi(posX, posY) {
             var _this = _super.call(this, posX, posY) || this;
             _this.sens = 1;
@@ -32,12 +42,19 @@ define(["require", "exports", "./Antagoniste", "./ObjetVisible"], function (requ
             _this.zoneLimite = [64, window.lib.properties.width - 188, window.lib.properties.height / 2 - 32, window.lib.properties.width / 2 + 96];
             return _this;
         }
+        /**
+         * Assigne le clip pour affichage visuel
+         */
         Wasabi.prototype.dessiner = function () {
             window.lib.ClipWasabi.call(this);
             this.frameBounds = window.lib.ClipWasabi.prototype.frameBounds;
         };
+        /**
+         * Gestion du mouvement
+         */
         Wasabi.prototype.faireBouger = function () {
             if (this.pointVie > 0) {
+                // Va faire des mouvement de gauche à droite
                 if (this.sens == 1 && this.x >= this.zoneLimite[1]) {
                     if (this.vitesseX > 0) {
                         this.vitesseX -= this.accelDelta;
@@ -65,6 +82,9 @@ define(["require", "exports", "./Antagoniste", "./ObjetVisible"], function (requ
                 ObjetVisible_1.ObjetVisible.refJeu.detruireAntagoniste(this);
             }
         };
+        /**
+         * Destructeur
+         */
         Wasabi.prototype.destructeur = function () {
             _super.prototype.destructeur.call(this);
         };

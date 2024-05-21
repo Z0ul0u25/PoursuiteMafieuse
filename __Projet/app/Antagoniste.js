@@ -17,26 +17,51 @@ define(["require", "exports", "./Dynamite", "./Voiture", "./ObjetVisible"], func
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Antagoniste = void 0;
+    /**
+     * @class Antagoniste
+     * @description Abstraite. Tout ce qu'un antagoniste à de besoin pour exister
+     * @author Philippe Gourdeau <2266603@csfoy.ca> <https://github.com/Z0ul0u25>
+     */
     var Antagoniste = /** @class */ (function (_super) {
         __extends(Antagoniste, _super);
+        /**
+         * Constrcteur d'Antagoniste
+         * @param posX Position en X sur la scene
+         * @param posY Position en Y sur la scene
+         */
         function Antagoniste(posX, posY) {
             var _this = _super.call(this, posX, posY) || this;
             _this.addEventListener("tick", _this.faireBouger.bind(_this), false);
             return _this;
         }
+        /**
+         * Construit une nouvelle Dynamite
+         * @param deltaX Position en X par rapport à l'antagoniste
+         * @param deltaY Position en Y par rapport à l'antagoniste
+         * @returns Une Dynamite
+         */
         Antagoniste.prototype.lanceDynamite = function (deltaX, deltaY) {
             return new Dynamite_1.Dynamite(this.x + deltaX, this.y + deltaY);
         };
+        /**
+         * Détruit l'antagoniste l'orsqu'il n'est plus à l'écran si perdu
+         */
         Antagoniste.prototype.sortiDecran = function () {
             if (this.y <= -128) {
                 ObjetVisible_1.ObjetVisible.refJeu.detruireAntagoniste(this);
             }
         };
+        /**
+         * Gère le mouvement de l'antagoniste si le jeu est perdu
+         */
         Antagoniste.prototype.departDeFin = function () {
             this.gotoAndStop(0);
             this.vitesseY = -5;
             this.addEventListener("tick", this.sortiDecran.bind(this), false);
         };
+        /**
+         * Destructeur
+         */
         Antagoniste.prototype.destructeur = function () {
             _super.prototype.destructeur.call(this);
         };

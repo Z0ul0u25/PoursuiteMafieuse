@@ -17,24 +17,45 @@ define(["require", "exports", "./Antagoniste", "./ObjetVisible"], function (requ
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Maki = void 0;
+    /**
+     * @class Maki
+     * @description Premier Antagoniste du Jeu
+     * @author Philippe Gourdeau <2266603@csfoy.ca> <https://github.com/Z0ul0u25>
+     */
     var Maki = /** @class */ (function (_super) {
         __extends(Maki, _super);
+        /**
+         * Constructeur de Maki
+         * @param posX Position en X sur la scène
+         * @param posY Position en Y sur la scène
+         */
         function Maki(posX, posY) {
             var _this = _super.call(this, posX, posY) || this;
             _this.pointVie = 2;
             _this.name = "Maki";
             return _this;
         }
+        /**
+         * Gestion du mouvement
+         */
         Maki.prototype.faireBouger = function () {
+            // Maki à la base à une vitesse en Y de 0
+            // Donc cela n'aura un effet seulement lorsqu'il sera mort
             this.y += this.vitesseY;
             if (this.y > window.lib.properties.height + 128) {
                 ObjetVisible_1.ObjetVisible.refJeu.detruireAntagoniste(this);
             }
         };
+        /**
+         * Assigne le clip pour affichage visuel
+         */
         Maki.prototype.dessiner = function () {
             window.lib.ClipMaki.call(this);
             this.frameBounds = window.lib.ClipMaki.prototype.frameBounds;
         };
+        /**
+         * Destructeur
+         */
         Maki.prototype.destructeur = function () {
             _super.prototype.destructeur.call(this);
         };

@@ -1,5 +1,9 @@
 import { ObjetVisible } from "./ObjetVisible";
 
+/**
+ * @class Voiture
+ * @description Abstraite. Tout ce que les voitures auront de besoin
+ */
 export abstract class Voiture extends ObjetVisible{
 
 	protected abstract accelDelta:number;
@@ -10,15 +14,26 @@ export abstract class Voiture extends ObjetVisible{
 	protected abstract zoneLimite:number[]; // [Haut, Droite, Bas, Gauche]
 	protected abstract pointVie:number;
 
-
+	/**
+	 * Constructeur de Voiture
+	 * @param posX Position en X sur la scène
+	 * @param posY Position en Y sur la scène
+	 */
 	public constructor(posX:number, posY:number) {
 		super(posX, posY);
 		this.vitesseX = 0;
 		this.vitesseY = 0;
 	}
 
+	/**
+	 * Fonction à redéfinir pour le mouvement à prendre en jeu
+	 */
 	protected abstract faireBouger():void;
 
+	/**
+	 * Fait perdre des points de vies
+	 * @param degreDeViolenceRecu Nombre de domage reçu
+	 */
 	public jmeSuisFaitToucherPisCaFaitMal(degreDeViolenceRecu: number): void {
 		this.pointVie -= degreDeViolenceRecu;
 		if (this.pointVie <= 0) {
@@ -31,6 +46,9 @@ export abstract class Voiture extends ObjetVisible{
 		}
 	}
 
+	/**
+	 * Destructeur
+	 */
 	public destructeur(): void {
 		this.accelDelta = null;
 		this.vitesseMax = null;

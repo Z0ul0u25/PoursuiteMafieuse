@@ -17,14 +17,27 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Voiture = void 0;
+    /**
+     * @class Voiture
+     * @description Abstraite. Tout ce que les voitures auront de besoin
+     */
     var Voiture = /** @class */ (function (_super) {
         __extends(Voiture, _super);
+        /**
+         * Constructeur de Voiture
+         * @param posX Position en X sur la scène
+         * @param posY Position en Y sur la scène
+         */
         function Voiture(posX, posY) {
             var _this = _super.call(this, posX, posY) || this;
             _this.vitesseX = 0;
             _this.vitesseY = 0;
             return _this;
         }
+        /**
+         * Fait perdre des points de vies
+         * @param degreDeViolenceRecu Nombre de domage reçu
+         */
         Voiture.prototype.jmeSuisFaitToucherPisCaFaitMal = function (degreDeViolenceRecu) {
             this.pointVie -= degreDeViolenceRecu;
             if (this.pointVie <= 0) {
@@ -36,6 +49,9 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
                 this.vitesseX = 0;
             }
         };
+        /**
+         * Destructeur
+         */
         Voiture.prototype.destructeur = function () {
             this.accelDelta = null;
             this.vitesseMax = null;

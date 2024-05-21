@@ -17,21 +17,38 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Rue = void 0;
+    /**
+     * @class Rue
+     * @description Le fond du jeu
+     * @author Philippe Gourdeau <2266603@csfoy.ca> <https://github.com/Z0ul0u25>
+     */
     var Rue = /** @class */ (function (_super) {
         __extends(Rue, _super);
+        /**
+         * Constructeur de Rue
+         */
         function Rue() {
             var _this = _super.call(this, 0, 0) || this;
             _this._defilement = _this.defilement.bind(_this);
             _this.addEventListener("tick", _this._defilement, false);
             return _this;
         }
+        /**
+         * Sera redéfini dans toutes les sous classes selon le Clip
+         */
         Rue.prototype.dessiner = function () {
             window.lib.ClipRue.call(this);
             this.frameBounds = window.lib.ClipRue.prototype.frameBounds;
         };
+        /**
+         * Arrête la rue
+         */
         Rue.prototype.arreterDefilement = function () {
             this.removeEventListener("tick", this._defilement);
         };
+        /**
+         * Fait bouger la rue
+         */
         Rue.prototype.defilement = function () {
             this.y += 20;
             if (this.y >= window.lib.properties.height) {
@@ -40,6 +57,9 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
                 this.y = 1;
             }
         };
+        /**
+         * Destructeur
+         */
         Rue.prototype.destructeur = function () {
             this._defilement = null;
             this.removeAllEventListeners();

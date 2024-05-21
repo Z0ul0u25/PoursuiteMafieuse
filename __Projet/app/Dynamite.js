@@ -17,20 +17,39 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Dynamite = void 0;
+    /**
+     * @class Dynamite
+     * @description Instanciation de Dynamite
+     * @author Philippe Gourdeau <2266603@csfoy.ca> <https://github.com/Z0ul0u25>
+     */
     var Dynamite = /** @class */ (function (_super) {
         __extends(Dynamite, _super);
+        /**
+         * Constructeur de Dynamite
+         * @param posX Position en X sur la scène
+         * @param posY Position en Y sur la scène
+         */
         function Dynamite(posX, posY) {
             var _this = _super.call(this, posX, posY) || this;
             _this.addEventListener("tick", _this.bouger.bind(_this), false);
             return _this;
         }
+        /**
+         * Assigne le clip pour affichage visuel
+         */
         Dynamite.prototype.dessiner = function () {
             window.lib.ClipDynamite.call(this);
             this.frameBounds = window.lib.ClipDynamite.prototype.frameBounds;
         };
+        /**
+         * Gestion du mouvement
+         */
         Dynamite.prototype.bouger = function () {
             this.y += 20;
         };
+        /**
+         * Destructeur
+         */
         Dynamite.prototype.destructeur = function () {
             this.removeAllEventListeners();
             _super.prototype.destructeur.call(this);

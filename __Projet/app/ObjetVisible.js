@@ -17,8 +17,18 @@ define(["require", "exports"], function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ObjetVisible = void 0;
+    /**
+     * @class ObjetVisible
+     * @description Abstraite. Tout ce qu'un objet sur la scène à besoin pour exister
+     * @author Philippe Gourdeau <2266603@csfoy.ca> <https://github.com/Z0ul0u25>
+     */
     var ObjetVisible = /** @class */ (function (_super) {
         __extends(ObjetVisible, _super);
+        /**
+         * Constructeur d'objet étendu de createjs.MovieClip
+         * @param posX Position en X sur la scène
+         * @param posY Positoin en Y sur la scène
+         */
         function ObjetVisible(posX, posY) {
             var _this = _super.call(this) || this;
             _this.refStage = null;
@@ -30,10 +40,14 @@ define(["require", "exports"], function (require, exports) {
             _this.y = posY;
             return _this;
         }
+        /**
+         * Destructeur
+         */
         ObjetVisible.prototype.destructeur = function () {
             this.x = null;
             this.y = null;
             this.name = null;
+            // Retire tous les EventListener ayant été ajouté à l'objet
             this.removeAllEventListeners();
             this.refStage.removeChild(this);
         };

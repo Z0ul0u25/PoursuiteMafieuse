@@ -17,22 +17,41 @@ define(["require", "exports", "./ObjetVisible"], function (require, exports, Obj
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Explosion = void 0;
+    /**
+     * @class Explosion
+     * @description Particule d'explosion
+     * @author Philippe Gourdeau <2266603@csfoy.ca> <https://github.com/Z0ul0u25>
+     */
     var Explosion = /** @class */ (function (_super) {
         __extends(Explosion, _super);
+        /**
+         * Constructeur d'Explosion
+         * @param posX Position en X sur la scène
+         * @param posY Position en Y sur la scène
+         * @param estDynamite Si l'explosion provient d'une Dynamite
+         */
         function Explosion(posX, posY, estDynamite) {
             var _this = _super.call(this, posX, posY) || this;
             _this.timeout = null;
-            _this.scale = 2;
-            // autodestruction après animation;
+            // Si l'explosion ne vient pas d'une Dynamite elle sera plus grosse
+            _this.scale = (estDynamite ? 2 : 3);
+            // Autodestruction après animation;
             _this.timeout = setTimeout(_this.destructeur.bind(_this), 1000 / 30 * 15);
+            // Joue un son différent si elle provient d'une dynamite
             var type = (estDynamite ? "explosion_dynamite" : "explosion");
             createjs.Sound.play(type);
             return _this;
         }
+        /**
+         * Assigne le clip pour affichage visuel
+         */
         Explosion.prototype.dessiner = function () {
             window.lib.ClipExplosion.call(this);
             this.frameBounds = window.lib.ClipExplosion.prototype.frameBounds;
         };
+        /**
+         * Destructor
+         */
         Explosion.prototype.destructeur = function () {
             clearTimeout(this.timeout);
             this.timeout = null;
