@@ -3,7 +3,7 @@ import { ObjetVisible } from "./ObjetVisible";
 export class Bouton extends ObjetVisible {
 	private label = ["continuer", "lancer", "redemarrer"];
 
-	constructor(posX: number, posY: number, indexLabel:number) {
+	constructor(posX: number, posY: number, indexLabel: number) {
 		super(posX, posY);
 		this.setLabel(indexLabel);
 	}
@@ -13,11 +13,11 @@ export class Bouton extends ObjetVisible {
 		this.frameBounds = window.lib.ClipBouton.prototype.frameBounds;
 	}
 
-	public setLabel(indexLable:number){
+	public setLabel(indexLable: number): void {
 		this.gotoAndStop(this.label[indexLable]);
 	}
 
-	public destructeur():void{
+	public destructeur(): void {
 		this.label = null;
 		super.destructeur();
 	}

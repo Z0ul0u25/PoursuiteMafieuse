@@ -30,10 +30,6 @@ define(["require", "exports"], function (require, exports) {
             _this.y = posY;
             return _this;
         }
-        // Utilisé par les detections de collision
-        ObjetVisible.prototype.retournerMonClip = function () {
-            return this;
-        };
         ObjetVisible.prototype.destructeur = function () {
             this.x = null;
             this.y = null;

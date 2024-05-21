@@ -11,7 +11,7 @@ export class Ricardo extends Voiture {
 	protected zoneLimite: number[];
 	protected pointVie: number;
 
-	private refAfficheurVie = null;
+	private refAfficheurVie: AfficheurVie = null;
 
 	private minuterieBouger: number = null;
 	private touchesEnfoncees: Array<boolean> = null;

@@ -17,11 +17,6 @@ export abstract class ObjetVisible extends createjs.MovieClip {
 
 	protected abstract dessiner(): void;
 
-	// Utilisé par les detections de collision
-	public retournerMonClip(): createjs.MovieClip {
-		return this;
-	}
-
 	public destructeur(): void {
 		this.x = null;
 		this.y = null;

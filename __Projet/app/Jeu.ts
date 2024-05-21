@@ -27,7 +27,7 @@ export class Jeu {
 	private tminDynamite: number[] = [];
 	private pauseMinuteurDynmite: Boolean = null;
 
-	public musique: createjs.Sound = null;
+	private musique: createjs.Sound = null;
 
 	private _gestionMissile = this.gestionMissile.bind(this);
 
