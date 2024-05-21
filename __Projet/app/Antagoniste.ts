@@ -10,11 +10,9 @@ export abstract class Antagoniste extends Voiture {
 	protected rotationRatio: number;
 	protected zoneLimite: number[];
 
-	private _faireBouger = this.faireBouger.bind(this);
-
 	public constructor(posX: number, posY: number) {
 		super(posX, posY);
-		this.addEventListener("tick", this._faireBouger, false);
+		this.addEventListener("tick", this.faireBouger.bind(this), false);
 	}
 
 	protected abstract faireBouger(): void;

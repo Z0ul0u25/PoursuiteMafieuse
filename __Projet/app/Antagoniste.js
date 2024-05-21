@@ -21,8 +21,7 @@ define(["require", "exports", "./Dynamite", "./Voiture", "./ObjetVisible"], func
         __extends(Antagoniste, _super);
         function Antagoniste(posX, posY) {
             var _this = _super.call(this, posX, posY) || this;
-            _this._faireBouger = _this.faireBouger.bind(_this);
-            _this.addEventListener("tick", _this._faireBouger, false);
+            _this.addEventListener("tick", _this.faireBouger.bind(_this), false);
             return _this;
         }
         Antagoniste.prototype.lanceDynamite = function (deltaX, deltaY) {
