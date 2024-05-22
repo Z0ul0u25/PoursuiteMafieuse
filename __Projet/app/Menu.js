@@ -86,6 +86,7 @@ define(["require", "exports", "./ObjetVisible", "./Bouton"], function (require, 
          */
         Menu.prototype.setVisibilite = function (visibilite) {
             this.visible = visibilite;
+            this.bouton.visible = visibilite;
         };
         /**
          * Obtenir le bouton

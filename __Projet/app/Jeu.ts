@@ -132,6 +132,12 @@ export class Jeu {
 			this.menu.gotoAndStop(etat);
 		}
 
+		if (etat == "perdu"){
+			while (this.tAntagoniste.length != 0) {
+				this.tAntagoniste.pop().destructeur();
+			}
+		}
+
 		if (etat == "gagne") {
 			// Déplace le compteur de point sur le menu
 			this.afficheurPts.x = 400;

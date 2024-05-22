@@ -80,6 +80,7 @@ export class Menu extends ObjetVisible {
 	 */
 	public setVisibilite(visibilite:boolean):void{
 		this.visible = visibilite;
+		this.bouton.visible = visibilite;
 	}
 
 	/**
