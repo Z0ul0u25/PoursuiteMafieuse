@@ -87,7 +87,7 @@ define(["require", "exports", "./Antagoniste", "./ObjetVisible"], function (requ
                 default:
                     // Gestion du mouvement du Boss
                     if (this.pointVie > 0 && this.refRicardo.getVie() > 0) {
-                        // Tant qu'il est vivant, il esseyera de rester devant le joueur
+                        // Tant que lui et le joueur sont vivant, il esseyera de rester devant le joueur
                         if (this.x < this.refRicardo.x - 42 && this.vitesseX < this.vitesseMax) {
                             this.vitesseX += this.accelDelta;
                         }
